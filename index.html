@@ -9,367 +9,239 @@
   <link rel="icon" type="image/jpeg" href="assets/images/0_ADROIT__Icon.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <style>
-    /* CSS Custom Properties / Design Tokens */
-    :root {
-      --brand-primary: #1e3a8a;
-      --brand-primary-dark: #1d4ed8;
-      --brand-secondary: #3b82f6;
-      --brand-accent: #2563eb;
-      --brand-bg-light: #f8fafc;
-      --brand-bg-dark: #0f172a;
-      --brand-bg-alt: #ffffff;
-      --brand-text-light: #1f2937;
-      --brand-text-dark: #e5e7eb;
-      --brand-text-muted: #6b7280;
-      --brand-muted: #9ca3af;
-      --brand-success: #10b981;
-      --brand-warning: #f59e0b;
-      --brand-danger: #ef4444;
-      --spacing-xs: 0.25rem;
-      --spacing-sm: 0.5rem;
-      --spacing-md: 1rem;
-      --spacing-lg: 1.5rem;
-      --spacing-xl: 2rem;
-      --spacing-xxl: 3rem;
-      --radius-sm: 0.25rem;
-      --radius-md: 0.5rem;
-      --radius-lg: 0.75rem;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-      --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --brand-primary: #60a5fa;
-        --brand-primary-dark: #93c5fd;
-        --brand-secondary: #3b82f6;
-        --brand-accent: #0ea5e9;
-        --brand-bg-light: #111827;
-        --brand-bg-dark: #0f172a;
-        --brand-bg-alt: #1f2937;
-        --brand-text-light: #f3f4f6;
-        --brand-text-dark: #9ca3af;
-        --brand-text-muted: #6b7280;
-        --brand-muted: #9ca3af;
-      }
-      body { background: var(--brand-bg-dark); }
-      .card, .feature-card, .product-card, .loop-card, .mission-card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
-    }
-
-    /* Base Styles */
-    *, *::before, *::after { box-sizing: border-box; }
-    body {
-      font-family: var(--font-family);
-      margin: 0;
-      padding: 0;
-      color: var(--brand-text-light);
-      background: var(--brand-bg-light);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    h1, h2, h3, h4, h5, h6 { margin-top: 0; font-weight: 600; line-height: 1.25; }
-    h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
-    h2 { font-size: clamp(1.25rem, 2vw, 1.5rem); margin-bottom: var(--spacing-sm); }
-    h3 { font-size: 1.125rem; margin-bottom: var(--spacing-xs); }
-    p { margin-top: 0; margin-bottom: var(--spacing-md); }
-    a { color: var(--brand-secondary); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    strong { font-weight: 600; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-md); }
-
-    /* Header & Navigation */
-    .header { background: var(--brand-bg-alt); border-bottom: 1px solid rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 50; }
-    .nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) 0; }
-    .logo { display: flex; align-items: center; gap: var(--spacing-sm); }
-    .logo img { height: 40px; width: auto; display: block; }
-    .logo-text { font-weight: 700; font-size: 1.25rem; color: var(--brand-primary); }
-    .nav-links { display: flex; gap: var(--spacing-lg); list-style: none; margin: 0; padding: 0; }
-    .nav-links a { color: var(--brand-text-light); font-weight: 500; padding: var(--spacing-xs) 0; }
-    .nav-links a:hover { color: var(--brand-primary); }
-    .nav-links a:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 2px; border-radius: var(--radius-sm); }
-    .nav-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--brand-text-light); }
-    @media (max-width: 768px) { .nav-links { display: none; } .nav-toggle { display: block; } }
-
-    /* Hero Section */
-    .hero { padding: var(--spacing-xxl) 0; background: linear-gradient(135deg, var(--brand-bg-light) 0%, var(--brand-bg-alt) 100%); border-bottom: 1px solid rgba(0,0,0,0.08); min-height: 60vh; display: flex; align-items: center; }
-    .hero-content { text-align: center; max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
-    .hero h1 { color: var(--brand-primary-dark); margin-bottom: var(--spacing-sm); }
-    .hero__subtitle { color: var(--brand-text-muted); font-size: 1.125rem; margin-bottom: var(--spacing-lg); }
-    .hero__description { max-width: 800px; margin: 0 auto; padding: var(--spacing-md) 0; }
-    .hero__description p { margin-bottom: var(--spacing-sm); }
-    .hero__description p:last-child { margin-bottom: 0; }
-    .hero__description code { background: rgba(0,0,0,0.05); padding: 0.15rem 0.4rem; border-radius: var(--radius-sm); font-size: 0.875rem; font-family: monospace; }
-    @media (prefers-color-scheme: dark) { .hero__description code { background: rgba(255,255,255,0.1); } }
-
-    /* Mission-Led Innovation Theme Section */
-    .mission-section {
-      padding: var(--spacing-xxl) 0;
-      background: linear-gradient(180deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%);
-      color: #fff;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .mission-section .container {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--spacing-xl);
-      align-items: center;
-    }
-    .mission-content {
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .mission-content h2 {
-      color: #fff;
-      margin-bottom: var(--spacing-md);
-      font-size: clamp(1.5rem, 3vw, 2rem);
-    }
-    .mission-content p.lead {
-      color: rgba(255,255,255,0.9);
-      font-size: 1.25rem;
-      margin-bottom: var(--spacing-lg);
-      line-height: 1.7;
-    }
-    .mission-content p.lead strong {
-      color: var(--brand-success);
-      font-weight: 700;
-    }
-    .mission-values {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: var(--spacing-md);
-      margin-top: var(--spacing-lg);
-    }
-    .mission-card {
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-lg);
-      text-align: center;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .mission-card:hover {
-      transform: translateY(-3px);
-      background: rgba(255,255,255,0.18);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-    }
-    .mission-card-icon {
-      width: 48px;
-      height: 48px;
-      margin: 0 auto var(--spacing-sm);
-      background: var(--brand-success);
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-    }
-    .mission-card h3 {
-      color: #fff;
-      margin-bottom: var(--spacing-xs);
-      font-size: 1rem;
-    }
-    .mission-card p {
-      color: rgba(255,255,255,0.8);
-      font-size: 0.875rem;
-      margin: 0;
-    }
-    @media (prefers-color-scheme: dark) {
-      .mission-section {
-        background: linear-gradient(180deg, #1e3a8a 0%, #1d4ed8 100%);
-      }
-    }
-
-    /* Consulting to Product Loop Section */
-    .loop-section {
+    /* Inline styles for products section */
+    .portfolio-section {
       padding: var(--spacing-xxl) 0;
       background: var(--brand-bg-alt);
       border-top: 1px solid rgba(0,0,0,0.08);
     }
-    .loop-section .container h2 {
+
+    .portfolio-header {
       text-align: center;
-      color: var(--brand-primary-dark);
-      margin-bottom: var(--spacing-md);
-    }
-    .loop-section .container p.lead {
-      text-align: center;
-      font-size: 1.25rem;
-      color: var(--brand-text-muted);
-      max-width: 800px;
+      max-width: 700px;
       margin: 0 auto var(--spacing-xl);
     }
-    .loop-visual {
+
+    .portfolio-header h2 {
+      color: var(--brand-primary-dark);
+      margin-bottom: var(--spacing-sm);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    .portfolio-header p {
+      color: var(--brand-text-muted);
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+
+    .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: var(--spacing-lg);
       margin-top: var(--spacing-lg);
-      align-items: stretch;
     }
-    .loop-card {
+
+    .portfolio-card {
       background: var(--brand-bg-light);
       border: 1px solid rgba(0,0,0,0.08);
       border-radius: var(--radius-lg);
-      padding: var(--spacing-lg);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
       display: flex;
       flex-direction: column;
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
-    }
-    .loop-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-    }
-    .loop-phase {
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-sm);
-      margin-bottom: var(--spacing-md);
-    }
-    .loop-phase-number {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 1rem;
-    }
-    .loop-phase-phase1 .loop-phase-number {
-      background: var(--brand-accent);
-      color: #fff;
-    }
-    .loop-phase-phase2 .loop-phase-number {
-      background: var(--brand-success);
-      color: #fff;
-    }
-    .loop-card h3 { margin-bottom: var(--spacing-xs); color: var(--brand-primary); }
-    .loop-card p { color: var(--brand-text-muted); font-size: 0.9375rem; margin-bottom: 0; }
-    .loop-card ul { margin: 0; padding-left: var(--spacing-md); color: var(--brand-text-muted); font-size: 0.875rem; }
-    .loop-card li { margin-bottom: 0.25rem; }
-    .loop-arrow {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: var(--spacing-lg) 0;
-      color: var(--brand-muted);
-      font-size: 1.5rem;
     }
 
-    /* Features Grid */
-    .features { padding: var(--spacing-xxl) 0; background: var(--brand-bg-alt); }
-    .features-header { text-align: center; max-width: 600px; margin: 0 auto var(--spacing-lg); }
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-lg); }
-    .feature-card { background: var(--brand-bg-light); border: 1px solid rgba(0,0,0,0.08); border-radius: var(--radius-lg); padding: var(--spacing-lg); transition: box-shadow 0.2s ease, transform 0.2s ease; }
-    .feature-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-    .feature-card h3 { margin-bottom: var(--spacing-xs); color: var(--brand-primary); }
-    .feature-card p { color: var(--brand-text-muted); margin: 0; font-size: 0.9375rem; }
-
-    /* Products Section */
-    .products { padding: var(--spacing-xxl) 0; background: var(--brand-bg-alt); }
-    .products-header { text-align: center; max-width: 600px; margin: 0 auto var(--spacing-lg); }
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-lg); }
-    .product-card { background: var(--brand-bg-light); border: 1px solid rgba(0,0,0,0.08); border-radius: var(--radius-lg); overflow: hidden; transition: box-shadow 0.2s ease; }
-    .product-card:hover { box-shadow: var(--shadow-lg); }
-    .product-image { width: 100%; height: 180px; object-fit: cover; display: block; background: var(--brand-bg-light); }
-    .product-content { padding: var(--spacing-lg); }
-    .product-content h3 { color: var(--brand-primary-dark); margin-bottom: var(--spacing-sm); font-size: 1.125rem; }
-    .product-content p { color: var(--brand-text-muted); margin: 0; font-size: 0.9375rem; }
-
-    /* Footer */
-    .footer {
-      background: var(--brand-bg-dark);
-      color: var(--brand-text-muted);
-      padding: var(--spacing-xl) 0;
-      margin-top: var(--spacing-xxl);
+    .portfolio-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
     }
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--spacing-xl);
+
+    .portfolio-card:focus-within {
+      outline: 2px solid var(--brand-accent);
+      outline-offset: 2px;
     }
-    .footer-section h4 { color: #fff; margin-bottom: var(--spacing-sm); font-size: 1rem; }
-    .footer-section a {
-      color: var(--brand-text-muted);
+
+    .portfolio-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: var(--brand-bg-light);
       display: block;
-      margin-bottom: 0.5rem;
-      font-size: 0.875rem;
     }
-    .footer-section a:hover { color: var(--brand-secondary); text-decoration: none; }
-    .footer-bottom {
-      text-align: center;
-      padding-top: var(--spacing-lg);
-      margin-top: var(--spacing-xl);
-      border-top: 1px solid rgba(255,255,255,0.1);
+
+    .portfolio-content {
+      padding: var(--spacing-lg);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .portfolio-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: var(--brand-bg-alt);
+      color: var(--brand-primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--spacing-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .portfolio-title {
+      color: var(--brand-primary-dark);
+      margin-bottom: var(--spacing-xs);
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .portfolio-description {
+      color: var(--brand-text-muted);
+      margin-bottom: var(--spacing-md);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+
+    .portfolio-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 var(--spacing-md);
+    }
+
+    .portfolio-features li {
+      color: var(--brand-text-light);
       font-size: 0.875rem;
+      padding-left: 1.25rem;
+      position: relative;
+      margin-bottom: 0.25rem;
+    }
+
+    .portfolio-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--brand-success);
+      font-weight: 700;
+    }
+
+    .portfolio-meta {
+      display: flex;
+      gap: var(--spacing-md);
+      font-size: 0.8125rem;
+      color: var(--brand-text-muted);
+      margin-top: auto;
+    }
+
+    .portfolio-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .status-active {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--brand-success);
+    }
+
+    .status-planned {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--brand-warning);
+    }
+
+    .status-dev {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--brand-secondary);
+    }
+
+    .portfolio-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--brand-primary);
+      font-weight: 500;
+      font-size: 0.875rem;
+      margin-top: var(--spacing-sm);
+      padding-top: var(--spacing-sm);
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .portfolio-link:hover {
+      color: var(--brand-accent);
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <header class="header">
-    <nav class="nav">
-      <a href="#" class="logo">
-        <img src="assets/images/0_ADROIT__Icon.png" alt="ADROIT Logo">
-        <span class="logo-text">ADROIT</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#mission">Mission</a></li>
-        <li><a href="#loop">Our Approach</a></li>
-        <li><a href="#features">Capabilities</a></li>
-        <li><a href="#products">Products</a></li>
-      </ul>
-      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    <nav class="container">
+      <div class="nav">
+        <div class="logo">
+          <a href="./" aria-label="ADROIT Home">
+            <img src="assets/images/0_ADROIT__Icon.png" alt="ADROIT logo" width="40" height="40">
+          </a>
+          <span class="logo-text">ADROIT</span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#home" aria-label="Home">Home</a></li>
+          <li><a href="#about" aria-label="About">About</a></li>
+          <li><a href="#portfolio" aria-label="Products" aria-current="page">Products</a></li>
+          <li><a href="#contact" aria-label="Contact">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+        </button>
+      </div>
     </nav>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-content">
+    <section id="home" class="hero">
+      <div class="container hero-content">
         <h1>ADROIT Innovation House</h1>
-        <p class="hero__subtitle">Translating consulting execution into government-grade software products</p>
+        <p class="hero__subtitle">Translating consulting execution into government-grade software</p>
         <div class="hero__description">
-          <p>Our mission is to deliver outcome-driven, production-focused software that addresses real operational challenges.</p>
-          <p>From consulting insights to productized capabilities — we enable rapid development with built-in security, auditability, and sustainability from inception.</p>
+          <p>We bridge the gap between strategic consulting insights and production-ready software solutions. Our approach combines operational expertise with disciplined innovation to deliver products that solve real government challenges.</p>
+          <p><code>Emerging Suite of Program Monitoring Information Reporting System (PMRIS) Application</code> & <code>Risk Management Framework (RMFM) Flagship product</code></p>
         </div>
       </div>
     </section>
 
-    <!-- Mission-Led Innovation Theme Section -->
-    <section id="mission" class="mission-section">
+    <section id="about" class="mission-section">
       <div class="container">
         <div class="mission-content">
           <h2>Mission-Led Innovation</h2>
-          <p class="lead">
-            We translate real-world consulting execution into <strong>government-grade software products</strong> through disciplined innovation that becomes productized capability supported by operational proof.
-          </p>
-          <p style="color: rgba(255,255,255,0.8); font-size: 0.9375rem;">
-            Products such as the Emerging Suite of Program Monitoring Information Reporting System (PMRIS) Application and Risk Management Framework (RMFM) Flagship demonstrate our commitment to solving recurring operational pain points across live government programs.
-          </p>
+          <p class="lead">We transform operational pain points into production capabilities. Our work is driven by <strong>outcome-first</strong> principles, ensuring every product delivers measurable value to government programs.</p>
           <div class="mission-values">
             <div class="mission-card">
               <div class="mission-card-icon">🎯</div>
-              <h3>Mission-First</h3>
-              <p>Every capability starts with understanding the operational problem we're solving.</p>
-            </div>
-            <div class="mission-card">
-              <div class="mission-card-icon">⚙️</div>
-              <h3>Disciplined Innovation</h3>
-              <p>Structured approach that transforms insights into production-ready solutions.</p>
-            </div>
-            <div class="mission-card">
-              <div class="mission-card-icon">🛡️</div>
-              <h3>Security Built-In</h3>
-              <p>Operational proof and auditability from inception, not as an afterthought.</p>
-            </div>
-            <div class="mission-card">
-              <div class="mission-card-icon">📈</div>
               <h3>Outcome-Driven</h3>
-              <p>Rapid development focused on measurable operational improvements.</p>
+              <p>Every initiative is measured against tangible operational improvements</p>
+            </div>
+            <div class="mission-card">
+              <div class="mission-card-icon">🔒</div>
+              <h3>Secure by Design</h3>
+              <p>Security, auditability, and compliance embedded from inception</p>
+            </div>
+            <div class="mission-card">
+              <div class="mission-card-icon">⚡</div>
+              <h3>Rapid Delivery</h3>
+              <p>Agile methodology enables quick iteration and production readiness</p>
             </div>
           </div>
         </div>
@@ -379,31 +251,47 @@
     <section id="loop" class="loop-section">
       <div class="container">
         <h2>Consulting to Product Loop</h2>
-        <p class="lead">A lifecycle where consulting execution informs insight into recurring gaps, driving disciplined innovation that becomes productized capability.</p>
+        <p class="lead">Our proven methodology transforms operational insights into scalable software solutions</p>
         <div class="loop-visual">
           <div class="loop-card">
             <div class="loop-phase loop-phase-phase1">
               <span class="loop-phase-number">1</span>
-              <span>Consulting Execution</span>
+              <span class="loop-phase-label">Consulting</span>
             </div>
-            <h3>Identify & Execute</h3>
+            <h3>Discovery & Analysis</h3>
+            <p>Identify recurring operational gaps and pain points across live government programs</p>
             <ul>
-              <li>Live government program engagement</li>
-              <li>Operational pain point discovery</li>
-              <li>Requirements synthesis</li>
+              <li>Stakeholder interviews</li>
+              <li>Process mapping</li>
+              <li>Requirement gathering</li>
             </ul>
           </div>
-          <div class="loop-arrow">→</div>
+          <div class="loop-arrow">➜</div>
           <div class="loop-card">
             <div class="loop-phase loop-phase-phase2">
               <span class="loop-phase-number">2</span>
-              <span>Productization</span>
+              <span class="loop-phase-label">Productization</span>
             </div>
             <h3>Build & Scale</h3>
+            <p>Transform insights into production-ready software with built-in governance</p>
             <ul>
-              <li>Security & auditability built-in</li>
-              <li>Operational proof validation</li>
-              <li>Portfolio expansion ready</li>
+              <li>Agile development</li>
+              <li>Security integration</li>
+              <li>Compliance validation</li>
+            </ul>
+          </div>
+          <div class="loop-arrow">➜</div>
+          <div class="loop-card">
+            <div class="loop-phase loop-phase-phase1">
+              <span class="loop-phase-number">3</span>
+              <span class="loop-phase-label">Operate</span>
+            </div>
+            <h3>Deploy & Monitor</h3>
+            <p>Launch products with operational support and continuous improvement</p>
+            <ul>
+              <li>Production deployment</li>
+              <li>Performance monitoring</li>
+              <li>Feedback integration</li>
             </ul>
           </div>
         </div>
@@ -414,49 +302,212 @@
       <div class="container">
         <div class="features-header">
           <h2>Core Capabilities</h2>
-          <p style="color: var(--brand-text-muted);">Mission-led innovation across the software lifecycle</p>
+          <p>Our methodology delivers consistent, high-quality outcomes across all engagements</p>
         </div>
         <div class="features-grid">
           <div class="feature-card">
-            <h3>Rapid Development</h3>
-            <p>Accelerated timelines through disciplined processes and proven patterns.</p>
+            <h3>📋 Process Discovery</h3>
+            <p>Deep-dive analysis of existing workflows to identify optimization opportunities</p>
           </div>
           <div class="feature-card">
-            <h3>Security by Design</h3>
-            <p>Built-in security controls, audit trails, and compliance from inception.</p>
+            <h3>🛠️ Solution Design</h3>
+            <p>Tailored architectures that balance innovation with operational constraints</p>
           </div>
           <div class="feature-card">
-            <h3>Operational Proof</h3>
-            <p>Real-world validation before deployment to production environments.</p>
+            <h3>🔐 Security Integration</h3>
+            <p>Defense-in-depth approach with compliance baked into every layer</p>
           </div>
           <div class="feature-card">
-            <h3>Portfolio Scalability</h3>
-            <p>Architecture designed for growth without redesign.</p>
+            <h3>📊 Continuous Improvement</h3>
+            <p>Data-driven iteration cycles that drive sustained operational excellence</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="products" class="products">
+    <section id="portfolio" class="portfolio-section">
       <div class="container">
-        <div class="products-header">
-          <h2>Flagship Products</h2>
-          <p style="color: var(--brand-text-muted);">Proven solutions addressing recurring government operational challenges</p>
+        <div class="portfolio-header">
+          <h2>Product Portfolio</h2>
+          <p>Our portfolio of government-grade software solutions, built on a foundation of operational expertise and disciplined innovation</p>
         </div>
-        <div class="products-grid">
-          <div class="product-card">
-            <div class="product-image" style="background: linear-gradient(135deg, var(--brand-secondary) 0%, var(--brand-primary) 100%);"></div>
-            <div class="product-content">
-              <h3>PMRIS Application</h3>
-              <p>Program Monitoring Information Reporting System for emerging government initiatives.</p>
+        <div class="portfolio-grid">
+          <article class="portfolio-card" tabindex="0">
+            <img src="assets/images/0_ADROIT__Landscape_Small.png" alt="RMFM product interface screenshot" class="portfolio-image" loading="lazy" width="320" height="200">
+            <div class="portfolio-content">
+              <span class="portfolio-badge">Flagship</span>
+              <h3 class="portfolio-title">Risk Management Framework (RMFM)</h3>
+              <p class="portfolio-description">Comprehensive risk management solution for government programs, featuring automated monitoring, compliance tracking, and real-time reporting capabilities.</p>
+              <ul class="portfolio-features">
+                <li>Automated risk assessment</li>
+                <li>Compliance tracking dashboard</li>
+                <li>Real-time alerts & notifications</li>
+                <li>Integration with existing systems</li>
+                <li>Audit trail & reporting</li>
+              </ul>
+              <div class="portfolio-meta">
+                <span class="status-badge status-active">● Active</span>
+                <span>Version 2.4</span>
+                <span>2024</span>
+              </div>
+              <a href="#" class="portfolio-link" aria-label="Learn more about RMFM">
+                Learn more →
+              </a>
             </div>
+          </article>
+
+          <article class="portfolio-card" tabindex="0">
+            <img src="assets/images/0_ADROIT__Landscape_Small.png" alt="PMRIS product interface screenshot" class="portfolio-image" loading="lazy" width="320" height="200">
+            <div class="portfolio-content">
+              <span class="portfolio-badge">Core</span>
+              <h3 class="portfolio-title">Program Monitoring Reporting System (PMRIS)</h3>
+              <p class="portfolio-description">Emerging suite for program monitoring and information reporting, enabling streamlined data collection and automated compliance workflows.</p>
+              <ul class="portfolio-features">
+                <li>Automated data collection</li>
+                <li>Reporting workflow automation</li>
+                <li>Multi-program dashboard</li>
+                <li>Export capabilities</li>
+                <li>Role-based access control</li>
+              </ul>
+              <div class="portfolio-meta">
+                <span class="status-badge status-active">● Active</span>
+                <span>Version 1.8</span>
+                <span>2024</span>
+              </div>
+              <a href="#" class="portfolio-link" aria-label="Learn more about PMRIS">
+                Learn more →
+              </a>
+            </div>
+          </article>
+
+          <article class="portfolio-card" tabindex="0">
+            <img src="assets/images/0_ADROIT__Landscape_Small.png" alt="Performance Optimization product placeholder" class="portfolio-image" loading="lazy" width="320" height="200">
+            <div class="portfolio-content">
+              <span class="portfolio-badge">Planned</span>
+              <h3 class="portfolio-title">Performance Optimization Suite</h3>
+              <p class="portfolio-description">Performance monitoring and optimization tools designed to identify bottlenecks and recommend actionable improvements for government systems.</p>
+              <ul class="portfolio-features">
+                <li>Performance baseline analysis</li>
+                <li>Bottleneck identification</li>
+                <li>Recommendation engine</li>
+                <li>Historical trend analysis</li>
+                <li>Integration with PMRIS</li>
+              </ul>
+              <div class="portfolio-meta">
+                <span class="status-badge status-planned">○ Planned</span>
+                <span>Q3 2025</span>
+                <span>Development</span>
+              </div>
+              <a href="#" class="portfolio-link" aria-label="Learn more about Performance Optimization">
+                Learn more →
+              </a>
+            </div>
+          </article>
+
+          <article class="portfolio-card" tabindex="0">
+            <img src="assets/images/0_ADROIT__Landscape_Small.png" alt="Security Assessment product placeholder" class="portfolio-image" loading="lazy" width="320" height="200">
+            <div class="portfolio-content">
+              <span class="portfolio-badge">Planned</span>
+              <h3 class="portfolio-title">Security Assessment Tool</h3>
+              <p class="portfolio-description">Automated security scanning and assessment tool that identifies vulnerabilities and provides remediation guidance for government applications.</p>
+              <ul class="portfolio-features">
+                <li>Automated vulnerability scanning</li>
+                <li>Compliance checks</li>
+                <li>Remediation guidance</li>
+                <li>Integration with CI/CD</li>
+                <li>Reporting & documentation</li>
+              </ul>
+              <div class="portfolio-meta">
+                <span class="status-badge status-planned">○ Planned</span>
+                <span>Q4 2025</span>
+                <span>Development</span>
+              </div>
+              <a href="#" class="portfolio-link" aria-label="Learn more about Security Assessment">
+                Learn more →
+              </a>
+            </div>
+          </article>
+
+          <article class="portfolio-card" tabindex="0">
+            <img src="assets/images/0_ADROIT__Landscape_Small.png" alt="Analytics Dashboard product placeholder" class="portfolio-image" loading="lazy" width="320" height="200">
+            <div class="portfolio-content">
+              <span class="portfolio-badge">Planned</span>
+              <h3 class="portfolio-title">Analytics & Insights Dashboard</h3>
+              <p class="portfolio-description">Advanced analytics platform that transforms operational data into actionable insights, supporting data-driven decision making across programs.</p>
+              <ul class="portfolio-features">
+                <li>Real-time data visualization</li>
+                <li>Predictive analytics</li>
+                <li>Custom dashboards</li>
+                <li>Data export & integration</li>
+                <li>Role-based views</li>
+              </ul>
+              <div class="portfolio-meta">
+                <span class="status-badge status-planned">○ Planned</span>
+                <span>Q2 2026</span>
+                <span>Development</span>
+              </div>
+              <a href="#" class="portfolio-link" aria-label="Learn more about Analytics Dashboard">
+                Learn more →
+              </a>
+            </div>
+          </article>
+
+          <article class="portfolio-card" tabindex="0">
+            <img src="assets/images/0_ADROIT__Landscape_Small.png" alt="Integration Framework product placeholder" class="portfolio-image" loading="lazy" width="320" height="200">
+            <div class="portfolio-content">
+              <span class="portfolio-badge">In Development</span>
+              <h3 class="portfolio-title">Integration Framework</h3>
+              <p class="portfolio-description">Modular integration framework that enables seamless connectivity between RMFM, PMRIS, and other government systems while maintaining security standards.</p>
+              <ul class="portfolio-features">
+                <li>API-first architecture</li>
+                <li>Pre-built connectors</li>
+                <li>Authentication & authorization</li>
+                <li>Error handling & logging</li>
+                <li>Documentation & SDK</li>
+              </ul>
+              <div class="portfolio-meta">
+                <span class="status-badge status-dev">⚙️ In Dev</span>
+                <span>Version 0.9</span>
+                <span>Development</span>
+              </div>
+              <a href="#" class="portfolio-link" aria-label="Learn more about Integration Framework">
+                Learn more →
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="contact-header">
+          <h2>Get in Touch</h2>
+          <p>Interested in our products or services? We'd love to hear from you.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Contact Information</h3>
+            <p><strong>Email:</strong> info@adroit.innovationhouse.gov</p>
+            <p><strong>Phone:</strong> (555) 123-4567</p>
+            <p><strong>Address:</strong> 123 Innovation Drive, Government City, ST 12345</p>
           </div>
-          <div class="product-card">
-            <div class="product-image" style="background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%);"></div>
-            <div class="product-content">
-              <h3>RMFM Flagship</h3>
-              <p>Risk Management Framework solution with operational proof across multiple programs.</p>
-            </div>
+          <div class="contact-form">
+            <form action="#" method="post">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="btn-primary">Send Message</button>
+            </form>
           </div>
         </div>
       </div>
@@ -466,33 +517,103 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <div class="footer-section">
-          <h4>ADROIT</h4>
-          <p style="font-size: 0.875rem; color: var(--brand-text-muted);">
-            Translating consulting into government-grade software
-          </p>
+        <div class="footer-brand">
+          <a href="./" aria-label="ADROIT Home">
+            <img src="assets/images/0_ADROIT__Icon.png" alt="ADROIT logo" width="32" height="32">
+          </a>
+          <p class="footer-tagline">Translating consulting execution into government-grade software products</p>
         </div>
-        <div class="footer-section">
-          <h4>Products</h4>
-          <a href="#">PMRIS Application</a>
-          <a href="#">RMFM Flagship</a>
-        </div>
-        <div class="footer-section">
-          <h4>Capabilities</h4>
-          <a href="#">Rapid Development</a>
-          <a href="#">Security by Design</a>
-          <a href="#">Operational Proof</a>
-        </div>
-        <div class="footer-section">
-          <h4>Connect</h4>
-          <a href="mailto:info@adroit.com">info@adroit.com</a>
-          <a href="#">LinkedIn</a>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>Products</h4>
+            <ul>
+              <li><a href="#portfolio">RMFM</a></li>
+              <li><a href="#portfolio">PMRIS</a></li>
+              <li><a href="#">Performance Suite</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#">Methodology</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 ADROIT. Managed by Nexus Software Factory.</p>
+        <p>&copy; 2024 ADROIT Innovation House. All rights reserved. | <a href="#">Sitemap</a></p>
       </div>
     </div>
   </footer>
+
+  <script>
+    // Mobile navigation toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', !expanded);
+      navLinks.style.display = expanded ? 'none' : 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '100%';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.background = 'var(--brand-bg-alt)';
+      navLinks.style.padding = 'var(--spacing-md)';
+      navLinks.style.borderBottom = '1px solid rgba(0,0,0,0.08)';
+      navLinks.style.zIndex = '40';
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.portfolio-card, .feature-card, .mission-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(el);
+    });
+
+    // Add animated state
+    const addAnimateClass = (el) => {
+      el.classList.add('animate-in');
+    };
+
+  </script>
 </body>
 </html>
