@@ -56,7 +56,7 @@
         --brand-muted: #9ca3af;
       }
       body { background: var(--brand-bg-dark); }
-      .card, .feature-card, .product-card, .loop-card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+      .card, .feature-card, .product-card, .loop-card, .mission-card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
     }
 
     /* Base Styles */
@@ -91,6 +91,8 @@
     .nav-links a { color: var(--brand-text-light); font-weight: 500; padding: var(--spacing-xs) 0; }
     .nav-links a:hover { color: var(--brand-primary); }
     .nav-links a:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 2px; border-radius: var(--radius-sm); }
+    .nav-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--brand-text-light); }
+    @media (max-width: 768px) { .nav-links { display: none; } .nav-toggle { display: block; } }
 
     /* Hero Section */
     .hero { padding: var(--spacing-xxl) 0; background: linear-gradient(135deg, var(--brand-bg-light) 0%, var(--brand-bg-alt) 100%); border-bottom: 1px solid rgba(0,0,0,0.08); min-height: 60vh; display: flex; align-items: center; }
@@ -102,6 +104,87 @@
     .hero__description p:last-child { margin-bottom: 0; }
     .hero__description code { background: rgba(0,0,0,0.05); padding: 0.15rem 0.4rem; border-radius: var(--radius-sm); font-size: 0.875rem; font-family: monospace; }
     @media (prefers-color-scheme: dark) { .hero__description code { background: rgba(255,255,255,0.1); } }
+
+    /* Mission-Led Innovation Theme Section */
+    .mission-section {
+      padding: var(--spacing-xxl) 0;
+      background: linear-gradient(180deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%);
+      color: #fff;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .mission-section .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+      align-items: center;
+    }
+    .mission-content {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .mission-content h2 {
+      color: #fff;
+      margin-bottom: var(--spacing-md);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+    .mission-content p.lead {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.25rem;
+      margin-bottom: var(--spacing-lg);
+      line-height: 1.7;
+    }
+    .mission-content p.lead strong {
+      color: var(--brand-success);
+      font-weight: 700;
+    }
+    .mission-values {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+    }
+    .mission-card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .mission-card:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.18);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    }
+    .mission-card-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto var(--spacing-sm);
+      background: var(--brand-success);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .mission-card h3 {
+      color: #fff;
+      margin-bottom: var(--spacing-xs);
+      font-size: 1rem;
+    }
+    .mission-card p {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.875rem;
+      margin: 0;
+    }
+    @media (prefers-color-scheme: dark) {
+      .mission-section {
+        background: linear-gradient(180deg, #1e3a8a 0%, #1d4ed8 100%);
+      }
+    }
 
     /* Consulting to Product Loop Section */
     .loop-section {
@@ -193,73 +276,102 @@
     .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-lg); }
     .product-card { background: var(--brand-bg-light); border: 1px solid rgba(0,0,0,0.08); border-radius: var(--radius-lg); overflow: hidden; transition: box-shadow 0.2s ease; }
     .product-card:hover { box-shadow: var(--shadow-lg); }
-    .product-image { width: 100%; height: 180px; background: var(--brand-bg-light); display: flex; align-items: center; justify-content: center; color: var(--brand-muted); font-size: 0.875rem; }
+    .product-image { width: 100%; height: 180px; object-fit: cover; display: block; background: var(--brand-bg-light); }
     .product-content { padding: var(--spacing-lg); }
     .product-content h3 { color: var(--brand-primary-dark); margin-bottom: var(--spacing-sm); font-size: 1.125rem; }
-    .product-content p { color: var(--brand-text-muted); margin-bottom: var(--spacing-sm); font-size: 0.875rem; }
-    .product-link { display: inline-flex; align-items: center; gap: var(--spacing-xs); font-weight: 500; color: var(--brand-secondary); }
-    .product-link:hover { text-decoration: underline; }
-
-    /* Innovation House Value Prop */
-    .innovation-house { padding: var(--spacing-xxl) 0; background: var(--brand-bg-alt); }
-    .innovation-house .container h2 { text-align: center; color: var(--brand-primary-dark); margin-bottom: var(--spacing-md); }
-    .innovation-house .container p.lead { text-align: center; font-size: 1.25rem; color: var(--brand-text-muted); max-width: 800px; margin: 0 auto var(--spacing-lg); }
-    .value-prop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-lg); }
-    .value-prop-item { padding: var(--spacing-md); background: var(--brand-bg-light); border-radius: var(--radius-md); border: 1px solid rgba(0,0,0,0.08); text-align: center; }
-    .value-prop-item h4 { color: var(--brand-primary); margin-bottom: var(--spacing-sm); font-size: 1.125rem; }
-    .value-prop-item p { color: var(--brand-text-muted); font-size: 0.9375rem; margin: 0; }
+    .product-content p { color: var(--brand-text-muted); margin: 0; font-size: 0.9375rem; }
 
     /* Footer */
-    .footer { background: var(--brand-bg-alt); border-top: 1px solid rgba(0,0,0,0.08); padding: var(--spacing-xl) 0; margin-top: var(--spacing-xxl); }
-    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-lg); }
-    .footer-section h4 { margin-bottom: var(--spacing-sm); color: var(--brand-text-light); font-size: 1rem; }
-    .footer-section p, .footer-section a { color: var(--brand-text-muted); font-size: 0.875rem; }
-    .footer-section a:hover { color: var(--brand-secondary); }
-    .footer-bottom { max-width: 1200px; margin: var(--spacing-lg) auto 0; padding-top: var(--spacing-md); border-top: 1px solid rgba(0,0,0,0.08); text-align: center; }
-    .footer-bottom p { margin: 0; color: var(--brand-text-muted); font-size: 0.8125rem; }
-
-    /* Mobile Navigation */
-    .mobile-nav-toggle {
-      display: none;
-      background: none; border: none; cursor: pointer; padding: var(--spacing-sm);
+    .footer {
+      background: var(--brand-bg-dark);
+      color: var(--brand-text-muted);
+      padding: var(--spacing-xl) 0;
+      margin-top: var(--spacing-xxl);
     }
-    .mobile-nav-toggle svg { width: 24px; height: 24px; }
-    @media (max-width: 768px) {
-      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--brand-bg-alt); flex-direction: column; padding: var(--spacing-md); border-bottom: 1px solid rgba(0,0,0,0.08); }
-      .nav-links.active { display: flex; }
-      .mobile-nav-toggle { display: block; }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-xl);
     }
-    /* Focus styles for accessibility */
-    button:focus, input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand-accent); outline-offset: 2px; border-radius: var(--radius-sm); }
+    .footer-section h4 { color: #fff; margin-bottom: var(--spacing-sm); font-size: 1rem; }
+    .footer-section a {
+      color: var(--brand-text-muted);
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+    }
+    .footer-section a:hover { color: var(--brand-secondary); text-decoration: none; }
+    .footer-bottom {
+      text-align: center;
+      padding-top: var(--spacing-lg);
+      margin-top: var(--spacing-xl);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.875rem;
+    }
   </style>
 </head>
 <body>
   <header class="header">
-    <nav class="container nav">
-      <a href="/" class="logo">
+    <nav class="nav">
+      <a href="#" class="logo">
         <img src="assets/images/0_ADROIT__Icon.png" alt="ADROIT Logo">
         <span class="logo-text">ADROIT</span>
       </a>
-      <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      </button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="/">Home</a></li>
-        <li><a href="#loop">Process</a></li>
+      <ul class="nav-links">
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#loop">Our Approach</a></li>
+        <li><a href="#features">Capabilities</a></li>
         <li><a href="#products">Products</a></li>
-        <li><a href="#values">Values</a></li>
       </ul>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <div class="container hero-content">
-        <h1>Innovation House</h1>
-        <p class="hero__subtitle">ADROIT — Translating consulting execution into government-grade software products</p>
+      <div class="hero-content">
+        <h1>ADROIT Innovation House</h1>
+        <p class="hero__subtitle">Translating consulting execution into government-grade software products</p>
         <div class="hero__description">
-          <p>Products such as the Emerging Suite of Program Monitoring Information Reporting System (PMRIS) Application and Risk Management Framework (RMFM) Flagship product are direct responses to recurring operational pain points observed across live government programs.</p>
-          <p>Innovation is outcome-driven and production-focused, enabling rapid development with built-in security, auditability, and sustainability from inception.</p>
+          <p>Our mission is to deliver outcome-driven, production-focused software that addresses real operational challenges.</p>
+          <p>From consulting insights to productized capabilities — we enable rapid development with built-in security, auditability, and sustainability from inception.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission-Led Innovation Theme Section -->
+    <section id="mission" class="mission-section">
+      <div class="container">
+        <div class="mission-content">
+          <h2>Mission-Led Innovation</h2>
+          <p class="lead">
+            We translate real-world consulting execution into <strong>government-grade software products</strong> through disciplined innovation that becomes productized capability supported by operational proof.
+          </p>
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.9375rem;">
+            Products such as the Emerging Suite of Program Monitoring Information Reporting System (PMRIS) Application and Risk Management Framework (RMFM) Flagship demonstrate our commitment to solving recurring operational pain points across live government programs.
+          </p>
+          <div class="mission-values">
+            <div class="mission-card">
+              <div class="mission-card-icon">🎯</div>
+              <h3>Mission-First</h3>
+              <p>Every capability starts with understanding the operational problem we're solving.</p>
+            </div>
+            <div class="mission-card">
+              <div class="mission-card-icon">⚙️</div>
+              <h3>Disciplined Innovation</h3>
+              <p>Structured approach that transforms insights into production-ready solutions.</p>
+            </div>
+            <div class="mission-card">
+              <div class="mission-card-icon">🛡️</div>
+              <h3>Security Built-In</h3>
+              <p>Operational proof and auditability from inception, not as an afterthought.</p>
+            </div>
+            <div class="mission-card">
+              <div class="mission-card-icon">📈</div>
+              <h3>Outcome-Driven</h3>
+              <p>Rapid development focused on measurable operational improvements.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -267,64 +379,60 @@
     <section id="loop" class="loop-section">
       <div class="container">
         <h2>Consulting to Product Loop</h2>
-        <p class="lead">From insights to innovation: how consulting execution drives disciplined product development</p>
+        <p class="lead">A lifecycle where consulting execution informs insight into recurring gaps, driving disciplined innovation that becomes productized capability.</p>
         <div class="loop-visual">
-          <div class="loop-card loop-phase-phase1">
-            <div class="loop-phase">
-              <div class="loop-phase-number">1</div>
-              <strong>Phase 1: ADROIT Draft Website — Scaffold</strong>
+          <div class="loop-card">
+            <div class="loop-phase loop-phase-phase1">
+              <span class="loop-phase-number">1</span>
+              <span>Consulting Execution</span>
             </div>
-            <h3>Foundation & Discovery</h3>
-            <p>Establishing the operational baseline and identifying recurring operational gaps through live program engagement.</p>
+            <h3>Identify & Execute</h3>
             <ul>
-              <li>Site scaffolding and core structure</li>
-              <li>Discovery workshops with program teams</li>
-              <li>Gap analysis documentation</li>
-              <li>Stakeholder alignment sessions</li>
+              <li>Live government program engagement</li>
+              <li>Operational pain point discovery</li>
+              <li>Requirements synthesis</li>
             </ul>
           </div>
-          <div class="loop-arrow">➜</div>
-          <div class="loop-card loop-phase-phase2">
-            <div class="loop-phase">
-              <div class="loop-phase-number">2</div>
-              <strong>Phase 2: ADROIT Draft Website — Core Content</strong>
+          <div class="loop-arrow">→</div>
+          <div class="loop-card">
+            <div class="loop-phase loop-phase-phase2">
+              <span class="loop-phase-number">2</span>
+              <span>Productization</span>
             </div>
-            <h3>Implementation & Productization</h3>
-            <p>Translating insights from Phase 1 into actionable product requirements and disciplined development cycles.</p>
+            <h3>Build & Scale</h3>
             <ul>
-              <li>Core feature development</li>
-              <li>Security and auditability integration</li>
+              <li>Security & auditability built-in</li>
               <li>Operational proof validation</li>
-              <li>Portfolio expansion readiness</li>
+              <li>Portfolio expansion ready</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="features">
+    <section id="features" class="features">
       <div class="container">
         <div class="features-header">
           <h2>Core Capabilities</h2>
-          <p>Our approach harmonizes consulting execution with product innovation across government programs.</p>
+          <p style="color: var(--brand-text-muted);">Mission-led innovation across the software lifecycle</p>
         </div>
         <div class="features-grid">
-          <article class="feature-card">
-            <h3>Discovery</h3>
-            <p>Systematic identification of recurring operational pain points through live program engagement and stakeholder interviews.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Analysis</h3>
-            <p>Structured gap analysis that translates operational observations into actionable product requirements with clear success criteria.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Development</h3>
-            <p>Rapid, production-focused development with built-in security, auditability, and sustainability from inception.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Validation</h3>
-            <p>Operational proof validation ensuring products deliver measurable outcomes in live government environments.</p>
-          </article>
+          <div class="feature-card">
+            <h3>Rapid Development</h3>
+            <p>Accelerated timelines through disciplined processes and proven patterns.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Security by Design</h3>
+            <p>Built-in security controls, audit trails, and compliance from inception.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Operational Proof</h3>
+            <p>Real-world validation before deployment to production environments.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Portfolio Scalability</h3>
+            <p>Architecture designed for growth without redesign.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -332,64 +440,23 @@
     <section id="products" class="products">
       <div class="container">
         <div class="products-header">
-          <h2>Product Portfolio</h2>
-          <p>Flagship solutions born from consulting insights, structured for future growth without architectural redesign.</p>
+          <h2>Flagship Products</h2>
+          <p style="color: var(--brand-text-muted);">Proven solutions addressing recurring government operational challenges</p>
         </div>
         <div class="products-grid">
-          <article class="product-card">
-            <div class="product-image">
-              <img src="assets/images/0_ADROIT_Small.png" alt="RMFM Product Thumbnail" width="300" height="180">
-            </div>
-            <div class="product-content">
-              <h3>RMFM Flagship</h3>
-              <p>Risk Management Framework flagship product addressing recurring operational pain points across live government programs.</p>
-              <a href="#" class="product-link">Learn more →</a>
-            </div>
-          </article>
-          <article class="product-card">
-            <div class="product-image">
-              <img src="assets/images/0_ADROIT_Small.png" alt="PMRIS Product Thumbnail" width="300" height="180">
-            </div>
+          <div class="product-card">
+            <div class="product-image" style="background: linear-gradient(135deg, var(--brand-secondary) 0%, var(--brand-primary) 100%);"></div>
             <div class="product-content">
               <h3>PMRIS Application</h3>
-              <p>Program Monitoring Information Reporting System providing structured oversight and reporting capabilities.</p>
-              <a href="#" class="product-link">Learn more →</a>
+              <p>Program Monitoring Information Reporting System for emerging government initiatives.</p>
             </div>
-          </article>
-          <article class="product-card">
-            <div class="product-image">
-              <img src="assets/images/0_ADROIT_Small.png" alt="Emerging Suite Product Thumbnail" width="300" height="180">
-            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image" style="background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%);"></div>
             <div class="product-content">
-              <h3>Emerging Suite</h3>
-              <p>Integrated monitoring and reporting applications designed for government program management needs.</p>
-              <a href="#" class="product-link">Learn more →</a>
+              <h3>RMFM Flagship</h3>
+              <p>Risk Management Framework solution with operational proof across multiple programs.</p>
             </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="values" class="innovation-house">
-      <div class="container">
-        <h2>Innovation House Values</h2>
-        <p class="lead">Our approach to translating consulting execution into sustainable product capabilities</p>
-        <div class="value-prop-grid">
-          <div class="value-prop-item">
-            <h4>Outcome-Driven</h4>
-            <p>Innovation focused on measurable results and operational proof rather than theoretical improvements.</p>
-          </div>
-          <div class="value-prop-item">
-            <h4>Production-Focused</h4>
-            <p>Rapid development cycles with built-in security, auditability, and sustainability from inception.</p>
-          </div>
-          <div class="value-prop-item">
-            <h4>Harmonized Lifecycle</h4>
-            <p>Consulting and product teams naturally harmonize where execution informs insight that becomes productized capability.</p>
-          </div>
-          <div class="value-prop-item">
-            <h4>Scalable Architecture</h4>
-            <p>Structured portfolio growth that allows future additions without architectural redesign.</p>
           </div>
         </div>
       </div>
@@ -401,38 +468,31 @@
       <div class="footer-content">
         <div class="footer-section">
           <h4>ADROIT</h4>
-          <p>Innovation House — Translating consulting execution into government-grade software products.</p>
+          <p style="font-size: 0.875rem; color: var(--brand-text-muted);">
+            Translating consulting into government-grade software
+          </p>
         </div>
         <div class="footer-section">
           <h4>Products</h4>
-          <a href="#">RMFM Flagship</a>
           <a href="#">PMRIS Application</a>
-          <a href="#">Emerging Suite</a>
+          <a href="#">RMFM Flagship</a>
         </div>
         <div class="footer-section">
-          <h4>Process</h4>
-          <a href="#loop">Consulting to Product Loop</a>
-          <a href="#">Development Phases</a>
+          <h4>Capabilities</h4>
+          <a href="#">Rapid Development</a>
+          <a href="#">Security by Design</a>
+          <a href="#">Operational Proof</a>
+        </div>
+        <div class="footer-section">
+          <h4>Connect</h4>
+          <a href="mailto:info@adroit.com">info@adroit.com</a>
+          <a href="#">LinkedIn</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 ADROIT. Managed by Nexus Software Factory. Category: web_app | Branch: main</p>
+        <p>&copy; 2026 ADROIT. Managed by Nexus Software Factory.</p>
       </div>
     </div>
   </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const navToggle = document.querySelector('.mobile-nav-toggle');
-      const navLinks = document.getElementById('navLinks');
-      
-      if (navToggle && navLinks) {
-        navToggle.addEventListener('click', function() {
-          const isActive = navLinks.classList.toggle('active');
-          navToggle.setAttribute('aria-expanded', isActive);
-        });
-      }
-    });
-  </script>
 </body>
 </html>
