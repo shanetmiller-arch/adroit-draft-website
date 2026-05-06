@@ -36,25 +36,17 @@ anchorLinks.forEach(link => {
   });
 });
 
-// Add nav-open class styles for mobile menu
-const style = document.createElement('style');
-style.textContent = `
-  .nav-open {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--brand-bg-alt);
-    padding: var(--spacing-md);
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .nav-open {
-      background: var(--brand-bg-dark);
+// Initialize products portfolio with maturity indicators
+const productsContainer = document.getElementById('products-container');
+if (productsContainer) {
+  try {
+    const { ProductManager } = window;
+    if (ProductManager) {
+      ProductManager.renderProducts(productsContainer);
+    } else {
+      console.warn('ProductManager not available');
     }
+  } catch (error) {
+    console.error('Failed to render products:', error);
   }
-`;
-document.head.appendChild(style);
+}

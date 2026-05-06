@@ -1,7 +1,3 @@
-// Product Stub Architecture
-// Defines extensible product data structure for ADROIT Draft Website
-// Phase 1: scaffold - establishes foundation for Phase 2: core content
-
 const productStubs = [
   {
     id: 'pmris',
@@ -10,6 +6,7 @@ const productStubs = [
     description: 'Program Monitoring Information Reporting System for government program oversight',
     phase: 'Phase 1',
     status: 'planned',
+    maturityLevel: 'early',
     category: 'monitoring',
     features: ['Real-time reporting', 'Multi-program dashboard', 'Compliance tracking'],
     imageUrl: 'assets/images/0_ADROIT_Small.png',
@@ -23,6 +20,7 @@ const productStubs = [
     description: 'Comprehensive risk management solution for government programs — ADROIT flagship product',
     phase: 'Phase 1',
     status: 'active',
+    maturityLevel: 'developing',
     category: 'risk-management',
     features: ['Risk assessment', 'Audit trails', 'Compliance reporting', 'Real-time monitoring', 'Automated reporting', 'Operational insights integration'],
     imageUrl: 'assets/images/0_ADROIT__Landscape_Medium.png',
@@ -36,6 +34,7 @@ const productStubs = [
 const PRODUCT_SCHEMA = {
   required: ['id', 'name', 'fullName', 'description', 'phase', 'status', 'category', 'features'],
   allowedStatuses: ['planned', 'active', 'dev'],
+  allowedMaturityLevels: ['early', 'developing', 'stable', 'production'],
   maxFeatures: 10,
   minFeatures: 1
 };
@@ -49,6 +48,11 @@ function validateProduct(product) {
   
   // Validate status is one of allowed values (prevents status injection attacks)
   if (!PRODUCT_SCHEMA.allowedStatuses.includes(product.status)) {
+    return false;
+  }
+  
+  // Validate maturity level is one of allowed values (prevents maturity injection attacks)
+  if (!PRODUCT_SCHEMA.allowedMaturityLevels.includes(product.maturityLevel)) {
     return false;
   }
   
@@ -137,6 +141,7 @@ const ProductManager = {
               </ul>
               <div class="portfolio-meta">
                 <span class="status-badge ${flagship.statusBadge}">${flagship.status}</span>
+                <span class="maturity-indicator ${flagship.maturityLevel}">${flagship.maturityLevel}</span>
                 <span class="flagship-indicator">★</span>
               </div>
               <a href="#${flagship.id}" class="portfolio-link" aria-label={`Learn more about ${flagship.name}`}>
@@ -165,6 +170,7 @@ const ProductManager = {
               </ul>
               <div class="portfolio-meta">
                 <span class="status-badge ${product.statusBadge}">${product.status}</span>
+                <span class="maturity-indicator ${product.maturityLevel}">${product.maturityLevel}</span>
               </div>
               <a href="#${product.id}" class="portfolio-link" aria-label={`Learn more about ${product.name}`}>
                 Learn more &rarr;

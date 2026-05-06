@@ -67,6 +67,23 @@ describe('ADROIT Draft Website - RMFM Flagship Identification', () => {
       expect(pmrisProduct.features).toContain('Multi-program dashboard');
       expect(pmrisProduct.features).toContain('Compliance tracking');
     });
+
+    it('should have maturityLevel field defined for all products', () => {
+      productStubs.forEach(product => {
+        expect(product.maturityLevel).toBeDefined();
+        expect(['early', 'developing', 'stable', 'production']).toContain(product.maturityLevel);
+      });
+    });
+
+    it('should have correct maturity level for RMFM', () => {
+      const rmfmProduct = productStubs.find(p => p.id === 'rmfm');
+      expect(rmfmProduct.maturityLevel).toBe('developing');
+    });
+
+    it('should have correct maturity level for PMRIS', () => {
+      const pmrisProduct = productStubs.find(p => p.id === 'pmris');
+      expect(pmrisProduct.maturityLevel).toBe('early');
+    });
   });
 
   describe('ProductManager API', () => {
@@ -129,14 +146,24 @@ describe('ADROIT Draft Website - RMFM Flagship Identification', () => {
       expect(pmrisCard).toBe(null);
     });
 
-    it('should render "Flagship Product" badge text for RMFM', () => {
+    it('should render maturity indicator for RMFM product', () => {
       const container = createMockElement();
       container.classList.add('portfolio-grid');
 
       ProductManager.renderProducts(container);
 
-      const flagshipText = container.innerHTML.includes('Flagship Product');
-      expect(flagshipText).toBe(true);
+      const maturityIndicator = container.innerHTML.includes('maturity-indicator developing');
+      expect(maturityIndicator).toBe(true);
+    });
+
+    it('should render maturity indicator for PMRIS product', () => {
+      const container = createMockElement();
+      container.classList.add('portfolio-grid');
+
+      ProductManager.renderProducts(container);
+
+      const maturityIndicator = container.innerHTML.includes('maturity-indicator early');
+      expect(maturityIndicator).toBe(true);
     });
   });
 
@@ -205,16 +232,24 @@ describe('ADROIT Draft Website - RMFM Flagship Identification', () => {
       expect(flagshipCount).toBe(1);
     });
 
-    it('should render flagship visual prominence in UI output', () => {
+    it('should render maturity indicators in UI output', () => {
       const container = createMockElement();
       container.classList.add('portfolio-grid');
 
       ProductManager.renderProducts(container);
 
-      const hasFlagshipClasses = container.innerHTML.includes('portfolio-card--flagship') &&
-                                  container.innerHTML.includes('portfolio-badge--flagship') &&
-                                  container.innerHTML.includes('Flagship Product');
-      expect(hasFlagshipClasses).toBe(true);
+      const hasMaturityIndicators = container.innerHTML.includes('maturity-indicator');
+      expect(hasMaturityIndicators).toBe(true);
+    });
+
+    it('should validate maturity level against allowed values', () => {
+      const container = createMockElement();
+      container.classList.add('portfolio-grid');
+
+      ProductManager.renderProducts(container);
+
+      const invalidMaturity = container.innerHTML.includes('maturity-indicator invalid');
+      expect(invalidMaturity).toBe(false);
     });
   });
 });
