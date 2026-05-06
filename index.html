@@ -3,32 +3,527 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ADROIT Draft Website — Staging</title>
+  <meta name="description" content="ADROIT — translating consulting execution into government-grade software products through disciplined innovation">
+  <title>ADROIT — Innovation & Product Generation</title>
+  <link rel="icon" type="image/png" href="assets/images/0_ADROIT__Icon.png">
+  <link rel="icon" type="image/jpeg" href="assets/images/0_ADROIT__Icon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <style>
-    :root { color-scheme: light dark; }
-    body { font-family: system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-           max-width: 720px; margin: 8vh auto; padding: 0 1.25rem;
-           line-height: 1.55; color: #1f2937; background: #fafafa; }
-    @media (prefers-color-scheme: dark) {
-      body { color: #e5e7eb; background: #0f172a; }
-      a { color: #93c5fd; }
-      code { background: #1f2937; }
+    /* CSS Custom Properties / Design Tokens */
+    :root {
+      --color-primary: #2563eb;
+      --color-primary-dark: #1d4ed8;
+      --color-accent: #0ea5e9;
+      --color-text: #1f2937;
+      --color-text-muted: #6b7280;
+      --color-bg: #ffffff;
+      --color-bg-alt: #f8fafc;
+      --color-border: #e5e7eb;
+      --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --spacing-xs: 0.25rem;
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 1.5rem;
+      --spacing-xl: 2rem;
+      --spacing-xxl: 3rem;
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
     }
-    h1 { font-size: 2rem; margin-bottom: 0.25rem; }
-    .subtitle { color: #6b7280; margin-top: 0; }
-    code { background: #f3f4f6; padding: 0.1rem 0.4rem; border-radius: 0.25rem; }
-    .footer { margin-top: 4rem; font-size: 0.85rem; color: #6b7280; }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-text: #f3f4f6;
+        --color-text-muted: #9ca3af;
+        --color-bg: #111827;
+        --color-bg-alt: #1f2937;
+        --color-border: #374151;
+      }
+      body { background: var(--color-bg); }
+      .card { background: var(--color-bg-alt); border-color: var(--color-border); }
+    }
+
+    /* Base Styles */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: var(--font-family);
+      margin: 0;
+      padding: 0;
+      color: var(--color-text);
+      background: var(--color-bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 0;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+    h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
+    h2 { font-size: clamp(1.25rem, 2vw, 1.5rem); margin-bottom: var(--spacing-sm); }
+    h3 { font-size: 1.125rem; margin-bottom: var(--spacing-xs); }
+    p { margin-top: 0; margin-bottom: var(--spacing-md); }
+    a { color: var(--color-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { font-weight: 600; }
+
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
+    }
+
+    /* Header & Navigation */
+    .header {
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-md) 0;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    .logo img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      gap: var(--spacing-lg);
+    }
+    .nav-links a {
+      color: var(--color-text);
+      font-weight: 500;
+      padding: var(--spacing-xs) 0;
+    }
+    .nav-links a:hover { color: var(--color-primary); }
+    .nav-links a:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: var(--spacing-xxl) 0;
+      background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .hero-content {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      color: var(--color-primary-dark);
+      margin-bottom: var(--spacing-sm);
+    }
+    .hero .subtitle {
+      color: var(--color-text-muted);
+      font-size: 1.125rem;
+      margin-bottom: var(--spacing-lg);
+    }
+    .hero-image {
+      margin: var(--spacing-xl) 0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    @media (prefers-color-scheme: dark) { .hero-image { filter: brightness(0.9); } }
+
+    /* Features Grid */
+    .features {
+      padding: var(--spacing-xxl) 0;
+      background: var(--color-bg);
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+    .card {
+      background: var(--color-bg-alt);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .card-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: var(--color-primary);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      font-size: 1.5rem;
+      margin-bottom: var(--spacing-md);
+    }
+
+    /* Products Section */
+    .products {
+      padding: var(--spacing-xxl) 0;
+      background: var(--color-bg-alt);
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+    }
+    .product-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: box-shadow 0.2s ease;
+    }
+    .product-card:hover {
+      box-shadow: var(--shadow-lg);
+    }
+    .product-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .product-content {
+      padding: var(--spacing-lg);
+    }
+    .product-content h3 {
+      color: var(--color-primary-dark);
+      margin-bottom: var(--spacing-sm);
+    }
+    .product-content p {
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-sm);
+    }
+    .product-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-weight: 500;
+      color: var(--color-primary);
+    }
+    .product-link:hover { text-decoration: underline; }
+
+    /* Values Section */
+    .values {
+      padding: var(--spacing-xxl) 0;
+      background: var(--color-bg);
+      text-align: center;
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-lg);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .value-item {
+      padding: var(--spacing-md);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--color-bg-alt);
+      border-top: 1px solid var(--color-border);
+      padding: var(--spacing-xl) 0;
+      margin-top: var(--spacing-xxl);
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+    }
+    .footer-section h4 {
+      margin-bottom: var(--spacing-sm);
+      color: var(--color-text);
+    }
+    .footer-section p,
+    .footer-section a {
+      color: var(--color-text-muted);
+      font-size: 0.875rem;
+    }
+    .footer-section a:hover { color: var(--color-primary); }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: var(--spacing-lg) auto 0;
+      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: 0.8125rem;
+    }
+
+    /* Button Styles */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--color-primary);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      font-weight: 500;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+    .btn:hover {
+      background: var(--color-primary-dark);
+      transform: translateY(-1px);
+    }
+    .btn:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    /* Utility */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero {
+        padding: var(--spacing-xl) 0;
+      }
+      .hero-content {
+        padding: 0 var(--spacing-md);
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>ADROIT Draft Website</h1>
-  <p class="subtitle">ADEPT and ADROIT translate real‑world consulting execution into government‑grade software products. Products such as Emerging Suite of Program Monitoring Information Reporting System (PMRIS) Application or Risk Management Framework (RMFM) Flagship product are direct responses to recurring operational pain points observed across live government programs. Together, both companies naturally harmonizing in a lifecycle where consulting execution informs insight into recurring gaps, driving disciplined innovation that becomes productized capability supported by operational proof. Innovation is outcome‑driven and production‑focused, enabling rapid development with built‑in security, auditability, and sustainability from inception. ADROIT supports a growing product portfolio, with RMFM as the flagship example, is structured to allow future additions without architectural redesign.</p>
-  <p>This staging site is published from a GitHub repository
-     auto-provisioned by the Nexus Software Factory.</p>
-  <p>The factory's agents are working on this project right now. As work
-     items reach <code>deployed</code> in the pipeline, the real site
-     will replace this placeholder.</p>
-  <p class="footer">Production hosting is the client's responsibility
-     after acceptance — the URL above is staging only.</p>
+  <header class="header">
+    <nav class="container nav" role="navigation" aria-label="Main navigation">
+      <a href="/" class="logo" aria-label="ADROIT Home">
+        <img src="assets/images/0_ADROIT__Icon.png" alt="ADROIT Logo" width="40" height="40">
+        <span style="font-weight: 700; font-size: 1.25rem;">ADROIT</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#innovation">Innovation</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+      <div class="container hero-content">
+        <h1>Innovation & Product Generation</h1>
+        <p class="subtitle">Translating consulting execution into government-grade software products through disciplined innovation and outcome-driven development.</p>
+        <img 
+          src="assets/images/0_ADROIT_Small.png" 
+          alt="ADROIT branding landscape" 
+          class="hero-image" 
+          width="800" 
+          height="400"
+          loading="lazy"
+          decoding="async"
+        >
+        <p style="color: var(--color-text-muted); max-width: 700px; margin: var(--spacing-lg) auto 0;">
+          ADEPT and ADROIT translate real-world consulting execution into government-grade software products. Products such as the Emerging Suite of Program Monitoring Information Reporting System (PMRIS) Application or Risk Management Framework (RMFM) Flagship product are direct responses to recurring operational pain points observed across live government programs.
+        </p>
+        <a href="#products" class="btn" aria-label="Explore our products">
+          Explore Products
+        </a>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="innovation">
+      <div class="container">
+        <h2>Our Approach</h2>
+        <p style="color: var(--color-text-muted); max-width: 700px; margin: 0 auto;">
+          Together, both companies naturally harmonizing in a lifecycle where consulting execution informs insight into recurring gaps, driving disciplined innovation that becomes productized capability supported by operational proof.
+        </p>
+        <div class="features-grid">
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">🔒</span>
+            <h3>Security First</h3>
+            <p>Built-in security from inception, ensuring government-grade compliance and protection of sensitive operational data.</p>
+          </article>
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">📊</span>
+            <h3>Auditability</h3>
+            <p>Comprehensive audit trails and logging capabilities designed for regulatory compliance and operational transparency.</p>
+          </article>
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">♻️</span>
+            <h3>Sustainability</h3>
+            <p>Production-focused architecture enabling rapid development with long-term maintainability and scalability.</p>
+          </article>
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">⚡</span>
+            <h3>Rapid Development</h3>
+            <p>Outcome-driven methodology enabling fast time-to-market while maintaining quality and security standards.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+      <div class="container">
+        <h2>Product Portfolio</h2>
+        <p style="color: var(--color-text-muted); max-width: 700px; margin: 0 auto;">
+          ADROIT supports a growing product portfolio, structured to allow future additions without architectural redesign. RMFM is our flagship example.
+        </p>
+        <div class="products-grid">
+          <article class="product-card">
+            <img 
+              src="assets/images/0_ADROIT__Landscape_Small.jpg" 
+              alt="Risk Management Framework product visualization" 
+              class="product-image" 
+              loading="lazy"
+              decoding="async"
+            >
+            <div class="product-content">
+              <h3>RMFM Flagship</h3>
+              <p>Risk Management Framework - addressing operational pain points in government program risk assessment and monitoring.</p>
+              <a href="#" class="product-link" aria-label="Learn more about RMFM">
+                Learn more →
+              </a>
+            </div>
+          </article>
+          <article class="product-card">
+            <img 
+              src="assets/images/0_ADROIT__Landscape_Small.jpg" 
+              alt="PMRIS product visualization" 
+              class="product-image" 
+              loading="lazy"
+              decoding="async"
+            >
+            <div class="product-content">
+              <h3>PMRIS Application</h3>
+              <p>Program Monitoring Information Reporting System - emerging suite for comprehensive program oversight and reporting.</p>
+              <a href="#" class="product-link" aria-label="Learn more about PMRIS">
+                Learn more →
+              </a>
+            </div>
+          </article>
+          <article class="product-card">
+            <img 
+              src="assets/images/0_ADROIT__Landscape_Small.jpg" 
+              alt="Future products placeholder" 
+              class="product-image" 
+              loading="lazy"
+              decoding="async"
+            >
+            <div class="product-content">
+              <h3>Future Portfolio</h3>
+              <p>Our architecture is designed for easy expansion as new product opportunities emerge from consulting insights.</p>
+              <a href="#contact" class="product-link" aria-label="Contact us about new products">
+                Contact us →
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values" id="contact">
+      <div class="container">
+        <h2>Why ADROIT</h2>
+        <p style="color: var(--color-text-muted); max-width: 700px; margin: 0 auto 0;">
+          Innovation is outcome-driven and production-focused, enabling rapid development with built-in security, auditability, and sustainability from inception.
+        </p>
+        <div class="values-grid">
+          <div class="value-item">
+            <strong>Government-Grade</strong>
+            <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-top: var(--spacing-xs);">Built for regulatory compliance and operational excellence</p>
+          </div>
+          <div class="value-item">
+            <strong>Proven Impact</strong>
+            <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-top: var(--spacing-xs);">Real-world consulting execution informs product design</p>
+          </div>
+          <div class="value-item">
+            <strong>Scalable Architecture</strong>
+            <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-top: var(--spacing-xs);">Grows with your operational needs without redesign</p>
+          </div>
+          <div class="value-item">
+            <strong>Continuous Innovation</strong>
+            <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-top: var(--spacing-xs);">Disciplined approach to product development</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>ADROIT</h4>
+          <p>Innovation & Product Generation for Government Programs</p>
+        </div>
+        <div class="footer-section">
+          <h4>Products</h4>
+          <a href="#products">RMFM Flagship</a><br>
+          <a href="#products">PMRIS Application</a><br>
+          <a href="#products">Future Portfolio</a>
+        </div>
+        <div class="footer-section">
+          <h4>Company</h4>
+          <p>ADEPT and ADROIT harmonizing in a lifecycle where consulting execution drives product innovation.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Connect</h4>
+          <p>Working on this project right now. Real site will replace this staging placeholder.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          Production hosting is the client's responsibility after acceptance — the URL above is staging only.
+        </p>
+        <p style="margin-top: var(--spacing-xs);">
+          Auto-generated by Nexus Software Factory — Branch: main
+        </p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
