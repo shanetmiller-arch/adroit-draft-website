@@ -1,4 +1,7 @@
-const { productStubs, ProductManager } = require('../products');
+// ADROIT Draft Website - Product tests using ES modules
+// Phase 1: scaffold - product data structure tests
+
+import { productStubs, ProductManager } from '../products.js';
 
 // Mock DOM for rendering tests
 class MockDocument {
@@ -76,7 +79,7 @@ describe('ADROIT Draft Website - RMFM Flagship Identification', () => {
     it('should return specific product via getProduct()', () => {
       const rmfmProduct = ProductManager.getProduct('rmfm');
       expect(rmfmProduct.isFlagship).toBe(true);
-      
+
       const pmrisProduct = ProductManager.getProduct('pmris');
       expect(pmrisProduct.isFlagship).toBe(false);
     });
@@ -89,9 +92,9 @@ describe('ADROIT Draft Website - RMFM Flagship Identification', () => {
     it('should render flagship badge for RMFM product card', () => {
       const container = createMockElement();
       container.classList.add('portfolio-grid');
-      
+
       ProductManager.renderProducts(container);
-      
+
       const flagshipBadge = container.innerHTML.includes('portfolio-badge--flagship');
       expect(flagshipBadge).toBe(true);
     });
@@ -99,9 +102,9 @@ describe('ADROIT Draft Website - RMFM Flagship Identification', () => {
     it('should render category badge for PMRIS product card', () => {
       const container = createMockElement();
       container.classList.add('portfolio-grid');
-      
+
       ProductManager.renderProducts(container);
-      
+
       const categoryBadge = container.innerHTML.includes('portfolio-badge');
       expect(categoryBadge).toBe(true);
     });
@@ -109,9 +112,9 @@ describe('ADROIT Draft Website - RMFM Flagship Identification', () => {
     it('should apply flagship card class to RMFM product', () => {
       const container = createMockElement();
       container.classList.add('portfolio-grid');
-      
+
       ProductManager.renderProducts(container);
-      
+
       const flagshipClass = container.innerHTML.includes('portfolio-card--flagship');
       expect(flagshipClass).toBe(true);
     });
@@ -119,10 +122,9 @@ describe('ADROIT Draft Website - RMFM Flagship Identification', () => {
     it('should not apply flagship card class to PMRIS product', () => {
       const container = createMockElement();
       container.classList.add('portfolio-grid');
-      
+
       ProductManager.renderProducts(container);
-      
-      // PMRIS should not have the flagship class
+
       const pmrisCard = container.innerHTML.match(/<article class="portfolio-card portfolio-card--flagship">/);
       expect(pmrisCard).toBe(null);
     });
@@ -130,9 +132,9 @@ describe('ADROIT Draft Website - RMFM Flagship Identification', () => {
     it('should render "Flagship Product" badge text for RMFM', () => {
       const container = createMockElement();
       container.classList.add('portfolio-grid');
-      
+
       ProductManager.renderProducts(container);
-      
+
       const flagshipText = container.innerHTML.includes('Flagship Product');
       expect(flagshipText).toBe(true);
     });
@@ -150,43 +152,42 @@ describe('ADROIT Draft Website - RMFM Flagship Identification', () => {
         name: 'Test',
         isFlagship: true
       }];
-      
+
       const container = createMockElement();
       container.classList.add('portfolio-grid');
-      
-      // Temporarily modify ProductManager for this test
+
       const originalGetProducts = ProductManager.getProducts;
       ProductManager.getProducts = () => testProducts;
-      
+
       ProductManager.renderProducts(container);
-      
+
       const defaultImage = container.innerHTML.includes('assets/images/0_ADROIT_Small.png');
       expect(defaultImage).toBe(true);
-      
+
       ProductManager.getProducts = originalGetProducts;
     });
 
     it('should handle empty products array', () => {
       const emptyContainer = createMockElement();
       emptyContainer.classList.add('portfolio-grid');
-      
+
       const originalGetProducts = ProductManager.getProducts;
       ProductManager.getProducts = () => [];
-      
+
       ProductManager.renderProducts(emptyContainer);
-      
+
       const emptyGrid = emptyContainer.innerHTML.includes('<div class="portfolio-grid">');
       expect(emptyGrid).toBe(true);
-      
+
       ProductManager.getProducts = originalGetProducts;
     });
 
     it('should correctly identify flagship count in rendered output', () => {
       const container = createMockElement();
       container.classList.add('portfolio-grid');
-      
+
       ProductManager.renderProducts(container);
-      
+
       const flagshipCards = container.innerHTML.match(/portfolio-card--flagship/g);
       expect(flagshipCards).toHaveLength(1);
     });
@@ -207,11 +208,10 @@ describe('ADROIT Draft Website - RMFM Flagship Identification', () => {
     it('should render flagship visual prominence in UI output', () => {
       const container = createMockElement();
       container.classList.add('portfolio-grid');
-      
+
       ProductManager.renderProducts(container);
-      
-      // Verify flagship styling is present in rendered HTML
-      const hasFlagshipClasses = container.innerHTML.includes('portfolio-card--flagship') && 
+
+      const hasFlagshipClasses = container.innerHTML.includes('portfolio-card--flagship') &&
                                   container.innerHTML.includes('portfolio-badge--flagship') &&
                                   container.innerHTML.includes('Flagship Product');
       expect(hasFlagshipClasses).toBe(true);

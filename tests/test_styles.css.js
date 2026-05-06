@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
-// CSS Rule Extractor for verification
+// CSS Rule Extractor for verification using ES modules
 class CSSRuleExtractor {
   constructor(cssContent) {
     this.css = cssContent;
@@ -64,7 +64,7 @@ describe('ADROIT Draft Website - RMFM Flagship CSS Styles', () => {
 
     it('should define --brand-flagship-bg color variable', () => {
       const extractor = new CSSRuleExtractor(cssContent);
-      const rule = extractor.extractBrandFlagshipBg();
+      const rule = extractor.extractFlagshipBgRule();
       expect(rule).toBeTruthy();
       expect(rule).toContain('--brand-flagship-bg');
     });
@@ -84,7 +84,7 @@ describe('ADROIT Draft Website - RMFM Flagship CSS Styles', () => {
 
     it('should use distinctive background color for flagship', () => {
       const extractor = new CSSRuleExtractor(cssContent);
-      const rule = extractor.extractBrandFlagshipBg();
+      const rule = extractor.extractFlagshipBgRule();
       if (rule) {
         const bgMatch = rule.match(/#[0-9a-f]{6}/i);
         if (bgMatch) {
@@ -109,11 +109,11 @@ describe('ADROIT Draft Website - RMFM Flagship CSS Styles', () => {
 
     it('should have flagship-specific styling in CSS', () => {
       const extractor = new CSSRuleExtractor(cssContent);
-      
+
       // Check for both color and background variables
       const hasColor = extractor.extractBrandFlagshipColor() !== null;
-      const hasBg = extractor.extractBrandFlagshipBg() !== null;
-      
+      const hasBg = extractor.extractFlagshipBgRule() !== null;
+
       expect(hasColor).toBe(true);
       expect(hasBg).toBe(true);
     });
@@ -146,21 +146,21 @@ describe('ADROIT Draft Website - RMFM Flagship CSS Styles', () => {
   describe('Requirement Compliance', () => {
     it('should provide visual distinction for flagship product', () => {
       const extractor = new CSSRuleExtractor(cssContent);
-      
+
       // Flagship needs both card class and badge class
       const hasCardClass = extractor.hasPortfolioCardFlagshipClass();
       const hasBadgeClass = extractor.hasPortfolioBadgeFlagshipClass();
-      
+
       expect(hasCardClass).toBe(true);
       expect(hasBadgeClass).toBe(true);
     });
 
     it('should define both color and background for flagship badge', () => {
       const extractor = new CSSRuleExtractor(cssContent);
-      
+
       const colorRule = extractor.extractBrandFlagshipColor();
-      const bgRule = extractor.extractBrandFlagshipBg();
-      
+      const bgRule = extractor.extractFlagshipBgRule();
+
       expect(colorRule).toBeTruthy();
       expect(bgRule).toBeTruthy();
     });
@@ -169,7 +169,7 @@ describe('ADROIT Draft Website - RMFM Flagship CSS Styles', () => {
       // Check both light and dark mode have flagship support
       const hasLightFlagship = extractor.extractBrandFlagshipColor() !== null;
       const hasDarkFlagship = /@media.*prefers-color-scheme.*--brand-flagship/.test(cssContent);
-      
+
       expect(hasLightFlagship).toBe(true);
       expect(hasDarkFlagship).toBe(true);
     });

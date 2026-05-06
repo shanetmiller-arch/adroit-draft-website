@@ -1,9 +1,9 @@
 // Integration-style test for RMFM flagship identification
-// Tests the complete flow from data to rendering
+// Tests the complete flow from data to rendering using ES modules
 
-const { productStubs, ProductManager } = require('../products');
-const fs = require('fs');
-const path = require('path');
+import { productStubs, ProductManager } from '../products.js';
+import fs from 'fs';
+import path from 'path';
 
 describe('ADROIT Draft Website - RMFM Flagship Integration', () => {
   let cssContent;
@@ -18,7 +18,7 @@ describe('ADROIT Draft Website - RMFM Flagship Integration', () => {
   describe('Complete Flagship Identification Flow', () => {
     it('should have data model supporting flagship identification', () => {
       const flagshipProduct = productStubs.find(p => p.isFlagship === true);
-      
+
       expect(flagshipProduct).toBeDefined();
       expect(flagshipProduct.name).toBe('RMFM');
       expect(flagshipProduct.isFlagship).toBe(true);
@@ -34,9 +34,9 @@ describe('ADROIT Draft Website - RMFM Flagship Integration', () => {
     it('should render only one flagship product', () => {
       const container = document.createElement('div');
       container.classList.add('portfolio-grid');
-      
+
       ProductManager.renderProducts(container);
-      
+
       const flagshipCount = container.innerHTML.match(/portfolio-card--flagship/g);
       expect(flagshipCount).toHaveLength(1);
     });
@@ -55,7 +55,7 @@ describe('ADROIT Draft Website - RMFM Flagship Integration', () => {
 
     it('should have complete flagship feature set', () => {
       const rmfmProduct = productStubs.find(p => p.id === 'rmfm');
-      
+
       expect(rmfmProduct.features.length).toBeGreaterThanOrEqual(4);
       expect(rmfmProduct.features.includes('Risk assessment')).toBe(true);
       expect(rmfmProduct.features.includes('Audit trails')).toBe(true);
@@ -66,20 +66,16 @@ describe('ADROIT Draft Website - RMFM Flagship Integration', () => {
     it('should maintain product consistency between data and rendering', () => {
       const container = document.createElement('div');
       container.classList.add('portfolio-grid');
-      
+
       ProductManager.renderProducts(container);
-      
-      // Verify RMFM is in rendered output
+
       expect(container.innerHTML.includes('Risk Management Framework Flagship')).toBe(true);
-      
-      // Verify flagship badge is present
       expect(container.innerHTML.includes('Flagship Product')).toBe(true);
     });
   });
 
   describe('Edge Case Handling', () => {
     it('should handle multiple flagships gracefully (validation)', () => {
-      // This test validates the data model enforces single flagship
       const flagships = productStubs.filter(p => p.isFlagship === true);
       expect(flagships.length).toBeLessThanOrEqual(1);
     });
@@ -96,13 +92,13 @@ describe('ADROIT Draft Website - RMFM Flagship Integration', () => {
     it('should handle empty product list', () => {
       const originalGetProducts = ProductManager.getProducts;
       ProductManager.getProducts = () => [];
-      
+
       const container = document.createElement('div');
       container.classList.add('portfolio-grid');
-      
+
       ProductManager.renderProducts(container);
       expect(container.innerHTML.includes('portfolio-grid')).toBe(true);
-      
+
       ProductManager.getProducts = originalGetProducts;
     });
   });
@@ -110,12 +106,10 @@ describe('ADROIT Draft Website - RMFM Flagship Integration', () => {
   describe('Stability and Extensibility', () => {
     it('should maintain flagship property immutability', () => {
       const originalFlagship = productStubs.find(p => p.isFlagship === true);
-      
-      // Mutate the copy
+
       const copy = JSON.parse(JSON.stringify(originalFlagship));
       copy.isFlagship = false;
-      
-      // Original should remain unchanged
+
       expect(originalFlagship.isFlagship).toBe(true);
     });
 
@@ -133,7 +127,7 @@ describe('ADROIT Draft Website - RMFM Flagship Integration', () => {
         statusBadge: 'status-planned',
         isFlagship: false
       };
-      
+
       expect(newProduct.isFlagship).toBe(false);
     });
 
@@ -151,8 +145,7 @@ describe('ADROIT Draft Website - RMFM Flagship Integration', () => {
         statusBadge: 'status-planned',
         isFlagship: true
       };
-      
-      // This validates the structure allows future flagships
+
       expect(newFlagship.isFlagship).toBe(true);
     });
   });
