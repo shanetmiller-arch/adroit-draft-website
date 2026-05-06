@@ -66,6 +66,14 @@ const NavigationConfig = {
         phase: '2',
         description: 'Technical documentation',
         status: 'placeholder'
+      },
+      {
+        id: 'white-papers',
+        label: 'White Papers',
+        href: '#white-papers',
+        icon: '📄',
+        phase: '2',
+        description: 'Technical white papers & operational insights'
       }
     ]
   },

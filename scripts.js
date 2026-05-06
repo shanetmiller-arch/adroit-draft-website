@@ -1,5 +1,6 @@
 // ADROIT Draft Website - Main entry point for scripts
 // Phase 1: scaffold - basic interactivity foundation
+// Phase 2: core content - extended functionality
 
 // Initialize navigation with extensible model
 // Loads navigation configuration from NavigationConfig
@@ -157,4 +158,31 @@ try {
   }
 } catch (error) {
   console.error('Navigation initialization error:', error);
+}
+
+// Initialize white papers filter functionality (Phase 2 feature)
+const whitePapersGrid = document.getElementById('white-papers-grid');
+const filterBtns = document.querySelectorAll('.filter-btn');
+
+if (whitePapersGrid && filterBtns.length > 0) {
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Update active state
+      filterBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      const filter = this.getAttribute('data-filter');
+      
+      // Filter cards
+      const cards = whitePapersGrid.querySelectorAll('.white-paper-card');
+      cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
 }

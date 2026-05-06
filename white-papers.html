@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ADROIT White Papers — Technical documentation and operational insights for government software products">
+  <title>White Papers — ADROIT</title>
+  <link rel="icon" type="image/png" href="assets/images/0_ADROIT__Icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="container">
+      <div class="nav">
+        <div class="logo">
+          <a href="./" aria-label="ADROIT Home">
+            <img src="assets/images/0_ADROIT__Icon.png" alt="ADROIT logo" width="40" height="40">
+          </a>
+          <span class="logo-text">ADROIT</span>
+        </div>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="./" aria-label="Home">Home</a></li>
+          <li><a href="#about" aria-label="About">About</a></li>
+          <li><a href="#proof" aria-label="Proof">Proof</a></li>
+          <li><a href="#workflow" aria-label="Product Workflow">Product Workflow</a></li>
+          <li><a href="#portfolio" aria-label="Products">Products</a></li>
+          <li><a href="#white-papers" aria-label="White Papers">White Papers</a></li>
+          <li><a href="#contact" aria-label="Contact">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="white-papers" class="white-papers-section">
+      <div class="container">
+        <header class="white-papers-header">
+          <h1>White Papers & Documentation</h1>
+          <p class="lead">Technical documentation, operational insights, and product specifications for government software solutions</p>
+        </header>
+
+        <div class="white-papers-filters">
+          <button class="filter-btn active" data-filter="all">All Papers</button>
+          <button class="filter-btn" data-filter="product">Product Papers</button>
+          <button class="filter-btn" data-filter="methodology">Methodology</button>
+          <button class="filter-btn" data-filter="operational">Operational</button>
+          <button class="filter-btn" data-filter="security">Security</button>
+        </div>
+
+        <div class="white-papers-grid" id="white-papers-grid">
+          <article class="white-paper-card" data-category="product">
+            <div class="white-paper-content">
+              <span class="paper-category-badge">Product</span>
+              <h2>PMRIS: Program Monitoring Reporting System</h2>
+              <p>Comprehensive documentation on the Emerging Suite of Program Monitoring Information Reporting System architecture, features, and operational deployment guidelines for government programs.</p>
+              <div class="paper-meta">
+                <span class="paper-phase">Phase 1</span>
+                <span class="paper-status">Draft</span>
+              </div>
+              <a href="#" class="paper-link" aria-label="Read PMRIS white paper">Read Paper &rarr;</a>
+            </div>
+          </article>
+
+          <article class="white-paper-card" data-category="methodology">
+            <div class="white-paper-content">
+              <span class="paper-category-badge">Methodology</span>
+              <h2>Operational Proof Framework</h2>
+              <p>Documentation of ADROIT's operational proof methodology—how consulting execution translates into validated software products with measurable outcomes for government programs.</p>
+              <div class="paper-meta">
+                <span class="paper-phase">Phase 2</span>
+                <span class="paper-status">In Progress</span>
+              </div>
+              <a href="#" class="paper-link" aria-label="Read Operational Proof Framework">Read Paper &rarr;</a>
+            </div>
+          </article>
+
+          <article class="white-paper-card" data-category="product">
+            <div class="white-paper-content">
+              <span class="paper-category-badge">Product</span>
+              <h2>RMFM: Risk Management Framework</h2>
+              <p>Flagship product documentation covering risk assessment capabilities, audit trail mechanisms, compliance reporting features, and integration with operational insights systems.</p>
+              <div class="paper-meta">
+                <span class="paper-phase">Phase 1</span>
+                <span class="paper-status">Draft</span>
+              </div>
+              <a href="#" class="paper-link" aria-label="Read RMFM white paper">Read Paper &rarr;</a>
+            </div>
+          </article>
+
+          <article class="white-paper-card" data-category="security">
+            <div class="white-paper-content">
+              <span class="paper-category-badge">Security</span>
+              <h2>Security-by-Design Implementation</h2>
+              <p>Technical white paper on embedding security, auditability, and compliance from inception. Covers validation frameworks, threat modeling, and secure development practices.</p>
+              <div class="paper-meta">
+                <span class="paper-phase">Phase 2</span>
+                <span class="paper-status">In Progress</span>
+              </div>
+              <a href="#" class="paper-link" aria-label="Read Security-by-Design paper">Read Paper &rarr;</a>
+            </div>
+          </article>
+
+          <article class="white-paper-card" data-category="operational">
+            <div class="white-paper-content">
+              <span class="paper-category-badge">Operational</span>
+              <h2>Government Program Integration Patterns</h2>
+              <p>Documented patterns and best practices for integrating software solutions into live government program operations. Includes deployment strategies and operational support frameworks.</p>
+              <div class="paper-meta">
+                <span class="paper-phase">Phase 2</span>
+                <span class="paper-status">In Progress</span>
+              </div>
+              <a href="#" class="paper-link" aria-label="Read Integration Patterns paper">Read Paper &rarr;</a>
+            </div>
+          </article>
+
+          <article class="white-paper-card" data-category="methodology">
+            <div class="white-paper-content">
+              <span class="paper-category-badge">Methodology</span>
+              <h2>Consulting-to-Products Lifecycle</h2>
+              <p>Framework documenting how ADEPT and ADROIT translate real-world consulting execution into production-ready software products. Covers discovery, validation, and productization phases.</p>
+              <div class="paper-meta">
+                <span class="paper-phase">Phase 2</span>
+                <span class="paper-status">In Progress</span>
+              </div>
+              <a href="#" class="paper-link" aria-label="Read Lifecycle paper">Read Paper &rarr;</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="white-papers-cta">
+          <h3>Need Custom Documentation?</h3>
+          <p>We can create tailored technical documentation for your specific program requirements. Contact us to discuss your documentation needs.</p>
+          <a href="#contact" class="cta-button" aria-label="Contact for documentation services">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="assets/images/0_ADROIT_Small.png" alt="ADROIT" width="80" height="30">
+          <p>Operational Proof, Not Promises</p>
+        </div>
+        <div class="footer-links">
+          <h4>Products</h4>
+          <a href="#portfolio">PMRIS</a>
+          <a href="#portfolio">RMFM</a>
+          <a href="#white-papers">White Papers</a>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <a href="#about">About</a>
+          <a href="#proof">Proof</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ADROIT. All rights reserved. | Phase 1 Scaffold | Phase 2 Core Content</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="navigation_config.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
