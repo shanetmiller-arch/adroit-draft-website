@@ -24,7 +24,7 @@ const productStubs = [
     phase: 'Phase 1',
     status: 'active',
     category: 'risk-management',
-    features: ['Risk assessment', 'Audit trails', 'Compliance reporting', 'Real-time monitoring', 'Automated reporting'],
+    features: ['Risk assessment', 'Audit trails', 'Compliance reporting', 'Real-time monitoring', 'Automated reporting', 'Operational insights integration'],
     imageUrl: 'assets/images/0_ADROIT__Landscape_Medium.png',
     statusBadge: 'status-active',
     isFlagship: true
@@ -61,7 +61,7 @@ const ProductManager = {
           <a href="#${flagship.id}" class="portfolio-card-link">
             <img src="${imageSrc}" alt="${flagship.name}" class="portfolio-image" loading="lazy">
             <div class="portfolio-content">
-              <span class="portfolio-badge portfolio-badge--flagship">Flagship</span>
+              <span class="portfolio-badge portfolio-badge--flagship">Flagship Product</span>
               <span class="portfolio-badge">${flagship.category}</span>
               <h3 class="portfolio-title">${flagship.fullName}</h3>
               <p class="portfolio-description">${flagship.description}</p>
