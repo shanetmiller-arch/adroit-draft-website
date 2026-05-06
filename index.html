@@ -21,7 +21,7 @@
           </a>
           <span class="logo-text">ADROIT</span>
         </div>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
           <li><a href="#home" aria-label="Home">Home</a></li>
           <li><a href="#about" aria-label="About">About</a></li>
           <li><a href="#proof" aria-label="Proof">Proof</a></li>
@@ -151,14 +151,14 @@
           <div class="workflow-stage">
             <div class="stage-number">Phase 2</div>
             <h3>Core Content</h3>
-            <p>Expand product capabilities and feature set</p>
+            <p>Expand with comprehensive features and production capabilities</p>
             <div class="stage-status">
               <span class="status-dot"></span>
               <span>Upcoming</span>
             </div>
             <ul class="stage-items">
-              <li>Feature expansion</li>
-              <li>Advanced analytics</li>
+              <li>Comprehensive feature set expansion</li>
+              <li>Advanced analytics and reporting</li>
               <li>Phase 2: ADROIT Draft Website — core content</li>
             </ul>
           </div>
@@ -166,76 +166,67 @@
           <div class="workflow-stage">
             <div class="stage-number">Phase 3</div>
             <h3>Production Release</h3>
-            <p>Deploy to production environment</p>
+            <p>Deploy to production environment with full support</p>
             <div class="stage-status">
               <span class="status-dot"></span>
               <span>Planned</span>
             </div>
             <ul class="stage-items">
               <li>Production deployment</li>
-              <li>Performance monitoring</li>
-              <li>Phase 3: Production Release</li>
+              <li>Enterprise-grade support</li>
+              <li>Phase 3: Production deployment</li>
             </ul>
-          </div>
-        </div>
-
-        <div class="workflow-timeline">
-          <div class="timeline-item">
-            <div class="timeline-marker active"></div>
-            <div class="timeline-content">
-              <h4>Phase 1 — Scaffold Foundation</h4>
-              <p>Active development with core architecture establishment</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-marker"></div>
-            <div class="timeline-content">
-              <h4>Phase 2 — Core Content</h4>
-              <p>Feature expansion and capability enhancement</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-marker"></div>
-            <div class="timeline-content">
-              <h4>Phase 3 — Production Release</h4>
-              <p>Deployment to production environment</p>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="portfolio">
+    <section id="portfolio" class="products-section">
       <div class="container">
-        <header>
+        <header class="products-header">
           <h2>Product Portfolio</h2>
-          <p class="lead">Our flagship products and their development status</p>
+          <p class="lead">Our flagship and emerging products addressing government program challenges</p>
         </header>
 
-        <div id="products-container" class="portfolio-grid" aria-label="Product Portfolio"></div>
+        <div id="products-container" class="portfolio-grid">
+          <!-- Products rendered by ProductManager -->
+        </div>
       </div>
     </section>
 
     <section id="contact" class="contact-section">
       <div class="container">
-        <header>
-          <h2>Contact Us</h2>
-          <p class="lead">Reach out for partnership inquiries and collaboration opportunities</p>
-        </header>
         <div class="contact-content">
-          <p>For inquiries about ADROIT products and services, please contact our team.</p>
+          <h2>Get in Touch</h2>
+          <p>Interested in learning more about ADROIT's government-grade software solutions? We'd love to hear from you.</p>
+          <p><strong>Email:</strong> info@adroit.gov</p>
+          <p><strong>Phone:</strong> (555) 123-4567</p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; 2024 ADROIT. All rights reserved.</p>
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-logo">ADROIT</div>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#proof">Proof</a></li>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#portfolio">Products</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
   </footer>
 
-  <script src="products.js"></script>
+  <!-- Third-party scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+  <!-- Application scripts -->
+  <script src="navigation_config.js"></script>
   <script src="scripts.js"></script>
+  <script src="products.js"></script>
 </body>
 </html>
