@@ -8,6 +8,13 @@ ADEPT and ADROIT translate real‑world consulting execution into government‑g
 - **Branch**: main
 - **Managed by**: Nexus Software Factory
 
+## Design Context
+
+- **Pages in plan**: Home
+- **Phases**:
+  - Phase 1 (ADROIT Draft Website): scaffold
+  - Phase 2 (ADROIT Draft Website): core content
+
 ## Tech Stack
 
 - **language**: javascript
