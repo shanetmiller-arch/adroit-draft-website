@@ -162,6 +162,95 @@
     }
     @media (prefers-color-scheme: dark) { .hero-image { filter: brightness(0.9); } }
 
+    /* Foundry Narrative Overview Section */
+    .narrative {
+      padding: var(--spacing-xxl) 0;
+      background: var(--color-bg-alt);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .narrative-header {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto var(--spacing-lg);
+    }
+    .narrative-header h2 {
+      color: var(--color-primary-dark);
+      margin-bottom: var(--spacing-sm);
+    }
+    .narrative-header p {
+      color: var(--color-text-muted);
+      font-size: 1.125rem;
+    }
+    .narrative-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+      margin-top: var(--spacing-lg);
+    }
+    @media (min-width: 768px) {
+      .narrative-content {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .narrative-section {
+      padding: var(--spacing-lg);
+      background: var(--color-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+    }
+    .narrative-section h3 {
+      color: var(--color-primary);
+      margin-bottom: var(--spacing-md);
+    }
+    .narrative-section p {
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-sm);
+    }
+    .narrative-section ul {
+      margin: 0;
+      padding-left: var(--spacing-lg);
+      color: var(--color-text-muted);
+    }
+    .narrative-section li {
+      margin-bottom: var(--spacing-xs);
+    }
+    .narrative-phase {
+      display: flex;
+      gap: var(--spacing-md);
+      align-items: flex-start;
+      margin-bottom: var(--spacing-md);
+    }
+    .phase-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
+      height: 48px;
+      background: var(--color-primary);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.875rem;
+      border-radius: var(--radius-md);
+    }
+    .narrative-image {
+      grid-column: 1 / -1;
+      margin-top: var(--spacing-lg);
+      text-align: center;
+    }
+    .narrative-image-wrapper {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .narrative-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
     /* Features Grid */
     .features {
       padding: var(--spacing-xxl) 0;
@@ -284,7 +373,7 @@
       align-items: center;
       justify-content: center;
       color: var(--color-text-muted);
-      font-size: 3rem;
+      font-size: 2rem;
     }
     .product-content {
       padding: var(--spacing-lg);
@@ -304,41 +393,8 @@
       font-weight: 500;
       color: var(--color-primary);
     }
-    .product-link:hover { text-decoration: underline; }
-
-    /* Values Section */
-    .values {
-      padding: var(--spacing-xxl) 0;
-      background: var(--color-bg-alt);
-      text-align: center;
-    }
-    .values-header {
-      text-align: center;
-      margin-bottom: var(--spacing-lg);
-    }
-    .values-header h2 {
-      color: var(--color-primary-dark);
-    }
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--spacing-lg);
-      margin-top: var(--spacing-lg);
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .value-item {
-      padding: var(--spacing-md);
-    }
-    .value-item h4 {
-      color: var(--color-primary);
-      margin-bottom: var(--spacing-xs);
-    }
-    .value-item p {
-      color: var(--color-text-muted);
-      margin: 0;
-      font-size: 0.9375rem;
+    .product-link:hover {
+      text-decoration: underline;
     }
 
     /* Footer */
@@ -356,13 +412,16 @@
     .footer-section h4 {
       margin-bottom: var(--spacing-sm);
       color: var(--color-text);
+      font-size: 1rem;
     }
     .footer-section p,
     .footer-section a {
       color: var(--color-text-muted);
       font-size: 0.875rem;
     }
-    .footer-section a:hover { color: var(--color-primary); }
+    .footer-section a:hover {
+      color: var(--color-primary);
+    }
     .footer-bottom {
       max-width: 1200px;
       margin: var(--spacing-lg) auto 0;
@@ -373,228 +432,208 @@
     .footer-bottom p {
       margin: 0;
       color: var(--color-text-muted);
-      font-size: 0.875rem;
+      font-size: 0.8125rem;
     }
 
-    /* Mobile adjustments */
-    @media (max-width: 640px) {
-      .nav-links {
-        display: none;
+    @media (prefers-color-scheme: dark) {
+      .footer {
+        border-top-color: rgba(255,255,255,0.1);
       }
-      .hero {
-        padding: var(--spacing-xl) 0;
-      }
-      .features-grid,
-      .products-grid,
-      .values-grid {
-        grid-template-columns: 1fr;
+      .footer-bottom {
+        border-top-color: rgba(255,255,255,0.1);
       }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
-    <nav class="nav container">
-      <a href="./" class="logo" aria-label="ADROIT Home">
-        <img src="assets/images/0_ADROIT__Icon.png" alt="ADROIT" width="40" height="40">
-        <span>ADROIT</span>
-      </a>
-      <div class="nav-links">
-        <a href="#features">Capabilities</a>
-        <a href="#products">Products</a>
-        <a href="#innovation">Innovation House</a>
-        <a href="#contact">Contact</a>
+    <nav class="nav">
+      <div class="logo">
+        <img src="assets/images/0_ADROIT__Icon.png" alt="ADROIT logo icon">
+        <span style="font-weight: 700; font-size: 1.25rem; color: var(--color-primary-dark);">ADROIT</span>
       </div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-content container">
-      <h1 id="hero-title">ADROIT Innovation House</h1>
-      <p class="subtitle">Consulting Execution → Government-Grade Software</p>
-      <p class="description">
-        ADROIT translates real-world consulting execution into production-ready, 
-        government-grade software products through disciplined innovation. We identify 
-        operational pain points and architect sustainable, auditable solutions that 
-        scale without architectural redesign.
-      </p>
+  <main id="home">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>ADROIT Innovation House</h1>
+        <p class="subtitle">Translating consulting execution into government-grade software products</p>
+        <p class="description">Disciplined innovation that becomes productized capability supported by operational proof. Innovation is outcome-driven and production-focused, enabling rapid development with built-in security, auditability, and sustainability from inception.</p>
+        <a href="#products" class="product-link" style="font-size: 1.125rem; padding: var(--spacing-sm) var(--spacing-lg); background: var(--color-primary); color: #ffffff; border-radius: var(--radius-md);">
+          Explore Products
+        </a>
+      </div>
       <div class="hero-image-wrapper">
-        <img class="hero-image" 
-             src="assets/images/0_ADROIT__Landscape.png" 
-             alt="ADROIT Innovation House — transforming consulting into sustainable software products" 
-             width="1200" height="600">
+        <img class="hero-image" src="assets/images/0_ADROIT__Landscape_Medium.png" alt="ADROIT landscape illustration showing innovation and development">
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Features Section -->
-  <section id="features" class="features">
-    <div class="container">
-      <div class="features-header">
-        <h2>Core Capabilities</h2>
-        <p class="lead">Our approach combines operational insight with technical excellence to deliver products that matter.</p>
+    <section class="narrative" aria-labelledby="narrative-heading">
+      <div class="container">
+        <div class="narrative-header">
+          <h2 id="narrative-heading">Foundry Narrative Overview</h2>
+          <p>Our approach bridges consulting insight with product excellence, ensuring every solution is operationally validated and production-ready from day one.</p>
+        </div>
+        <div class="narrative-content">
+          <div class="narrative-section">
+            <h3>Our Philosophy</h3>
+            <p>At the Nexus Software Factory, we believe that the best government software emerges from the intersection of deep domain expertise and disciplined engineering practices. We don't just build software—we build capabilities that endure.</p>
+            <p>Our methodology ensures that every project starts with operational proof, meaning we validate solutions against real-world constraints before committing to production architecture.</p>
+          </div>
+          <div class="narrative-section">
+            <h3>Development Approach</h3>
+            <p>We leverage the ADROIT platform to accelerate delivery while maintaining rigorous quality standards. Our static HTML + vanilla JavaScript foundation ensures maximum compatibility and minimal runtime dependencies.</p>
+            <p>Each product is structured to allow future additions without architectural redesign, supporting our clients' evolving needs as they scale.</p>
+          </div>
+          <div class="narrative-section">
+            <h3>Current Roadmap</h3>
+            <div class="narrative-phase">
+              <span class="phase-badge">P1</span>
+              <div>
+                <strong>Phase 1: ADROIT Draft Website — Scaffold</strong>
+                <p style="margin: var(--spacing-xs) 0 0; font-size: 0.9375rem;">Establishing the foundational structure, brand identity, and core layout components for the ADROIT platform.</p>
+              </div>
+            </div>
+            <div class="narrative-phase">
+              <span class="phase-badge">P2</span>
+              <div>
+                <strong>Phase 2: ADROIT Draft Website — Core Content</strong>
+                <p style="margin: var(--spacing-xs) 0 0; font-size: 0.9375rem;">Populating the scaffold with substantive product information, case studies, and operational documentation.</p>
+              </div>
+            </div>
+          </div>
+          <div class="narrative-section narrative-image">
+            <div class="narrative-image-wrapper">
+              <img src="assets/images/0_ADROIT__Landscape.png" alt="ADROIT comprehensive landscape view representing the full product ecosystem">
+            </div>
+            <p style="margin-top: var(--spacing-sm); color: var(--color-text-muted); font-size: 0.9375rem;">Building a sustainable portfolio for government innovation</p>
+          </div>
+        </div>
       </div>
-      <div class="features-grid">
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">✓</div>
-          <h3>Disciplined Innovation</h3>
-          <p>Outcome-driven development with built-in security, auditability, and sustainability from inception.</p>
-        </article>
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">🔄</div>
-          <h3>Rapid Development</h3>
-          <p>Fast time-to-value without sacrificing quality. Our structured approach enables rapid iteration and scaling.</p>
-        </article>
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">🛡️</div>
-          <h3>Production-Grade Quality</h3>
-          <p>Every product undergoes rigorous testing and validation to meet government-grade standards.</p>
-        </article>
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">🏗️</div>
-          <h3>Scalable Architecture</h3>
-          <p>Products are structured to allow future additions without architectural redesign or technical debt.</p>
-        </article>
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">🔍</div>
-          <h3>Operational Proof</h3>
-          <p>Every capability is backed by operational proof from live government programs.</p>
-        </article>
-        <article class="card">
-          <div class="card-icon" aria-hidden="true">🎯</div>
-          <h3>Gap-Driven Design</h3>
-          <p>We identify recurring operational gaps and productize solutions that address root causes.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Innovation House Value Prop -->
-  <section id="innovation" class="innovation-house">
-    <div class="container">
-      <h2>Innovation House Methodology</h2>
-      <p class="lead">Our Innovation House transforms consulting insights into sustainable software products.</p>
-      <div class="value-prop-grid">
-        <div class="value-prop-item">
-          <h4>Identify</h4>
-          <p>Discover recurring operational pain points across live government programs through direct engagement.</p>
+    <section class="features" id="features">
+      <div class="container">
+        <div class="features-header">
+          <h2>What We Deliver</h2>
+          <p>Consulting execution translated into operational software products</p>
         </div>
-        <div class="value-prop-item">
-          <h4>Design</h4>
-          <p>Architect solutions with built-in security, auditability, and sustainability from day one.</p>
-        </div>
-        <div class="value-prop-item">
-          <h4>Develop</h4>
-          <p>Rapid, disciplined development cycles that produce production-ready capabilities.</p>
-        </div>
-        <div class="value-prop-item">
-          <h4>Validate</h4>
-          <p>Operational proof through live deployment in government programs.</p>
-        </div>
-        <div class="value-prop-item">
-          <h4>Scale</h4>
-          <p>Productized solutions that scale without architectural redesign.</p>
-        </div>
-        <div class="value-prop-item">
-          <h4>Support</h4>
-          <p>Continuous iteration based on operational feedback and emerging requirements.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Products Section -->
-  <section id="products" class="products">
-    <div class="container">
-      <div class="products-header">
-        <h2>Flagship Products</h2>
-        <p class="lead">Proven solutions that address real operational challenges.</p>
-      </div>
-      <div class="products-grid">
-        <article class="product-card">
-          <div class="product-image">📊</div>
-          <div class="product-content">
+        <div class="features-grid">
+          <article class="card">
+            <span class="card-icon">📊</span>
             <h3>PMRIS Application</h3>
-            <p>Emerging Suite of Program Monitoring Information Reporting System — streamlined reporting for government programs.</p>
-            <a href="#" class="product-link">Learn more →</a>
-          </div>
-        </article>
-        <article class="product-card">
-          <div class="product-image">🛡️</div>
-          <div class="product-content">
+            <p>Program Monitoring Information Reporting System for emerging suite operations</p>
+          </article>
+          <article class="card">
+            <span class="card-icon">🛡️</span>
             <h3>RMFM Flagship</h3>
-            <p>Risk Management Framework — comprehensive risk assessment and mitigation for complex government initiatives.</p>
-            <a href="#" class="product-link">Learn more →</a>
-          </div>
-        </article>
-        <article class="product-card">
-          <div class="product-image">⚙️</div>
-          <div class="product-content">
-            <h3>Consulting → Product Pipeline</h3>
-            <p>Our proprietary methodology for transforming consulting insights into sustainable software products.</p>
-            <a href="#" class="product-link">Learn more →</a>
-          </div>
-        </article>
+            <p>Risk Management Framework flagship product addressing operational pain points</p>
+          </article>
+          <article class="card">
+            <span class="card-icon">🚀</span>
+            <h3>Rapid Development</h3>
+            <p>Built-in security, auditability, and sustainability from inception</p>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Values Section -->
-  <section id="values" class="values">
-    <div class="container">
-      <div class="values-header">
-        <h2>Our Values</h2>
+    <section class="innovation-house">
+      <div class="container">
+        <h2>Innovation House Value Proposition</h2>
+        <p class="lead">Where consulting insight meets product excellence</p>
+        <div class="value-prop-grid">
+          <div class="value-prop-item">
+            <h4>Operational Proof</h4>
+            <p>Solutions validated against real-world constraints before production</p>
+          </div>
+          <div class="value-prop-item">
+            <h4>Disciplined Innovation</h4>
+            <p>Meticulous engineering practices ensuring quality at scale</p>
+          </div>
+          <div class="value-prop-item">
+            <h4>Productization</h4>
+            <p>Capabilities that endure and evolve with client needs</p>
+          </div>
+          <div class="value-prop-item">
+            <h4>Security First</h4>
+            <p>Built-in security from the initial architecture decision</p>
+          </div>
+        </div>
       </div>
-      <div class="values-grid">
-        <div class="value-item">
-          <h4>Discipline</h4>
-          <p>Structured approaches to innovation that ensure quality and sustainability.</p>
-        </div>
-        <div class="value-item">
-          <h4>Outcome-First</h4>
-          <p>We measure success by operational impact, not just delivered features.</p>
-        </div>
-        <div class="value-item">
-          <h4>Collaboration</h4>
-          <p>Deep partnership with government programs to understand real needs.</p>
-        </div>
-        <div class="value-item">
-          <h4>Innovation</h4>
-          <p>Continuous improvement through operational feedback and learning.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer">
+    <section class="products" id="products">
+      <div class="container">
+        <div class="products-header">
+          <h2>Our Products</h2>
+          <p>Government-grade software products built on the ADROIT platform</p>
+        </div>
+        <div class="products-grid">
+          <article class="product-card">
+            <div class="product-image">📊</div>
+            <div class="product-content">
+              <h3>PMRIS Application</h3>
+              <p>Program Monitoring Information Reporting System</p>
+              <a href="#" class="product-link">Learn more →</a>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-image">🛡️</div>
+            <div class="product-content">
+              <h3>RMFM Flagship</h3>
+              <p>Risk Management Framework</p>
+              <a href="#" class="product-link">Learn more →</a>
+            </div>
+          </article>
+          <article class="product-card">
+            <div class="product-image">🔧</div>
+            <div class="product-content">
+              <h3>Core Platform</h3>
+              <p>ADROIT Foundation Infrastructure</p>
+              <a href="#" class="product-link">Learn more →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
           <h4>ADROIT</h4>
-          <p>Transforming consulting execution into government-grade software products.</p>
+          <p>Translating consulting execution into government-grade software products</p>
         </div>
         <div class="footer-section">
-          <h4>Products</h4>
-          <a href="#products">PMRIS Application</a><br>
-          <a href="#products">RMFM Flagship</a><br>
-          <a href="#innovation">Innovation Methodology</a>
+          <h4>Quick Links</h4>
+          <p><a href="#features">Features</a></p>
+          <p><a href="#products">Products</a></p>
+          <p><a href="#contact">Contact</a></p>
         </div>
         <div class="footer-section">
-          <h4>Capabilities</h4>
-          <a href="#features">Disciplined Innovation</a><br>
-          <a href="#features">Rapid Development</a><br>
-          <a href="#features">Production Quality</a>
+          <h4>Technology</h4>
+          <p>Vanilla JavaScript</p>
+          <p>Static HTML</p>
+          <p>PostgreSQL</p>
         </div>
         <div class="footer-section">
-          <h4>Contact</h4>
-          <p>Get in touch to discuss how ADROIT can address your operational challenges.</p>
+          <h4>Phase Status</h4>
+          <p><strong>Phase 1:</strong> ADROIT Draft Website — scaffold</p>
+          <p><strong>Phase 2:</strong> ADROIT Draft Website — core content</p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 ADROIT Innovation House. All rights reserved.</p>
+        <p>&copy; 2026 ADROIT Innovation House. Auto-generated by Nexus Software Factory.</p>
       </div>
     </div>
   </footer>
