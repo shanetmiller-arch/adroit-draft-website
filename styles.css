@@ -219,10 +219,119 @@ a:focus-visible {
   }
 }
 
+/* Consulting to Product Loop Section */
+.loop-section {
+  padding: var(--spacing-xxl) 0;
+  background: var(--brand-bg-alt);
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.loop-section .container h2 {
+  text-align: center;
+  color: var(--brand-primary-dark);
+  margin-bottom: var(--spacing-md);
+}
+
+.loop-section .container p.lead {
+  text-align: center;
+  font-size: 1.25rem;
+  color: var(--brand-text-muted);
+  max-width: 800px;
+  margin: 0 auto var(--spacing-xl);
+}
+
+.loop-visual {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+  align-items: stretch;
+}
+
+.loop-card {
+  background: var(--brand-bg-light);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.loop-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.loop-phase {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.loop-phase-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.loop-phase-phase1 .loop-phase-number {
+  background: var(--brand-accent);
+  color: #fff;
+}
+
+.loop-phase-phase2 .loop-phase-number {
+  background: var(--brand-success);
+  color: #fff;
+}
+
+.loop-card h3 {
+  margin-bottom: var(--spacing-xs);
+  color: var(--brand-primary);
+}
+
+.loop-card p {
+  color: var(--brand-text-muted);
+  font-size: 0.9375rem;
+  margin-bottom: 0;
+}
+
+.loop-card ul {
+  margin: 0;
+  padding-left: var(--spacing-md);
+  color: var(--brand-text-muted);
+  font-size: 0.875rem;
+}
+
+.loop-card li {
+  margin-bottom: 0.25rem;
+}
+
+.loop-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--spacing-lg) 0;
+  color: var(--brand-muted);
+  font-size: 1.5rem;
+}
+
 /* Features Section */
 .features {
   padding: var(--spacing-xxl) 0;
   background: var(--brand-bg-alt);
+}
+
+.features-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto var(--spacing-lg);
 }
 
 .features-grid {
@@ -232,7 +341,7 @@ a:focus-visible {
   margin-top: var(--spacing-lg);
 }
 
-.feature__card {
+.feature-card {
   background: var(--brand-bg-light);
   border: 1px solid rgba(0,0,0,0.08);
   border-radius: var(--radius-lg);
@@ -240,32 +349,19 @@ a:focus-visible {
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.feature__card:hover {
+.feature-card:hover {
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
 
-@media (prefers-color-scheme: dark) {
-  .feature__card {
-    background: rgba(255,255,255,0.05);
-  }
-}
-
-.feature__card__title {
-  font-size: 1.125rem;
-  font-weight: 600;
+.feature-card h3 {
   margin-bottom: var(--spacing-xs);
   color: var(--brand-primary);
 }
 
-@media (prefers-color-scheme: dark) {
-  .feature__card__title {
-    color: var(--brand-secondary);
-  }
-}
-
-.feature__card__text {
+.feature-card p {
   color: var(--brand-text-muted);
+  margin: 0;
   font-size: 0.9375rem;
 }
 
@@ -273,6 +369,12 @@ a:focus-visible {
 .products {
   padding: var(--spacing-xxl) 0;
   background: var(--brand-bg-alt);
+}
+
+.products-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto var(--spacing-lg);
 }
 
 .products-grid {
@@ -330,31 +432,51 @@ a:focus-visible {
   text-decoration: underline;
 }
 
-/* Values Section */
-.values {
+/* Innovation House Value Prop */
+.innovation-house {
   padding: var(--spacing-xxl) 0;
   background: var(--brand-bg-alt);
+}
+
+.innovation-house .container h2 {
+  text-align: center;
+  color: var(--brand-primary-dark);
+  margin-bottom: var(--spacing-md);
+}
+
+.innovation-house .container p.lead {
+  text-align: center;
+  font-size: 1.25rem;
+  color: var(--brand-text-muted);
+  max-width: 800px;
+  margin: 0 auto var(--spacing-lg);
+}
+
+.value-prop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.value-prop-item {
+  padding: var(--spacing-md);
+  background: var(--brand-bg-light);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(0,0,0,0.08);
   text-align: center;
 }
 
-.values-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-lg);
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.value-item {
-  padding: var(--spacing-md);
-}
-
-.value-item h3 {
+.value-prop-item h4 {
   color: var(--brand-primary);
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
   font-size: 1.125rem;
+}
+
+.value-prop-item p {
+  color: var(--brand-text-muted);
+  font-size: 0.9375rem;
+  margin: 0;
 }
 
 /* Footer */
@@ -420,43 +542,42 @@ textarea:focus,
 select:focus {
   outline: 2px solid var(--brand-accent);
   outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
-/* Responsive adjustments */
-@media (max-width: 640px) {
-  .container {
-    padding: 0 var(--spacing-sm);
-  }
-  
-  .hero {
-    padding: var(--spacing-lg) 0;
-    min-height: 50vh;
-  }
-  
-  .features {
-    padding: var(--spacing-lg) 0;
-  }
-  
-  .features-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .products {
-    padding: var(--spacing-lg) 0;
-  }
-  
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .values-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .footer-content {
-    grid-template-columns: 1fr;
-  }
+/* Mobile Navigation */
+.mobile-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm);
 }
 
-/* Phase 2: Core content styles (reserved for future additions) */
-/* When adding new sections, extend this pattern */
+.mobile-nav-toggle svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--brand-bg-alt);
+    flex-direction: column;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+  }
+}
+</styles.css>

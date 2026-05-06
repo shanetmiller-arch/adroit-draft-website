@@ -12,15 +12,20 @@
   <style>
     /* CSS Custom Properties / Design Tokens */
     :root {
-      --color-primary: #2563eb;
-      --color-primary-dark: #1d4ed8;
-      --color-accent: #0ea5e9;
-      --color-text: #1f2937;
-      --color-text-muted: #6b7280;
-      --color-bg: #ffffff;
-      --color-bg-alt: #f8fafc;
-      --color-border: #e5e7eb;
-      --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --brand-primary: #1e3a8a;
+      --brand-primary-dark: #1d4ed8;
+      --brand-secondary: #3b82f6;
+      --brand-accent: #2563eb;
+      --brand-bg-light: #f8fafc;
+      --brand-bg-dark: #0f172a;
+      --brand-bg-alt: #ffffff;
+      --brand-text-light: #1f2937;
+      --brand-text-dark: #e5e7eb;
+      --brand-text-muted: #6b7280;
+      --brand-muted: #9ca3af;
+      --brand-success: #10b981;
+      --brand-warning: #f59e0b;
+      --brand-danger: #ef4444;
       --spacing-xs: 0.25rem;
       --spacing-sm: 0.5rem;
       --spacing-md: 1rem;
@@ -33,19 +38,25 @@
       --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
       --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
       --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+      --font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     }
 
-    /* Dark mode support */
     @media (prefers-color-scheme: dark) {
       :root {
-        --color-text: #f3f4f6;
-        --color-text-muted: #9ca3af;
-        --color-bg: #111827;
-        --color-bg-alt: #1f2937;
-        --color-border: #374151;
+        --brand-primary: #60a5fa;
+        --brand-primary-dark: #93c5fd;
+        --brand-secondary: #3b82f6;
+        --brand-accent: #0ea5e9;
+        --brand-bg-light: #111827;
+        --brand-bg-dark: #0f172a;
+        --brand-bg-alt: #1f2937;
+        --brand-text-light: #f3f4f6;
+        --brand-text-dark: #9ca3af;
+        --brand-text-muted: #6b7280;
+        --brand-muted: #9ca3af;
       }
-      body { background: var(--color-bg); }
-      .card { background: var(--color-bg-alt); border-color: var(--color-border); }
+      body { background: var(--brand-bg-dark); }
+      .card, .feature-card, .product-card, .loop-card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
     }
 
     /* Base Styles */
@@ -54,588 +65,374 @@
       font-family: var(--font-family);
       margin: 0;
       padding: 0;
-      color: var(--color-text);
-      background: var(--color-bg);
+      color: var(--brand-text-light);
+      background: var(--brand-bg-light);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-
-    /* Typography */
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 0;
-      font-weight: 600;
-      line-height: 1.25;
-    }
+    h1, h2, h3, h4, h5, h6 { margin-top: 0; font-weight: 600; line-height: 1.25; }
     h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); }
     h2 { font-size: clamp(1.25rem, 2vw, 1.5rem); margin-bottom: var(--spacing-sm); }
     h3 { font-size: 1.125rem; margin-bottom: var(--spacing-xs); }
     p { margin-top: 0; margin-bottom: var(--spacing-md); }
-    a { color: var(--color-primary); text-decoration: none; }
+    a { color: var(--brand-secondary); text-decoration: none; }
     a:hover { text-decoration: underline; }
     strong { font-weight: 600; }
-
-    /* Layout */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 var(--spacing-md);
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-md); }
 
     /* Header & Navigation */
-    .header {
-      background: var(--color-bg);
-      border-bottom: 1px solid var(--color-border);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: var(--spacing-md) 0;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-sm);
-    }
-    .logo img {
-      height: 40px;
-      width: auto;
-      display: block;
-    }
-    .nav-links {
-      display: flex;
-      gap: var(--spacing-lg);
-    }
-    .nav-links a {
-      color: var(--color-text);
-      font-weight: 500;
-      padding: var(--spacing-xs) 0;
-    }
-    .nav-links a:hover { color: var(--color-primary); }
-    .nav-links a:focus-visible {
-      outline: 2px solid var(--color-primary);
-      outline-offset: 2px;
-      border-radius: var(--radius-sm);
-    }
+    .header { background: var(--brand-bg-alt); border-bottom: 1px solid rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 50; }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) 0; }
+    .logo { display: flex; align-items: center; gap: var(--spacing-sm); }
+    .logo img { height: 40px; width: auto; display: block; }
+    .logo-text { font-weight: 700; font-size: 1.25rem; color: var(--brand-primary); }
+    .nav-links { display: flex; gap: var(--spacing-lg); list-style: none; margin: 0; padding: 0; }
+    .nav-links a { color: var(--brand-text-light); font-weight: 500; padding: var(--spacing-xs) 0; }
+    .nav-links a:hover { color: var(--brand-primary); }
+    .nav-links a:focus-visible { outline: 2px solid var(--brand-accent); outline-offset: 2px; border-radius: var(--radius-sm); }
 
     /* Hero Section */
-    .hero {
+    .hero { padding: var(--spacing-xxl) 0; background: linear-gradient(135deg, var(--brand-bg-light) 0%, var(--brand-bg-alt) 100%); border-bottom: 1px solid rgba(0,0,0,0.08); min-height: 60vh; display: flex; align-items: center; }
+    .hero-content { text-align: center; max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero h1 { color: var(--brand-primary-dark); margin-bottom: var(--spacing-sm); }
+    .hero__subtitle { color: var(--brand-text-muted); font-size: 1.125rem; margin-bottom: var(--spacing-lg); }
+    .hero__description { max-width: 800px; margin: 0 auto; padding: var(--spacing-md) 0; }
+    .hero__description p { margin-bottom: var(--spacing-sm); }
+    .hero__description p:last-child { margin-bottom: 0; }
+    .hero__description code { background: rgba(0,0,0,0.05); padding: 0.15rem 0.4rem; border-radius: var(--radius-sm); font-size: 0.875rem; font-family: monospace; }
+    @media (prefers-color-scheme: dark) { .hero__description code { background: rgba(255,255,255,0.1); } }
+
+    /* Consulting to Product Loop Section */
+    .loop-section {
       padding: var(--spacing-xxl) 0;
-      background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-bg-alt) 100%);
-      border-bottom: 1px solid var(--color-border);
+      background: var(--brand-bg-alt);
+      border-top: 1px solid rgba(0,0,0,0.08);
     }
-    .hero-content {
+    .loop-section .container h2 {
       text-align: center;
+      color: var(--brand-primary-dark);
+      margin-bottom: var(--spacing-md);
+    }
+    .loop-section .container p.lead {
+      text-align: center;
+      font-size: 1.25rem;
+      color: var(--brand-text-muted);
       max-width: 800px;
-      margin: 0 auto;
+      margin: 0 auto var(--spacing-xl);
     }
-    .hero h1 {
-      color: var(--color-primary-dark);
-      margin-bottom: var(--spacing-sm);
-    }
-    .hero .subtitle {
-      color: var(--color-text-muted);
-      font-size: 1.125rem;
-      margin-bottom: var(--spacing-lg);
-    }
-    .hero .description {
-      font-size: 1rem;
-      color: var(--color-text);
-      margin-bottom: var(--spacing-xl);
-    }
-    .hero-image-wrapper {
-      position: relative;
-      margin: var(--spacing-xl) 0;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-    }
-    .hero-image {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-    }
-    @media (prefers-color-scheme: dark) { .hero-image { filter: brightness(0.9); } }
-
-    /* Foundry Narrative Overview Section */
-    .narrative {
-      padding: var(--spacing-xxl) 0;
-      background: var(--color-bg-alt);
-      border-top: 1px solid var(--color-border);
-      border-bottom: 1px solid var(--color-border);
-    }
-    .narrative-header {
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto var(--spacing-lg);
-    }
-    .narrative-header h2 {
-      color: var(--color-primary-dark);
-      margin-bottom: var(--spacing-sm);
-    }
-    .narrative-header p {
-      color: var(--color-text-muted);
-      font-size: 1.125rem;
-    }
-    .narrative-content {
+    .loop-visual {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--spacing-xl);
-      margin-top: var(--spacing-lg);
-    }
-    @media (min-width: 768px) {
-      .narrative-content {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    .narrative-section {
-      padding: var(--spacing-lg);
-      background: var(--color-bg);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--color-border);
-    }
-    .narrative-section h3 {
-      color: var(--color-primary);
-      margin-bottom: var(--spacing-md);
-    }
-    .narrative-section p {
-      color: var(--color-text-muted);
-      margin-bottom: var(--spacing-sm);
-    }
-    .narrative-section ul {
-      margin: 0;
-      padding-left: var(--spacing-lg);
-      color: var(--color-text-muted);
-    }
-    .narrative-section li {
-      margin-bottom: var(--spacing-xs);
-    }
-    .narrative-phase {
-      display: flex;
-      gap: var(--spacing-md);
-      align-items: flex-start;
-      margin-bottom: var(--spacing-md);
-    }
-    .phase-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 48px;
-      height: 48px;
-      background: var(--color-primary);
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 0.875rem;
-      border-radius: var(--radius-md);
-    }
-    .narrative-image {
-      grid-column: 1 / -1;
-      margin-top: var(--spacing-lg);
-      text-align: center;
-    }
-    .narrative-image-wrapper {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .narrative-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* Features Grid */
-    .features {
-      padding: var(--spacing-xxl) 0;
-      background: var(--color-bg);
-    }
-    .features-header {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto var(--spacing-lg);
-    }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: var(--spacing-lg);
       margin-top: var(--spacing-lg);
+      align-items: stretch;
     }
-    .card {
-      background: var(--color-bg-alt);
-      border: 1px solid var(--color-border);
+    .loop-card {
+      background: var(--brand-bg-light);
+      border: 1px solid rgba(0,0,0,0.08);
       border-radius: var(--radius-lg);
       padding: var(--spacing-lg);
+      display: flex;
+      flex-direction: column;
       transition: box-shadow 0.2s ease, transform 0.2s ease;
     }
-    .card:hover {
+    .loop-card:hover {
       box-shadow: var(--shadow-md);
       transform: translateY(-2px);
     }
-    .card-icon {
-      display: inline-flex;
+    .loop-phase {
+      display: flex;
       align-items: center;
-      justify-content: center;
-      width: 48px;
-      height: 48px;
-      background: var(--color-primary);
-      color: #ffffff;
-      border-radius: var(--radius-md);
-      font-size: 1.5rem;
+      gap: var(--spacing-sm);
       margin-bottom: var(--spacing-md);
     }
-    .card h3 {
-      margin-bottom: var(--spacing-xs);
-      color: var(--color-text);
-    }
-    .card p {
-      color: var(--color-text-muted);
-      margin: 0;
-    }
-
-    /* Innovation House Value Prop */
-    .innovation-house {
-      padding: var(--spacing-xxl) 0;
-      background: var(--color-bg-alt);
-    }
-    .innovation-house .container h2 {
-      text-align: center;
-      color: var(--color-primary-dark);
-      margin-bottom: var(--spacing-md);
-    }
-    .innovation-house .container p.lead {
-      text-align: center;
-      font-size: 1.25rem;
-      color: var(--color-text-muted);
-      max-width: 800px;
-      margin: 0 auto var(--spacing-lg);
-    }
-    .value-prop-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: var(--spacing-lg);
-      margin-top: var(--spacing-lg);
-    }
-    .value-prop-item {
-      padding: var(--spacing-md);
-      background: var(--color-bg);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--color-border);
-    }
-    .value-prop-item h4 {
-      color: var(--color-primary);
-      margin-bottom: var(--spacing-sm);
-      font-size: 1.125rem;
-    }
-    .value-prop-item p {
-      color: var(--color-text-muted);
-      font-size: 0.9375rem;
-      margin: 0;
-    }
-
-    /* Products Section */
-    .products {
-      padding: var(--spacing-xxl) 0;
-      background: var(--color-bg);
-    }
-    .products-header {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto var(--spacing-lg);
-    }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: var(--spacing-lg);
-      margin-top: var(--spacing-lg);
-    }
-    .product-card {
-      background: var(--color-bg-alt);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: box-shadow 0.2s ease;
-    }
-    .product-card:hover {
-      box-shadow: var(--shadow-lg);
-    }
-    .product-image {
-      width: 100%;
-      height: 180px;
-      background: var(--color-bg-alt);
+    .loop-phase-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--color-text-muted);
-      font-size: 2rem;
-    }
-    .product-content {
-      padding: var(--spacing-lg);
-    }
-    .product-content h3 {
-      color: var(--color-primary-dark);
-      margin-bottom: var(--spacing-sm);
-    }
-    .product-content p {
-      color: var(--color-text-muted);
-      margin-bottom: var(--spacing-sm);
-    }
-    .product-link {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--spacing-xs);
-      font-weight: 500;
-      color: var(--color-primary);
-    }
-    .product-link:hover {
-      text-decoration: underline;
-    }
-
-    /* Footer */
-    .footer {
-      background: var(--color-bg-alt);
-      border-top: 1px solid var(--color-border);
-      padding: var(--spacing-xl) 0;
-      margin-top: var(--spacing-xxl);
-    }
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--spacing-lg);
-    }
-    .footer-section h4 {
-      margin-bottom: var(--spacing-sm);
-      color: var(--color-text);
+      font-weight: 700;
       font-size: 1rem;
     }
-    .footer-section p,
-    .footer-section a {
-      color: var(--color-text-muted);
-      font-size: 0.875rem;
+    .loop-phase-phase1 .loop-phase-number {
+      background: var(--brand-accent);
+      color: #fff;
     }
-    .footer-section a:hover {
-      color: var(--color-primary);
+    .loop-phase-phase2 .loop-phase-number {
+      background: var(--brand-success);
+      color: #fff;
     }
-    .footer-bottom {
-      max-width: 1200px;
-      margin: var(--spacing-lg) auto 0;
-      padding-top: var(--spacing-md);
-      border-top: 1px solid var(--color-border);
-      text-align: center;
-    }
-    .footer-bottom p {
-      margin: 0;
-      color: var(--color-text-muted);
-      font-size: 0.8125rem;
+    .loop-card h3 { margin-bottom: var(--spacing-xs); color: var(--brand-primary); }
+    .loop-card p { color: var(--brand-text-muted); font-size: 0.9375rem; margin-bottom: 0; }
+    .loop-card ul { margin: 0; padding-left: var(--spacing-md); color: var(--brand-text-muted); font-size: 0.875rem; }
+    .loop-card li { margin-bottom: 0.25rem; }
+    .loop-arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: var(--spacing-lg) 0;
+      color: var(--brand-muted);
+      font-size: 1.5rem;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .footer {
-        border-top-color: rgba(255,255,255,0.1);
-      }
-      .footer-bottom {
-        border-top-color: rgba(255,255,255,0.1);
-      }
+    /* Features Grid */
+    .features { padding: var(--spacing-xxl) 0; background: var(--brand-bg-alt); }
+    .features-header { text-align: center; max-width: 600px; margin: 0 auto var(--spacing-lg); }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-lg); }
+    .feature-card { background: var(--brand-bg-light); border: 1px solid rgba(0,0,0,0.08); border-radius: var(--radius-lg); padding: var(--spacing-lg); transition: box-shadow 0.2s ease, transform 0.2s ease; }
+    .feature-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .feature-card h3 { margin-bottom: var(--spacing-xs); color: var(--brand-primary); }
+    .feature-card p { color: var(--brand-text-muted); margin: 0; font-size: 0.9375rem; }
+
+    /* Products Section */
+    .products { padding: var(--spacing-xxl) 0; background: var(--brand-bg-alt); }
+    .products-header { text-align: center; max-width: 600px; margin: 0 auto var(--spacing-lg); }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-lg); }
+    .product-card { background: var(--brand-bg-light); border: 1px solid rgba(0,0,0,0.08); border-radius: var(--radius-lg); overflow: hidden; transition: box-shadow 0.2s ease; }
+    .product-card:hover { box-shadow: var(--shadow-lg); }
+    .product-image { width: 100%; height: 180px; background: var(--brand-bg-light); display: flex; align-items: center; justify-content: center; color: var(--brand-muted); font-size: 0.875rem; }
+    .product-content { padding: var(--spacing-lg); }
+    .product-content h3 { color: var(--brand-primary-dark); margin-bottom: var(--spacing-sm); font-size: 1.125rem; }
+    .product-content p { color: var(--brand-text-muted); margin-bottom: var(--spacing-sm); font-size: 0.875rem; }
+    .product-link { display: inline-flex; align-items: center; gap: var(--spacing-xs); font-weight: 500; color: var(--brand-secondary); }
+    .product-link:hover { text-decoration: underline; }
+
+    /* Innovation House Value Prop */
+    .innovation-house { padding: var(--spacing-xxl) 0; background: var(--brand-bg-alt); }
+    .innovation-house .container h2 { text-align: center; color: var(--brand-primary-dark); margin-bottom: var(--spacing-md); }
+    .innovation-house .container p.lead { text-align: center; font-size: 1.25rem; color: var(--brand-text-muted); max-width: 800px; margin: 0 auto var(--spacing-lg); }
+    .value-prop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-lg); }
+    .value-prop-item { padding: var(--spacing-md); background: var(--brand-bg-light); border-radius: var(--radius-md); border: 1px solid rgba(0,0,0,0.08); text-align: center; }
+    .value-prop-item h4 { color: var(--brand-primary); margin-bottom: var(--spacing-sm); font-size: 1.125rem; }
+    .value-prop-item p { color: var(--brand-text-muted); font-size: 0.9375rem; margin: 0; }
+
+    /* Footer */
+    .footer { background: var(--brand-bg-alt); border-top: 1px solid rgba(0,0,0,0.08); padding: var(--spacing-xl) 0; margin-top: var(--spacing-xxl); }
+    .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-lg); }
+    .footer-section h4 { margin-bottom: var(--spacing-sm); color: var(--brand-text-light); font-size: 1rem; }
+    .footer-section p, .footer-section a { color: var(--brand-text-muted); font-size: 0.875rem; }
+    .footer-section a:hover { color: var(--brand-secondary); }
+    .footer-bottom { max-width: 1200px; margin: var(--spacing-lg) auto 0; padding-top: var(--spacing-md); border-top: 1px solid rgba(0,0,0,0.08); text-align: center; }
+    .footer-bottom p { margin: 0; color: var(--brand-text-muted); font-size: 0.8125rem; }
+
+    /* Mobile Navigation */
+    .mobile-nav-toggle {
+      display: none;
+      background: none; border: none; cursor: pointer; padding: var(--spacing-sm);
     }
+    .mobile-nav-toggle svg { width: 24px; height: 24px; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--brand-bg-alt); flex-direction: column; padding: var(--spacing-md); border-bottom: 1px solid rgba(0,0,0,0.08); }
+      .nav-links.active { display: flex; }
+      .mobile-nav-toggle { display: block; }
+    }
+    /* Focus styles for accessibility */
+    button:focus, input:focus, textarea:focus, select:focus { outline: 2px solid var(--brand-accent); outline-offset: 2px; border-radius: var(--radius-sm); }
   </style>
 </head>
 <body>
   <header class="header">
-    <nav class="nav">
-      <div class="logo">
-        <img src="assets/images/0_ADROIT__Icon.png" alt="ADROIT logo icon">
-        <span style="font-weight: 700; font-size: 1.25rem; color: var(--color-primary-dark);">ADROIT</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#features">Features</a></li>
+    <nav class="container nav">
+      <a href="/" class="logo">
+        <img src="assets/images/0_ADROIT__Icon.png" alt="ADROIT Logo">
+        <span class="logo-text">ADROIT</span>
+      </a>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="#loop">Process</a></li>
         <li><a href="#products">Products</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#values">Values</a></li>
       </ul>
     </nav>
   </header>
 
-  <main id="home">
+  <main>
     <section class="hero">
-      <div class="hero-content">
-        <h1>ADROIT Innovation House</h1>
-        <p class="subtitle">Translating consulting execution into government-grade software products</p>
-        <p class="description">Disciplined innovation that becomes productized capability supported by operational proof. Innovation is outcome-driven and production-focused, enabling rapid development with built-in security, auditability, and sustainability from inception.</p>
-        <a href="#products" class="product-link" style="font-size: 1.125rem; padding: var(--spacing-sm) var(--spacing-lg); background: var(--color-primary); color: #ffffff; border-radius: var(--radius-md);">
-          Explore Products
-        </a>
-      </div>
-      <div class="hero-image-wrapper">
-        <img class="hero-image" src="assets/images/0_ADROIT__Landscape_Medium.png" alt="ADROIT landscape illustration showing innovation and development">
+      <div class="container hero-content">
+        <h1>Innovation House</h1>
+        <p class="hero__subtitle">ADROIT — Translating consulting execution into government-grade software products</p>
+        <div class="hero__description">
+          <p>Products such as the Emerging Suite of Program Monitoring Information Reporting System (PMRIS) Application and Risk Management Framework (RMFM) Flagship product are direct responses to recurring operational pain points observed across live government programs.</p>
+          <p>Innovation is outcome-driven and production-focused, enabling rapid development with built-in security, auditability, and sustainability from inception.</p>
+        </div>
       </div>
     </section>
 
-    <section class="narrative" aria-labelledby="narrative-heading">
+    <section id="loop" class="loop-section">
       <div class="container">
-        <div class="narrative-header">
-          <h2 id="narrative-heading">Foundry Narrative Overview</h2>
-          <p>Our approach bridges consulting insight with product excellence, ensuring every solution is operationally validated and production-ready from day one.</p>
-        </div>
-        <div class="narrative-content">
-          <div class="narrative-section">
-            <h3>Our Philosophy</h3>
-            <p>At the Nexus Software Factory, we believe that the best government software emerges from the intersection of deep domain expertise and disciplined engineering practices. We don't just build software—we build capabilities that endure.</p>
-            <p>Our methodology ensures that every project starts with operational proof, meaning we validate solutions against real-world constraints before committing to production architecture.</p>
-          </div>
-          <div class="narrative-section">
-            <h3>Development Approach</h3>
-            <p>We leverage the ADROIT platform to accelerate delivery while maintaining rigorous quality standards. Our static HTML + vanilla JavaScript foundation ensures maximum compatibility and minimal runtime dependencies.</p>
-            <p>Each product is structured to allow future additions without architectural redesign, supporting our clients' evolving needs as they scale.</p>
-          </div>
-          <div class="narrative-section">
-            <h3>Current Roadmap</h3>
-            <div class="narrative-phase">
-              <span class="phase-badge">P1</span>
-              <div>
-                <strong>Phase 1: ADROIT Draft Website — Scaffold</strong>
-                <p style="margin: var(--spacing-xs) 0 0; font-size: 0.9375rem;">Establishing the foundational structure, brand identity, and core layout components for the ADROIT platform.</p>
-              </div>
+        <h2>Consulting to Product Loop</h2>
+        <p class="lead">From insights to innovation: how consulting execution drives disciplined product development</p>
+        <div class="loop-visual">
+          <div class="loop-card loop-phase-phase1">
+            <div class="loop-phase">
+              <div class="loop-phase-number">1</div>
+              <strong>Phase 1: ADROIT Draft Website — Scaffold</strong>
             </div>
-            <div class="narrative-phase">
-              <span class="phase-badge">P2</span>
-              <div>
-                <strong>Phase 2: ADROIT Draft Website — Core Content</strong>
-                <p style="margin: var(--spacing-xs) 0 0; font-size: 0.9375rem;">Populating the scaffold with substantive product information, case studies, and operational documentation.</p>
-              </div>
-            </div>
+            <h3>Foundation & Discovery</h3>
+            <p>Establishing the operational baseline and identifying recurring operational gaps through live program engagement.</p>
+            <ul>
+              <li>Site scaffolding and core structure</li>
+              <li>Discovery workshops with program teams</li>
+              <li>Gap analysis documentation</li>
+              <li>Stakeholder alignment sessions</li>
+            </ul>
           </div>
-          <div class="narrative-section narrative-image">
-            <div class="narrative-image-wrapper">
-              <img src="assets/images/0_ADROIT__Landscape.png" alt="ADROIT comprehensive landscape view representing the full product ecosystem">
+          <div class="loop-arrow">➜</div>
+          <div class="loop-card loop-phase-phase2">
+            <div class="loop-phase">
+              <div class="loop-phase-number">2</div>
+              <strong>Phase 2: ADROIT Draft Website — Core Content</strong>
             </div>
-            <p style="margin-top: var(--spacing-sm); color: var(--color-text-muted); font-size: 0.9375rem;">Building a sustainable portfolio for government innovation</p>
+            <h3>Implementation & Productization</h3>
+            <p>Translating insights from Phase 1 into actionable product requirements and disciplined development cycles.</p>
+            <ul>
+              <li>Core feature development</li>
+              <li>Security and auditability integration</li>
+              <li>Operational proof validation</li>
+              <li>Portfolio expansion readiness</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="features" id="features">
+    <section class="features">
       <div class="container">
         <div class="features-header">
-          <h2>What We Deliver</h2>
-          <p>Consulting execution translated into operational software products</p>
+          <h2>Core Capabilities</h2>
+          <p>Our approach harmonizes consulting execution with product innovation across government programs.</p>
         </div>
         <div class="features-grid">
-          <article class="card">
-            <span class="card-icon">📊</span>
-            <h3>PMRIS Application</h3>
-            <p>Program Monitoring Information Reporting System for emerging suite operations</p>
+          <article class="feature-card">
+            <h3>Discovery</h3>
+            <p>Systematic identification of recurring operational pain points through live program engagement and stakeholder interviews.</p>
           </article>
-          <article class="card">
-            <span class="card-icon">🛡️</span>
-            <h3>RMFM Flagship</h3>
-            <p>Risk Management Framework flagship product addressing operational pain points</p>
+          <article class="feature-card">
+            <h3>Analysis</h3>
+            <p>Structured gap analysis that translates operational observations into actionable product requirements with clear success criteria.</p>
           </article>
-          <article class="card">
-            <span class="card-icon">🚀</span>
-            <h3>Rapid Development</h3>
-            <p>Built-in security, auditability, and sustainability from inception</p>
+          <article class="feature-card">
+            <h3>Development</h3>
+            <p>Rapid, production-focused development with built-in security, auditability, and sustainability from inception.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Validation</h3>
+            <p>Operational proof validation ensuring products deliver measurable outcomes in live government environments.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="innovation-house">
-      <div class="container">
-        <h2>Innovation House Value Proposition</h2>
-        <p class="lead">Where consulting insight meets product excellence</p>
-        <div class="value-prop-grid">
-          <div class="value-prop-item">
-            <h4>Operational Proof</h4>
-            <p>Solutions validated against real-world constraints before production</p>
-          </div>
-          <div class="value-prop-item">
-            <h4>Disciplined Innovation</h4>
-            <p>Meticulous engineering practices ensuring quality at scale</p>
-          </div>
-          <div class="value-prop-item">
-            <h4>Productization</h4>
-            <p>Capabilities that endure and evolve with client needs</p>
-          </div>
-          <div class="value-prop-item">
-            <h4>Security First</h4>
-            <p>Built-in security from the initial architecture decision</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="products" id="products">
+    <section id="products" class="products">
       <div class="container">
         <div class="products-header">
-          <h2>Our Products</h2>
-          <p>Government-grade software products built on the ADROIT platform</p>
+          <h2>Product Portfolio</h2>
+          <p>Flagship solutions born from consulting insights, structured for future growth without architectural redesign.</p>
         </div>
         <div class="products-grid">
           <article class="product-card">
-            <div class="product-image">📊</div>
-            <div class="product-content">
-              <h3>PMRIS Application</h3>
-              <p>Program Monitoring Information Reporting System</p>
-              <a href="#" class="product-link">Learn more →</a>
+            <div class="product-image">
+              <img src="assets/images/0_ADROIT_Small.png" alt="RMFM Product Thumbnail" width="300" height="180">
             </div>
-          </article>
-          <article class="product-card">
-            <div class="product-image">🛡️</div>
             <div class="product-content">
               <h3>RMFM Flagship</h3>
-              <p>Risk Management Framework</p>
+              <p>Risk Management Framework flagship product addressing recurring operational pain points across live government programs.</p>
               <a href="#" class="product-link">Learn more →</a>
             </div>
           </article>
           <article class="product-card">
-            <div class="product-image">🔧</div>
+            <div class="product-image">
+              <img src="assets/images/0_ADROIT_Small.png" alt="PMRIS Product Thumbnail" width="300" height="180">
+            </div>
             <div class="product-content">
-              <h3>Core Platform</h3>
-              <p>ADROIT Foundation Infrastructure</p>
+              <h3>PMRIS Application</h3>
+              <p>Program Monitoring Information Reporting System providing structured oversight and reporting capabilities.</p>
               <a href="#" class="product-link">Learn more →</a>
             </div>
           </article>
+          <article class="product-card">
+            <div class="product-image">
+              <img src="assets/images/0_ADROIT_Small.png" alt="Emerging Suite Product Thumbnail" width="300" height="180">
+            </div>
+            <div class="product-content">
+              <h3>Emerging Suite</h3>
+              <p>Integrated monitoring and reporting applications designed for government program management needs.</p>
+              <a href="#" class="product-link">Learn more →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="values" class="innovation-house">
+      <div class="container">
+        <h2>Innovation House Values</h2>
+        <p class="lead">Our approach to translating consulting execution into sustainable product capabilities</p>
+        <div class="value-prop-grid">
+          <div class="value-prop-item">
+            <h4>Outcome-Driven</h4>
+            <p>Innovation focused on measurable results and operational proof rather than theoretical improvements.</p>
+          </div>
+          <div class="value-prop-item">
+            <h4>Production-Focused</h4>
+            <p>Rapid development cycles with built-in security, auditability, and sustainability from inception.</p>
+          </div>
+          <div class="value-prop-item">
+            <h4>Harmonized Lifecycle</h4>
+            <p>Consulting and product teams naturally harmonize where execution informs insight that becomes productized capability.</p>
+          </div>
+          <div class="value-prop-item">
+            <h4>Scalable Architecture</h4>
+            <p>Structured portfolio growth that allows future additions without architectural redesign.</p>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer" id="contact">
+  <footer class="footer">
     <div class="container">
       <div class="footer-content">
         <div class="footer-section">
           <h4>ADROIT</h4>
-          <p>Translating consulting execution into government-grade software products</p>
+          <p>Innovation House — Translating consulting execution into government-grade software products.</p>
         </div>
         <div class="footer-section">
-          <h4>Quick Links</h4>
-          <p><a href="#features">Features</a></p>
-          <p><a href="#products">Products</a></p>
-          <p><a href="#contact">Contact</a></p>
+          <h4>Products</h4>
+          <a href="#">RMFM Flagship</a>
+          <a href="#">PMRIS Application</a>
+          <a href="#">Emerging Suite</a>
         </div>
         <div class="footer-section">
-          <h4>Technology</h4>
-          <p>Vanilla JavaScript</p>
-          <p>Static HTML</p>
-          <p>PostgreSQL</p>
-        </div>
-        <div class="footer-section">
-          <h4>Phase Status</h4>
-          <p><strong>Phase 1:</strong> ADROIT Draft Website — scaffold</p>
-          <p><strong>Phase 2:</strong> ADROIT Draft Website — core content</p>
+          <h4>Process</h4>
+          <a href="#loop">Consulting to Product Loop</a>
+          <a href="#">Development Phases</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 ADROIT Innovation House. Auto-generated by Nexus Software Factory.</p>
+        <p>&copy; 2026 ADROIT. Managed by Nexus Software Factory. Category: web_app | Branch: main</p>
       </div>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.mobile-nav-toggle');
+      const navLinks = document.getElementById('navLinks');
+      
+      if (navToggle && navLinks) {
+        navToggle.addEventListener('click', function() {
+          const isActive = navLinks.classList.toggle('active');
+          navToggle.setAttribute('aria-expanded', isActive);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
