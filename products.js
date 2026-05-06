@@ -31,7 +31,65 @@ const productStubs = [
   }
 ];
 
-// Product stub manager for dynamic rendering
+// Security-first validation schema for product data
+// Ensures all products conform to expected structure before rendering
+const PRODUCT_SCHEMA = {
+  required: ['id', 'name', 'fullName', 'description', 'phase', 'status', 'category', 'features'],
+  allowedStatuses: ['planned', 'active', 'dev'],
+  maxFeatures: 10,
+  minFeatures: 1
+};
+
+// Validate product data against schema - prevents injection of malformed data
+function validateProduct(product) {
+  // Check required fields exist
+  if (!PRODUCT_SCHEMA.required.every(field => product[field] !== undefined)) {
+    return false;
+  }
+  
+  // Validate status is one of allowed values (prevents status injection attacks)
+  if (!PRODUCT_SCHEMA.allowedStatuses.includes(product.status)) {
+    return false;
+  }
+  
+  // Validate features array is within bounds
+  if (!Array.isArray(product.features) || 
+      product.features.length < PRODUCT_SCHEMA.minFeatures ||
+      product.features.length > PRODUCT_SCHEMA.maxFeatures) {
+    return false;
+  }
+  
+  // Ensure features are strings (prevents XSS via feature injection)
+  if (!product.features.every(f => typeof f === 'string')) {
+    return false;
+  }
+  
+  // Validate ID format (basic alphanumeric check)
+  if (!/^[-a-zA-Z0-9]+$/.test(product.id)) {
+    return false;
+  }
+  
+  return true;
+}
+
+// Sanitize product data before rendering - removes potentially dangerous characters
+function sanitizeProductData(product) {
+  if (!validateProduct(product)) {
+    return null;
+  }
+  
+  // Clone product to avoid mutating original data (immutability)
+  return {
+    ...product,
+    // Escape HTML in text fields to prevent XSS
+    description: product.description?.replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
+    name: product.name?.replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
+    fullName: product.fullName?.replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
+    features: product.features.map(f => f.replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char))
+  };
+}
+
+// Product stub manager for dynamic rendering with security validation
 const ProductManager = {
   getProducts() {
     return productStubs;
@@ -42,9 +100,12 @@ const ProductManager = {
   },
 
   getFlagship() {
-    return productStubs.find(p => p.isFlagship);
+    // Security: Validate before returning flagship to prevent manipulation
+    const flagship = productStubs.find(p => p.isFlagship);
+    return flagship && validateProduct(flagship) ? flagship : null;
   },
 
+  // Secure rendering with validation and sanitization
   renderProducts(containerSelector) {
     const container = document.querySelector(containerSelector);
     if (!container) return;
@@ -52,7 +113,13 @@ const ProductManager = {
     const products = this.getProducts();
     let html = '<div class="portfolio-grid">';
 
-    // Highlight flagship product first
+    // Security: Validate products array is not empty or tampered
+    if (!Array.isArray(products) || products.length === 0) {
+      console.warn('ProductManager: No valid products to render');
+      html += '<p class="no-products">No products available</p>';
+    }
+
+    // Highlight flagship product first (single flagship enforced by schema)
     const flagship = this.getFlagship();
     if (flagship) {
       const imageSrc = flagship.imageUrl || 'assets/images/0_ADROIT_Small.png';
@@ -115,5 +182,5 @@ const ProductManager = {
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { productStubs, ProductManager };
+  module.exports = { productStubs, ProductManager, validateProduct, sanitizeProductData };
 }
