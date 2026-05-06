@@ -82,10 +82,10 @@ function sanitizeProductData(product) {
   return {
     ...product,
     // Escape HTML in text fields to prevent XSS
-    description: product.description?.replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
-    name: product.name?.replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
-    fullName: product.fullName?.replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
-    features: product.features.map(f => f.replace(/[&<>"']/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char))
+    description: product.description?.replace(/[&<>&quot;'\'/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
+    name: product.name?.replace(/[&<>&quot;'\'/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
+    fullName: product.fullName?.replace(/[&<>&quot;'\'/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
+    features: product.features.map(f => f.replace(/[&<>&quot;'\'/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char))
   };
 }
 

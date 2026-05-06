@@ -25,6 +25,7 @@
           <li><a href="#home" aria-label="Home">Home</a></li>
           <li><a href="#about" aria-label="About">About</a></li>
           <li><a href="#proof" aria-label="Proof">Proof</a></li>
+          <li><a href="#workflow" aria-label="Product Workflow">Product Workflow</a></li>
           <li><a href="#portfolio" aria-label="Products">Products</a></li>
           <li><a href="#contact" aria-label="Contact">Contact</a></li>
         </ul>
@@ -123,6 +124,89 @@
       </div>
     </section>
 
+    <section id="workflow" class="workflow-section">
+      <div class="container">
+        <header class="workflow-header">
+          <h2>Product Workflow Visualization</h2>
+          <p class="lead">Track product lifecycle progression through disciplined development phases</p>
+        </header>
+
+        <div class="workflow-grid">
+          <div class="workflow-stage">
+            <div class="stage-number">Phase 1</div>
+            <h3>Scaffold Foundation</h3>
+            <p>Establish core architecture and initial product prototypes</p>
+            <div class="stage-status active">
+              <span class="status-dot active"></span>
+              <span>Active Development</span>
+            </div>
+            <ul class="stage-items">
+              <li>Core product architecture defined</li>
+              <li>Initial MVP prototypes</li>
+              <li>Security validation framework</li>
+              <li>Phase 1: ADROIT Draft Website — scaffold</li>
+            </ul>
+          </div>
+
+          <div class="workflow-stage">
+            <div class="stage-number">Phase 2</div>
+            <h3>Core Content</h3>
+            <p>Expand product capabilities with full feature set</p>
+            <div class="stage-status">
+              <span class="status-dot"></span>
+              <span>Upcoming</span>
+            </div>
+            <ul class="stage-items">
+              <li>Complete feature implementation</li>
+              <li>Advanced analytics integration</li>
+              <li>Enterprise scaling capabilities</li>
+              <li>Phase 2: ADROIT Draft Website — core content</li>
+            </ul>
+          </div>
+
+          <div class="workflow-stage">
+            <div class="stage-number">Phase 3</div>
+            <h3>Production Release</h3>
+            <p>Deploy to live government environments</p>
+            <div class="stage-status">
+              <span class="status-dot"></span>
+              <span>Planned</span>
+            </div>
+            <ul class="stage-items">
+              <li>Production deployment</li>
+              <li>Monitoring and metrics</li>
+              <li>Support and maintenance</li>
+              <li>Operational handover</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="workflow-timeline">
+          <div class="timeline-item">
+            <div class="timeline-marker active"></div>
+            <div class="timeline-content">
+              <h4>Current Focus</h4>
+              <p>Phase 1 development active for PMRIS and RMFM flagship</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h4>Next Milestone</h4>
+              <p>Phase 2 core content expansion</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h4>Future Outlook</h4>
+              <p>Production deployment and scaling</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="loop" class="loop-section">
       <div class="container">
         <h2>Consulting to Product Loop</h2>
@@ -148,11 +232,25 @@
               <span>Product Development</span>
             </div>
             <h3>Disciplined Innovation</h3>
-            <p>Transform insights into production-ready software with built-in security</p>
+            <p>Transform insights into production-ready software with rigorous validation</p>
             <ul>
-              <li>Agile development cycles</li>
-              <li>Security and auditability by design</li>
+              <li>Security-first architecture</li>
               <li>Operational proof integration</li>
+              <li>Compliance automation</li>
+            </ul>
+          </div>
+          <div class="loop-arrow">→</div>
+          <div class="loop-card">
+            <div class="loop-phase loop-phase-production">
+              <span class="loop-phase-number">3</span>
+              <span>Production Deployment</span>
+            </div>
+            <h3>Operational Excellence</h3>
+            <p>Deploy validated solutions with continuous monitoring and improvement</p>
+            <ul>
+              <li>Live environment validation</li>
+              <li>Performance metrics tracking</li>
+              <li>Ongoing iteration cycles</li>
             </ul>
           </div>
         </div>
@@ -163,46 +261,45 @@
       <div class="container">
         <header class="portfolio-header">
           <h2>Product Portfolio</h2>
-          <p>Government-grade software products built on disciplined innovation and operational proof</p>
+          <p class="lead">Government-grade software solutions built on operational proof</p>
         </header>
-        <div id="products-container" class="portfolio-grid" aria-label="Product portfolio"></div>
-      </div>
-    </section>
-
-    <section id="features" class="features">
-      <div class="container">
-        <header class="features-header">
-          <h2>Core Capabilities</h2>
-          <p>Our product development approach ensures quality, security, and operational value through proof-based validation</p>
-        </header>
-        <div class="features-grid">
-          <div class="feature-card">
-            <h3>Security First</h3>
-            <p>Built-in security, auditability, and compliance from inception</p>
-          </div>
-          <div class="feature-card">
-            <h3>Production Ready</h3>
-            <p>Outcome-driven development with operational proof</p>
-          </div>
-          <div class="feature-card">
-            <h3>Scalable Architecture</h3>
-            <p>Structured for future additions without architectural redesign</p>
-          </div>
+        <div class="portfolio-grid" id="portfolio-container">
+          <!-- Products rendered dynamically via ProductManager -->
         </div>
       </div>
     </section>
 
     <section id="contact" class="contact-section">
       <div class="container">
-        <h2>Contact Us</h2>
-        <p class="lead">Ready to transform your operational challenges into software products?</p>
-        <p>Learn how ADROIT can help your organization leverage disciplined innovation and proof-based development for government-grade solutions.</p>
+        <div class="contact-content">
+          <h2>Get in Touch</h2>
+          <p class="lead">Transform your operational challenges into production-ready solutions</p>
+          <div class="contact-info">
+            <div class="contact-item">
+              <span class="contact-icon">📧</span>
+              <div>
+                <h4>Contact Us</h4>
+                <p>Email: contact@adroit.innovation</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📍</span>
+              <div>
+                <h4>Location</h4>
+                <p>Government Innovation District</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>&copy; 2024 ADROIT Innovation House. All rights reserved.</p>
+    <div class="container">
+      <p>&copy; 2024 ADROIT Innovation House. All rights reserved.</p>
+      <p class="footer-tagline">Proof Over Pitch — Operational Evidence, Not Promises</p>
+    </div>
   </footer>
 
   <script src="products.js"></script>
