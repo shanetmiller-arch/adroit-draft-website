@@ -349,49 +349,6 @@ a:focus-visible {
 }
 
 /* =========================
-   CENTERED CONTENT FOR WIDE SCREENS
-   ========================= */
-
-/* On viewports 1440px and above, center all main content sections */
-@media (min-width: 1440px) {
-  main {
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    padding: var(--spacing-xl) 0;
-  }
-
-  section {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
-  }
-
-  .container {
-    /* Maintain container constraints */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
-  }
-
-  /* Center hero content specifically on wide screens */
-  .hero-content {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .hero h1 {
-    font-size: 4.5rem;
-  }
-
-  .hero__subtitle {
-    font-size: 1.5rem;
-  }
-}
-
-/* =========================
    ROADMAP SECTION - New
    ========================= */
 
@@ -406,4 +363,705 @@ a:focus-visible {
   margin-bottom: var(--spacing-xl);
 }
 
-.roadm
+.roadmap-header h2 {
+  color: var(--brand-primary-dark);
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.roadmap-header .lead {
+  color: var(--brand-text-muted);
+  font-size: 1.125rem;
+}
+
+/* Roadmap Phases */
+.roadmap-phase {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  background: var(--brand-bg-light);
+  border-radius: var(--radius-lg);
+  border: 2px solid transparent;
+  transition: border-color var(--transition-normal);
+}
+
+.roadmap-phase:hover {
+  border-color: var(--brand-secondary);
+}
+
+/* Phase Indicator */
+.phase-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-bg-alt);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.phase-icon {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.phase-label {
+  font-weight: 600;
+  color: var(--brand-primary);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Phase Content */
+.phase-content h3 {
+  color: var(--brand-primary-dark);
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.phase-description {
+  color: var(--brand-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.phase-milestones {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.phase-milestones li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.phase-milestones li:last-child {
+  border-bottom: none;
+}
+
+.milestone-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.milestone-check.completed {
+  background: var(--brand-success);
+  color: white;
+}
+
+.milestone-check.active {
+  background: var(--brand-warning);
+  color: var(--brand-bg-alt);
+}
+
+.milestone-check.inactive {
+  background: var(--brand-muted);
+  color: white;
+}
+
+.phase-status {
+  margin-top: var(--spacing-md);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge--active {
+  background: var(--brand-success);
+  color: white;
+}
+
+.status-badge--upcoming {
+  background: var(--brand-warning);
+  color: var(--brand-bg-alt);
+}
+
+.status-badge--planned {
+  background: var(--brand-muted);
+  color: var(--brand-bg-alt);
+}
+
+/* Roadmap Timeline */
+.roadmap-timeline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-md) 0;
+}
+
+.timeline-marker {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 0 var(--spacing-md);
+  border: 2px solid var(--brand-text-muted);
+}
+
+.timeline-marker.marker--active {
+  background: var(--brand-success);
+  border-color: var(--brand-success);
+}
+
+.timeline-marker.marker--upcoming {
+  background: var(--brand-warning);
+  border-color: var(--brand-warning);
+}
+
+.timeline-marker.marker--planned {
+  background: var(--brand-muted);
+  border-color: var(--brand-muted);
+}
+
+/* Roadmap CTA */
+.roadmap-cta {
+  text-align: center;
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+}
+
+.roadmap-cta p {
+  color: var(--brand-text-muted);
+  font-size: 0.875rem;
+}
+
+/* Responsive: Stack roadmap phases on mobile */
+@media (max-width: 768px) {
+  .roadmap-phase {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .phase-indicator {
+    flex-direction: row;
+    gap: var(--spacing-sm);
+  }
+  
+  .phase-milestones li {
+    justify-content: center;
+  }
+}
+
+/* About Section */
+.about-section {
+  padding: var(--spacing-xxl) 0;
+  background: var(--brand-bg-light);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.section-header h2 {
+  color: var(--brand-primary-dark);
+  font-size: 2.5rem;
+}
+
+.about-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--brand-text-light);
+}
+
+/* Proof Section */
+.proof-section {
+  padding: var(--spacing-xxl) 0;
+  background: var(--brand-bg-alt);
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.proof-card {
+  padding: var(--spacing-lg);
+  background: var(--brand-bg-light);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.proof-card h3 {
+  color: var(--brand-primary-dark);
+  margin-bottom: var(--spacing-sm);
+}
+
+.proof-badge {
+  display: inline-block;
+  margin-top: var(--spacing-sm);
+}
+
+/* Workflow Section */
+.workflow-section {
+  padding: var(--spacing-xxl) 0;
+  background: var(--brand-bg-light);
+}
+
+.workflow-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-lg);
+}
+
+.workflow-step {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: var(--brand-bg-alt);
+  border-radius: var(--radius-md);
+  min-width: 200px;
+}
+
+.step-number {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: var(--brand-primary);
+  color: white;
+  border-radius: 50%;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+.workflow-step h3 {
+  color: var(--brand-primary-dark);
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Portfolio Section */
+.portfolio-section {
+  padding: var(--spacing-xxl) 0;
+  background: var(--brand-bg-alt);
+}
+
+/* White Papers Section */
+.white-papers-section {
+  padding: var(--spacing-xxl) 0;
+  background: var(--brand-bg-light);
+}
+
+.white-papers-filters {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 2px solid var(--brand-secondary);
+  background: transparent;
+  color: var(--brand-secondary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+  background: var(--brand-secondary);
+  color: white;
+}
+
+.filter-btn.active {
+  background: var(--brand-secondary);
+  color: white;
+}
+
+.white-papers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.white-paper-card {
+  padding: var(--spacing-lg);
+  background: var(--brand-bg-alt);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-fast);
+}
+
+.white-paper-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.white-paper-card--featured {
+  border: 2px solid var(--brand-flagship);
+}
+
+.white-paper-title {
+  color: var(--brand-primary-dark);
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.white-paper-description {
+  color: var(--brand-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.paper-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.paper-meta span {
+  font-size: 0.75rem;
+  color: var(--brand-text-muted);
+}
+
+.paper-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.paper-tag {
+  background: var(--brand-bg-light);
+  color: var(--brand-text-muted);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+}
+
+.paper-read-time {
+  color: var(--brand-text-muted);
+  font-size: 0.875rem;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: var(--spacing-xxl) 0;
+  background: var(--brand-bg-alt);
+}
+
+.contact-content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--brand-primary);
+  color: white;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: background var(--transition-fast);
+}
+
+.cta-button:hover {
+  background: var(--brand-accent);
+}
+
+.cta-button:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Footer */
+.footer {
+  padding: var(--spacing-xl) 0;
+  background: var(--brand-bg-alt);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.footer-content {
+  color: var(--brand-text-muted);
+}
+
+/* Engagement Pathways */
+.engagement-pathways-section {
+  padding: var(--spacing-xxl) 0;
+  background: var(--brand-bg-alt);
+}
+
+.engagement-pathways-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.engagement-pathways-header h2 {
+  color: var(--brand-primary-dark);
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.engagement-pathways-header .lead {
+  color: var(--brand-text-muted);
+  font-size: 1.125rem;
+}
+
+.pathways-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.pathway-card {
+  padding: var(--spacing-lg);
+  background: var(--brand-bg-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.pathway-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.pathway-card h3 {
+  color: var(--brand-primary-dark);
+  margin-bottom: var(--spacing-sm);
+}
+
+.pathway-description {
+  color: var(--brand-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.pathway-steps h4 {
+  color: var(--brand-text-light);
+  font-size: 0.875rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.pathway-steps ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pathway-steps li {
+  padding: var(--spacing-xs) 0;
+  color: var(--brand-text-light);
+  font-size: 0.875rem;
+}
+
+.pathway-status-badge {
+  display: inline-block;
+  margin-top: var(--spacing-sm);
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.portfolio-card {
+  padding: var(--spacing-lg);
+  background: var(--brand-bg-alt);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-fast);
+}
+
+.portfolio-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.portfolio-card--flagship {
+  border: 2px solid var(--brand-flagship);
+  background: var(--brand-flagship-bg);
+}
+
+.portfolio-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.portfolio-image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.portfolio-content {
+  padding-top: var(--spacing-md);
+}
+
+.portfolio-badge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--brand-bg-light);
+  color: var(--brand-text-muted);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: var(--spacing-sm);
+}
+
+.portfolio-badge--flagship {
+  background: var(--brand-flagship);
+  color: white;
+}
+
+.portfolio-title {
+  color: var(--brand-primary-dark);
+  font-size: 1.125rem;
+  margin-bottom: var(--spacing-xs);
+}
+
+.portfolio-description {
+  color: var(--brand-text-muted);
+  font-size: 0.875rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.portfolio-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.portfolio-features li {
+  padding: var(--spacing-xs) 0;
+  font-size: 0.875rem;
+  color: var(--brand-text-light);
+}
+
+.portfolio-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.maturity-indicator {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.maturity-indicator.early {
+  background: var(--maturity-early-bg);
+  color: var(--maturity-early);
+}
+
+.maturity-indicator.developing {
+  background: var(--maturity-developing-bg);
+  color: var(--maturity-developing);
+}
+
+.maturity-indicator.stable {
+  background: var(--maturity-stable-bg);
+  color: var(--maturity-stable);
+}
+
+.maturity-indicator.production {
+  background: var(--maturity-production-bg);
+  color: var(--maturity-production);
+}
+
+.flagship-indicator {
+  color: var(--brand-flagship);
+  font-size: 1rem;
+}
+
+.portfolio-link {
+  display: inline-block;
+  margin-top: var(--spacing-sm);
+  font-size: 0.875rem;
+  color: var(--brand-secondary);
+}
+
+.portfolio-link:hover {
+  color: var(--brand-accent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2rem;
+  }
+  
+  .white-papers-grid,
+  .portfolio-grid,
+  .pathways-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .about-section,
+  .proof-section,
+  .workflow-section,
+  .portfolio-section,
+  .white-papers-section {
+    background: var(--brand-bg-dark);
+  }
+  
+  .about-content {
+    color: var(--brand-text-light);
+  }
+  
+  .phase-content h3,
+  .proof-card h3,
+  .workflow-step h3,
+  .portfolio-title,
+  .white-paper-title {
+    color: var(--brand-primary);
+  }
+  
+  .phase-description,
+  .proof-card p,
+  .workflow-step p,
+  .portfolio-description,
+  .white-paper-description {
+    color: var(--brand-text-muted);
+  }
+}
+
+/* Visually hidden utility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
