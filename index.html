@@ -28,8 +28,6 @@
           <li><a href="#proof" aria-label="Proof">Proof</a></li>
           <li><a href="#workflow" aria-label="Product Workflow">Product Workflow</a></li>
           <li><a href="#portfolio" aria-label="Products">Products</a></li>
-          <li><a href="#engagement-pathways" aria-label="Engagement Pathways">Engagement Pathways</a></li>
-          <!-- Phase 2: Core content - Audience alignment for government operators -->
           <li><a href="#white-papers" aria-label="White Papers">White Papers</a></li>
           <li><a href="#contact" aria-label="Contact">Contact</a></li>
         </ul>
@@ -55,6 +53,36 @@
         <div class="hero__description">
           <p>We bridge the gap between strategic consulting insights and production-ready software solutions through <strong>operational proof</strong>. Our approach combines operational expertise with disciplined innovation to deliver products that solve real government challenges.</p>
           <p><code>Emerging Suite of Program Monitoring Information Reporting System (PMRIS) Application</code> & <code>Risk Management Framework (RMFM) Flagship product</code></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- White Papers Section - Phase 2: Core Content -->
+    <section id="white-papers" class="white-papers-section">
+      <div class="container">
+        <header class="white-papers-header">
+          <h1>White Papers & Technical Documentation</h1>
+          <p class="lead">Technical documentation, operational insights, and product specifications for government software solutions</p>
+          <p class="phase-badge">Phase 2: Core Content</p>
+        </header>
+
+        <!-- Filter buttons for white papers - Phase 2: audience alignment -->
+        <div class="white-papers-filters" role="toolbar" aria-label="Filter white papers">
+          <button class="filter-btn active" data-filter="all" aria-pressed="true">All Papers</button>
+          <button class="filter-btn" data-filter="product" aria-pressed="false">Product Papers</button>
+          <button class="filter-btn" data-filter="methodology" aria-pressed="false">Methodology</button>
+          <button class="filter-btn" data-filter="operational" aria-pressed="false">Operational</button>
+          <button class="filter-btn" data-filter="security" aria-pressed="false">Security</button>
+        </div>
+
+        <!-- White papers grid - populated dynamically by WhitePaperManager -->
+        <div class="white-papers-grid" id="white-papers-grid" aria-label="White papers collection">
+          <!-- Content rendered via WhitePaperManager from white-papers-data.js -->
+        </div>
+
+        <div class="white-papers-phase-info">
+          <h4>Phase 2 Content</h4>
+          <p>Technical documentation and operational insights for government program operators. Additional papers will be added as core content expands.</p>
         </div>
       </div>
     </section>
@@ -144,96 +172,38 @@
           <div class="proof-card">
             <div class="proof-card-icon">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
               </svg>
             </div>
             <h3>Operational Proof</h3>
-            <p>Solutions validated in live government program operations. We identify recurring pain points and build products that address them—backed by real-world operational evidence.</p>
+            <p>Live government program deployments with measurable outcomes and validated performance metrics.</p>
           </div>
           <div class="proof-card">
             <div class="proof-card-icon">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                <rect x="3" y="3" width="7" height="7"/>
+                <rect x="14" y="3" width="7" height="7"/>
+                <rect x="14" y="14" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/>
               </svg>
             </div>
             <h3>Security Validation</h3>
-            <p>Security, auditability, and compliance embedded from inception. Every product undergoes rigorous security validation before production deployment.</p>
+            <p>Security-by-design implementation with embedded auditability and compliance mechanisms from inception.</p>
           </div>
           <div class="proof-card">
             <div class="proof-card-icon">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                <path d="M18 20V10"/>
+                <path d="M12 20V4"/>
+                <path d="M6 20v-6"/>
               </svg>
             </div>
             <h3>Outcome Measurement</h3>
-            <p>Every initiative is measured against tangible operational improvements. We track metrics, validate results, and iterate based on proven outcomes.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="about-section">
-      <div class="container">
-        <div class="about-content">
-          <h2>About ADROIT</h2>
-          <p class="lead">ADEPT and ADROIT translate real-world consulting execution into government-grade software products.</p>
-          <p>Products such as the Emerging Suite of Program Monitoring Information Reporting System (PMRIS) Application or Risk Management Framework (RMFM) Flagship product are direct responses to recurring operational pain points observed across live government programs. Our methodology ensures every product is backed by <strong>operational proof</strong>, not just theoretical capability.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="mission" class="mission-section">
-      <div class="container">
-        <div class="mission-content">
-          <h2>Mission-Led Innovation</h2>
-          <p class="lead">We transform operational pain points into production capabilities. Our work is driven by <strong>outcome-first</strong> principles, ensuring every product delivers measurable value to government programs.</p>
-          <div class="mission-values">
-            <div class="mission-card">
-              <div class="mission-card-icon">🎯</div>
-              <h3>Outcome-Driven</h3>
-              <p>Every initiative is measured against tangible operational improvements</p>
-            </div>
-            <div class="mission-card">
-              <div class="mission-card-icon">🔒</div>
-              <h3>Secure by Design</h3>
-              <p>Security, auditability, and compliance embedded from inception</p>
-            </div>
-            <div class="mission-card">
-              <div class="mission-card-icon">⚡</div>
-              <h3>Rapid Delivery</h3>
-              <p>Agile methodology enables quick iteration and production readiness</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Phase 1: Scaffold Foundation - Workflow Visualization -->
-    <section id="workflow" class="workflow-section">
-      <div class="container">
-        <header class="workflow-header">
-          <h2>Product Workflow Visualization</h2>
-          <p class="lead">Track product lifecycle progression through disciplined development phases</p>
-        </header>
-
-        <div class="workflow-grid">
-          <div class="workflow-stage">
-            <div class="stage-number">Phase 1</div>
-            <h3>Scaffold Foundation</h3>
-            <p>Establish core architecture and foundational product capabilities with operational validation</p>
-            <div class="stage-status status-active">Current Focus</div>
-          </div>
-          <div class="workflow-stage">
-            <div class="stage-number">Phase 2</div>
-            <h3>Core Content</h3>
-            <p>Expand product portfolio and engagement pathways with comprehensive documentation</p>
-            <div class="stage-status">Upcoming</div>
-          </div>
-          <div class="workflow-stage">
-            <div class="stage-number">Phase 3</div>
-            <h3>Production Release</h3>
-            <p>Full deployment and operational support across government programs</p>
-            <div class="stage-status">Planned</div>
+            <p>KPIs and performance metrics that demonstrate operational impact and program efficiency gains.</p>
           </div>
         </div>
       </div>
@@ -243,31 +213,103 @@
       <div class="container">
         <header class="portfolio-header">
           <h2>Product Portfolio</h2>
-          <p class="lead">Government-grade software products with operational proof and validation</p>
+          <p class="lead">Government-grade software products built on operational proof and disciplined innovation</p>
+          <p class="phase-badge">Phase 1: Scaffold Foundation</p>
         </header>
-        <div id="products-container" class="portfolio-grid">
-          <!-- Products rendered dynamically via ProductManager -->
+
+        <div id="products-container" class="portfolio-grid" aria-label="Product portfolio">
+          <!-- Products rendered dynamically via ProductManager from products.js -->
         </div>
       </div>
     </section>
 
-    <section id="white-papers" class="white-papers-section">
+    <section id="workflow" class="workflow-section">
       <div class="container">
-        <header class="white-papers-header">
-          <h1>White Papers & Technical Documentation</h1>
-          <p class="lead">Technical documentation, operational insights, and product specifications for government software solutions</p>
+        <header class="workflow-header">
+          <h2>Product Workflow</h2>
+          <p class="lead">Visualize product development phases from scaffold through production release</p>
         </header>
 
-        <div class="white-papers-filters">
-          <button class="filter-btn active" data-filter="all">All Papers</button>
-          <button class="filter-btn" data-filter="product">Product Papers</button>
-          <button class="filter-btn" data-filter="methodology">Methodology</button>
-          <button class="filter-btn" data-filter="operational">Operational</button>
-          <button class="filter-btn" data-filter="security">Security</button>
-        </div>
+        <div class="workflow-timeline">
+          <div class="workflow-phase workflow-phase--1">
+            <div class="workflow-phase-marker" style="background: var(--brand-success);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div class="workflow-phase-content">
+              <h3>Phase 1: Scaffold Foundation</h3>
+              <p class="workflow-phase-description">Active development status with core architecture definition</p>
+              <span class="workflow-phase-status status-active">Active</span>
+            </div>
+          </div>
 
-        <div class="white-papers-grid" id="white-papers-grid" aria-label="White papers collection">
-          <!-- White paper stubs rendered dynamically via WhitePaperManager -->
+          <div class="workflow-phase workflow-phase--2">
+            <div class="workflow-phase-marker" style="background: var(--brand-warning);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div class="workflow-phase-content">
+              <h3>Phase 2: Core Content</h3>
+              <p class="workflow-phase-description">Upcoming milestone for full feature expansion</p>
+              <span class="workflow-phase-status status-upcoming">Upcoming</span>
+            </div>
+          </div>
+
+          <div class="workflow-phase workflow-phase--3">
+            <div class="workflow-phase-marker">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <div class="workflow-phase-content">
+              <h3>Phase 3: Production Release</h3>
+              <p class="workflow-phase-description">Planned deployment phase</p>
+              <span class="workflow-phase-status status-planned">Planned</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about-section">
+      <div class="container">
+        <header class="about-header">
+          <h2>About ADROIT</h2>
+          <p class="lead">Innovation House translating consulting execution into government-grade software</p>
+        </header>
+
+        <div class="about-content">
+          <p>ADEPT and ADROIT translate real-world consulting execution into government-grade software products. Products such as Emerging Suite of Program Monitoring Information Reporting System (PMRIS) Application or Risk Management Framework (RMFM) Flagship product are direct responses to recurring operational pain points observed across live government programs.</p>
+          
+          <p>Together, both companies naturally harmonizing in a lifecycle where consulting execution informs insight into recurring gaps, driving disciplined innovation that becomes productized capability supported by operational proof. Innovation is outcome-driven and production-focused, enabling rapid development with built-in security, auditability, and sustainability from inception.</p>
+
+          <div class="about-features">
+            <div class="about-feature">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                <path d="M22 4L12 14.01l-3-3"/>
+              </svg>
+              <h4>Operational Proof</h4>
+              <p>Every capability validated through live government program operations</p>
+            </div>
+            <div class="about-feature">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18M9 21V9"/>
+              </svg>
+              <h4>Security by Design</h4>
+              <p>Embedded security, auditability, and compliance from inception</p>
+            </div>
+            <div class="about-feature">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+              <h4>Disciplined Innovation</h4>
+              <p>Consulting execution informs productized capability</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -275,13 +317,16 @@
     <section id="contact" class="contact-section">
       <div class="container">
         <header class="contact-header">
-          <h2>Get in Touch</h2>
-          <p class="lead">Connect with ADROIT to discuss your government program requirements</p>
+          <h2>Contact</h2>
+          <p class="lead">Engage with ADROIT on government program initiatives</p>
         </header>
+
         <div class="contact-content">
-          <p><strong>Email:</strong> contact@adroit.com</p>
-          <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-          <p><strong>Location:</strong> Government Technology Services Sector</p>
+          <p>For government program operators, technical leads, and decision makers seeking to evaluate ADROIT solutions.</p>
+          <div class="contact-cta">
+            <a href="#engagement-pathways" class="btn btn-primary">Explore Pathways</a>
+            <a href="#white-papers" class="btn btn-secondary">Read Documentation</a>
+          </div>
         </div>
       </div>
     </section>
@@ -289,15 +334,20 @@
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 ADROIT. All rights reserved.</p>
-      <p>Phase 1: Scaffold Foundation | Phase 2: Core Content Expansion</p>
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="assets/images/0_ADROIT__Icon.png" alt="ADROIT logo" width="32" height="32">
+          <span>ADROIT</span>
+        </div>
+        <p>&copy; 2026 ADROIT Innovation House. All rights reserved.</p>
+        <p class="footer-phase">Phase 1: ADROIT Draft Website — scaffold | Phase 2: ADROIT Draft Website — core content</p>
+      </div>
     </div>
   </footer>
 
   <script src="navigation_config.js"></script>
   <script src="products.js"></script>
   <script src="white-papers-data.js"></script>
-  <script src="white-papers-filter.js"></script>
   <script src="scripts.js"></script>
 </body>
 </html>

@@ -239,11 +239,3 @@ if (pathwayFilters.length > 0) {
     });
   });
 }
-
-// Track engagement metrics (Phase 2: core content)
-window.ADROIT = window.ADROIT || {};
-window.ADROIT.engagement = window.ADROIT.engagement || {};
-window.ADROIT.engagement.trackPathway = function(pathwayId) {
-  console.log(`Tracking pathway engagement: ${pathwayId}`);
-  // Phase 2: Implement analytics integration
-};

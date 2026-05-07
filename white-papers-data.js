@@ -1,3 +1,6 @@
+// White Paper stub manager for dynamic rendering with security validation
+// Phase 2: Core Content
+
 const whitePaperStubs = [
   {
     id: 'pmris-paper',
@@ -157,9 +160,9 @@ function sanitizeWhitePaperData(paper) {
   return {
     ...paper,
     // Escape HTML in text fields to prevent XSS
-    title: paper.title?.replace(/[&<>\"'\'/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
-    description: paper.description?.replace(/[&<>\"'\'/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
-    tags: paper.tags.map(t => t.replace(/[&<>\"'\'/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char))
+    title: paper.title?.replace(/[&<>"'\'/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
+    description: paper.description?.replace(/[&<>"'\'/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
+    tags: paper.tags.map(t => t.replace(/[&<>"'\'/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char))
   };
 }
 
@@ -234,42 +237,10 @@ const WhitePaperManager = {
 
     html += '</div>';
     container.innerHTML = html;
-  },
-
-  // Update white paper status
-  updateStatus(id, newStatus) {
-    const paper = this.getWhitePaper(id);
-    if (paper && newStatus && WHITE_PAPER_SCHEMA.allowedStatuses.includes(newStatus)) {
-      paper.status = newStatus;
-      return true;
-    }
-    return false;
-  },
-
-  // Add new white paper stub
-  addWhitePaper(paper) {
-    if (validateWhitePaper(paper)) {
-      const sanitized = sanitizeWhitePaperData(paper);
-      if (sanitized) {
-        whitePaperStubs.push(sanitized);
-        return true;
-      }
-    }
-    return false;
-  },
-
-  // Remove white paper by ID
-  removeWhitePaper(id) {
-    const index = whitePaperStubs.findIndex(p => p.id === id);
-    if (index !== -1) {
-      whitePaperStubs.splice(index, 1);
-      return true;
-    }
-    return false;
   }
 };
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { whitePaperStubs, WhitePaperManager, validateWhitePaper, sanitizeWhitePaperData, WHITE_PAPER_SCHEMA };
+  module.exports = { whitePaperStubs, WHITE_PAPER_SCHEMA, validateWhitePaper, sanitizeWhitePaperData, WhitePaperManager };
 }
