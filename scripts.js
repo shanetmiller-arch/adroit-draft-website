@@ -7,7 +7,7 @@
 if (typeof window !== 'undefined') {
   window.addEventListener('DOMContentLoaded', function() {
     try {
-      const { Performance } = window;
+      const Performance = window.Performance;
       if (Performance) {
         Performance.init();
         // Load metrics from storage if available
@@ -26,7 +26,7 @@ if (typeof window !== 'undefined') {
 if (typeof window !== 'undefined') {
   window.addEventListener('DOMContentLoaded', function() {
     try {
-      const { Analytics } = window;
+      const Analytics = window.Analytics;
       if (Analytics) {
         Analytics.init();
       }
@@ -167,7 +167,7 @@ anchorLinks.forEach(link => {
 const productsContainer = document.getElementById('products-container');
 if (productsContainer) {
   try {
-    const { ProductManager } = window;
+    const ProductManager = window.ProductManager;
     if (ProductManager) {
       ProductManager.renderProducts(productsContainer);
     } else {
@@ -183,7 +183,7 @@ const whitePapersGrid = document.getElementById('white-papers-grid');
 
 if (whitePapersGrid) {
   try {
-    const { WhitePaperManager } = window;
+    const WhitePaperManager = window.WhitePaperManager;
     if (WhitePaperManager) {
       WhitePaperManager.renderWhitePapers(whitePapersGrid);
     } else {
@@ -244,35 +244,31 @@ if (pathwaysSection) {
   // Add click handlers for pathway cards to enable future interactivity
   const pathwayCards = pathwaysSection.querySelectorAll('.pathway-card');
   pathwayCards.forEach(card => {
-    card.addEventListener('click', function() {
-      // Phase 1: Console log for tracking engagement
-      const pathwayId = this.getAttribute('data-pathway');
-      
-      // Track engagement via analytics (no external dependency)
-      if (typeof window !== 'undefined' && window.Analytics) {
-        window.Analytics.trackPathwayEngagement(pathwayId);
+    card.addEventListener('click', function(e) {
+      // Track pathway engagement for analytics
+      if (window.Analytics) {
+        window.Analytics.trackPathwayEngagement(this.getAttribute('data-pathway'));
       }
-      
-      console.log(`Engagement pathway accessed: ${pathwayId}`);
     });
   });
 }
 
-// Initialize filter buttons for engagement pathways (Phase 2: planned) with throttled scroll
-// Performance optimization: use throttled scroll to avoid excessive event firing
-const scrollThrottle = window.Performance?.scrollThrottle?.interval || 100;
-
-let lastScrollY = 0;
+// Track scroll depth for analytics
 window.addEventListener('scroll', function() {
-  const currentScrollY = window.scrollY;
-  
-  // Only process on scroll changes
-  if (Math.abs(currentScrollY - lastScrollY) > 100) {
-    lastScrollY = currentScrollY;
-    
-    // Track scroll via analytics
-    if (typeof window !== 'undefined' && window.Analytics) {
-      window.Analytics.trackScrollDepth();
-    }
+  if (window.Analytics) {
+    window.Analytics.trackScrollDepth();
   }
 }, { passive: true });
+
+// Track product interactions
+const portfolioCards = document.querySelectorAll('.portfolio-card');
+portfolioCards.forEach(card => {
+  card.addEventListener('click', function(e) {
+    if (window.Analytics) {
+      const productId = this.querySelector('.portfolio-card--flagship') 
+        ? 'rmfm' 
+        : this.querySelector('.portfolio-badge')?.textContent.toLowerCase();
+      window.Analytics.trackProductInteraction(productId, 'view');
+    }
+  });
+});
