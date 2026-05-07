@@ -136,7 +136,7 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible,
-[tabindex]:not([tabindex="-1"]:focus-visible {
+[tabindex]:not([tabindex="-1"]):focus-visible {
   outline: 3px solid var(--focus-ring);
   outline-offset: var(--focus-ring-offset);
   border-radius: var(--radius-sm);
