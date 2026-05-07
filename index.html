@@ -9,7 +9,7 @@
   <link rel="icon" type="image/jpeg" href="assets/images/0_ADROIT__Icon.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https[REDACTED]400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -44,6 +44,11 @@
       <div class="container hero-content">
         <h1>ADROIT Innovation House</h1>
         <p class="hero__subtitle">Proof Over Pitch — Operational Evidence, Not Promises</p>
+        <!-- Operational Outcomes Emphasis Banner - Phase 1: scaffold -->
+        <div class="hero__outcomes-banner">
+          <span class="outcomes-badge" aria-label="Operational outcomes focus">Operational Outcomes Emphasis</span>
+          <p class="outcomes-text">Every solution validated through live government operations</p>
+        </div>
         <div class="hero__description">
           <p>We bridge the gap between strategic consulting insights and production-ready software solutions through <strong>operational proof</strong>. Our approach combines operational expertise with disciplined innovation to deliver products that solve real government challenges.</p>
           <p><code>Emerging Suite of Program Monitoring Information Reporting System (PMRIS) Application</code> & <code>Risk Management Framework (RMFM) Flagship product</code></p>
@@ -152,16 +157,31 @@
           <div class="workflow-stage">
             <div class="stage-number">Phase 2</div>
             <h3>Core Content</h3>
-            <p>Expand functionality with comprehensive documentation and expanded product features</p>
+            <p>Expand product features and operational documentation</p>
             <div class="stage-status">
               <span class="status-dot"></span>
               <span>Upcoming</span>
             </div>
             <ul class="stage-items">
-              <li>White papers and technical documentation</li>
-              <li>Comprehensive product specifications</li>
-              <li>Operational deployment guides</li>
+              <li>Full feature expansion</li>
+              <li>Operational insights integration</li>
+              <li>Technical documentation</li>
               <li>Phase 2: ADROIT Draft Website — core content</li>
+            </ul>
+          </div>
+
+          <div class="workflow-stage">
+            <div class="stage-number">Phase 3</div>
+            <h3>Production Release</h3>
+            <p>Deploy to production with full operational support</p>
+            <div class="stage-status">
+              <span class="status-dot"></span>
+              <span>Planned</span>
+            </div>
+            <ul class="stage-items">
+              <li>Production deployment</li>
+              <li>Live operations support</li>
+              <li>Performance optimization</li>
             </ul>
           </div>
         </div>
@@ -176,7 +196,7 @@
         </header>
 
         <div id="products-container" class="portfolio-grid">
-          <!-- Products rendered by ProductManager -->
+          <!-- Products rendered dynamically via ProductManager -->
         </div>
       </div>
     </section>
@@ -185,11 +205,17 @@
       <div class="container">
         <div class="contact-content">
           <h2>Get in Touch</h2>
-          <p class="lead">Ready to transform operational challenges into production capabilities?</p>
+          <p class="lead">Partner with us to transform your operational challenges into production-ready solutions</p>
           <div class="contact-info">
-            <p><strong>ADROIT Innovation House</strong></p>
-            <p>Operational Proof, Not Promises</p>
-            <p>Email: contact@adroit.innovation</p>
+            <div class="contact-item">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <div>
+                <h3>Contact Us</h3>
+                <p>Ready to discuss your operational needs?</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -198,32 +224,10 @@
 
   <footer class="footer">
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <img src="assets/images/0_ADROIT_Small.png" alt="ADROIT" width="80" height="30">
-          <p>Operational Proof, Not Promises</p>
-        </div>
-        <div class="footer-links">
-          <h4>Products</h4>
-          <a href="#portfolio">PMRIS</a>
-          <a href="#portfolio">RMFM</a>
-          <a href="#white-papers">White Papers</a>
-        </div>
-        <div class="footer-links">
-          <h4>Company</h4>
-          <a href="#about">About</a>
-          <a href="#proof">Proof</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 ADROIT. All rights reserved. | Phase 1 Scaffold | Phase 2 Core Content</p>
-      </div>
+      <p>&copy; 2026 ADROIT. All rights reserved. Proof Over Pitch.</p>
     </div>
   </footer>
 
-  <script src="navigation_config.js"></script>
-  <script src="products.js"></script>
   <script src="scripts.js"></script>
 </body>
 </html>
