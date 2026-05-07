@@ -2,6 +2,20 @@
 // Phase 1: scaffold - basic interactivity foundation
 // Phase 2: core content - extended functionality including white papers
 
+// Initialize analytics on DOM ready
+if (typeof window !== 'undefined') {
+  window.addEventListener('DOMContentLoaded', function() {
+    try {
+      const { Analytics } = window;
+      if (Analytics) {
+        Analytics.init();
+      }
+    } catch (error) {
+      console.error('Analytics initialization error:', error);
+    }
+  });
+}
+
 // Initialize navigation with extensible model
 // Loads navigation configuration from NavigationConfig
 // Supports phase-aware routing (Phase 1 scaffold, Phase 2 core content)
@@ -213,6 +227,12 @@ if (pathwaysSection) {
     card.addEventListener('click', function() {
       // Phase 1: Console log for tracking engagement
       const pathwayId = this.getAttribute('data-pathway');
+      
+      // Track engagement via analytics (no external dependency)
+      if (typeof window !== 'undefined' && window.Analytics) {
+        window.Analytics.trackPathwayEngagement(pathwayId);
+      }
+      
       console.log(`Engagement pathway accessed: ${pathwayId}`);
     });
   });
@@ -238,4 +258,23 @@ if (pathwayFilters.length > 0) {
       });
     });
   });
+}
+
+// Add analytics tracking class to elements that should be tracked
+function addAnalyticsTracking() {
+  // Mark interactive elements for tracking
+  const trackableElements = document.querySelectorAll('a, button, [role="button"]');
+  trackableElements.forEach(el => {
+    el.classList.add('analytics-track');
+  });
+}
+
+// Add analytics tracking after DOM is ready
+if (typeof window !== 'undefined') {
+  window.addEventListener('DOMContentLoaded', addAnalyticsTracking);
+}
+
+// Export for module usage
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { NavigationManager, NavigationConfig };
 }
