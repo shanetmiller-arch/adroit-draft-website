@@ -1065,3 +1065,40 @@ a:focus-visible {
   white-space: nowrap;
   border: 0;
 }
+/* =========================
+   PAGE CONTENT CENTERING
+   Manually appended 2026-05-07 after factory CRs
+   REQ-20260507-93cd2b and REQ-20260507-20f827 both
+   produced destructive edits (deleted ~700-1000
+   lines of existing CSS). Append-only fix —
+   intentionally outside the factory pipeline.
+   ========================= */
+
+main, main > section {
+  display: block;
+}
+
+main > section > .container,
+main > section > .hero-content {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1440px) {
+  main > section > .container,
+  main > section > .hero-content {
+    max-width: 1280px;
+  }
+}
+
+@media (max-width: 640px) {
+  main > section > .container,
+  main > section > .hero-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
