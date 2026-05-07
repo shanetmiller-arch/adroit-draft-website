@@ -49,7 +49,7 @@ const NavigationManager = {
           document.body.style.overflow = 'hidden'; // Prevent scroll when menu open
         } else {
           navLinks.classList.remove('nav-open');
-          document.body.style.overflow = '';
+          document.body.style.overflow = ''; // Restore scroll
         }
       });
       
@@ -202,3 +202,48 @@ if (filterBtns.length > 0) {
     });
   });
 }
+
+// Initialize Engagement Pathways section interaction (Phase 1: scaffold)
+const pathwaysSection = document.getElementById('engagement-pathways');
+
+if (pathwaysSection) {
+  // Add click handlers for pathway cards to enable future interactivity
+  const pathwayCards = pathwaysSection.querySelectorAll('.pathway-card');
+  pathwayCards.forEach(card => {
+    card.addEventListener('click', function() {
+      // Phase 1: Console log for tracking engagement
+      const pathwayId = this.getAttribute('data-pathway');
+      console.log(`Engagement pathway accessed: ${pathwayId}`);
+    });
+  });
+}
+
+// Initialize filter buttons for engagement pathways (Phase 2: planned)
+const pathwayFilters = document.querySelectorAll('.pathway-filter');
+
+if (pathwayFilters.length > 0) {
+  pathwayFilters.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Phase 2: Filter pathways by type
+      const filter = this.getAttribute('data-filter');
+      const cards = pathwaysSection.querySelectorAll('.pathway-card');
+      
+      cards.forEach(card => {
+        const pathwayType = card.getAttribute('data-pathway');
+        if (filter === 'all' || pathwayType === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+// Track engagement metrics (Phase 2: core content)
+window.ADROIT = window.ADROIT || {};
+window.ADROIT.engagement = window.ADROIT.engagement || {};
+window.ADROIT.engagement.trackPathway = function(pathwayId) {
+  console.log(`Tracking pathway engagement: ${pathwayId}`);
+  // Phase 2: Implement analytics integration
+};
