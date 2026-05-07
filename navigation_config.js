@@ -55,25 +55,17 @@ const NavigationConfig = {
       }
     ],
     
-    // Phase 2: core content items (placeholder for future expansion)
+    // Phase 2: core content items - properly integrated for audience alignment
     phase2: [
-      // Add new items here as Phase 2 content is developed
-      {
-        id: 'documentation',
-        label: 'Documentation',
-        href: '#documentation',
-        icon: '📚',
-        phase: '2',
-        description: 'Technical documentation',
-        status: 'placeholder'
-      },
       {
         id: 'white-papers',
         label: 'White Papers',
         href: '#white-papers',
         icon: '📄',
         phase: '2',
-        description: 'Technical white papers & operational insights'
+        description: 'Technical documentation & operational insights',
+        status: 'active',
+        audienceTarget: 'government-program-operators'
       }
     ]
   },
@@ -106,10 +98,10 @@ const NavigationConfig = {
   }
 };
 
-// Navigation Manager for dynamic rendering
+// Navigation Manager for dynamic rendering with audience-aware phase filtering
 const NavigationManager = {
-  // Render navigation based on configuration
-  render(containerSelector, phase = null) {
+  // Render navigation based on configuration and current phase
+  render(containerSelector, phase = null, audienceContext = null) {
     const container = document.querySelector(containerSelector);
     if (!container) return;
     
@@ -122,6 +114,11 @@ const NavigationManager = {
     items.forEach(item => {
       // Skip placeholder items unless explicitly requested
       if (item.status === 'placeholder' && !phase) return;
+      
+      // Audience alignment: filter by audience context when provided
+      if (audienceContext && item.audienceTarget !== audienceContext && item.phase === '2') {
+        return;
+      }
       
       html += `<li><a href="${item.href}" aria-label="${item.label}" class="nav-link" data-phase="${item.phase}">${item.label}</a></li>`;
     });

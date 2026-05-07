@@ -5,6 +5,7 @@
 // Initialize navigation with extensible model
 // Loads navigation configuration from NavigationConfig
 // Supports phase-aware routing (Phase 1 scaffold, Phase 2 core content)
+// Audience alignment: dynamically renders navigation based on context
 const NavigationManager = {
   // Render navigation based on configuration
   render(containerSelector, phase = null) {
@@ -14,7 +15,7 @@ const NavigationManager = {
     const { navItems } = window.NavigationConfig;
     let html = '<ul class="nav-links">';
     
-    // Render phase-agnostic items first
+    // Render phase-agnostic items first (always visible)
     navItems.phaseAgnostic.forEach(item => {
       html += `<li><a href="${item.href}" aria-label="${item.label}" class="nav-link" data-phase="${item.phase}">${item.label}</a></li>`;
     });
@@ -143,7 +144,7 @@ if (productsContainer) {
   }
 }
 
-// Initialize white papers with structured data and filter functionality
+// Initialize white papers with structured data and filter functionality (Phase 2: audience alignment)
 const whitePapersGrid = document.getElementById('white-papers-grid');
 
 if (whitePapersGrid) {
@@ -159,7 +160,7 @@ if (whitePapersGrid) {
   }
 }
 
-// Initialize navigation management
+// Initialize navigation management with audience awareness
 try {
   const { NavigationManager, NavigationConfig } = window;
   if (NavigationManager) {
