@@ -1,6 +1,6 @@
 // ADROIT Draft Website - Main entry point for scripts
 // Phase 1: scaffold - basic interactivity foundation
-// Phase 2: core content - extended functionality
+// Phase 2: core content - extended functionality including white papers
 
 // Initialize navigation with extensible model
 // Loads navigation configuration from NavigationConfig
@@ -143,6 +143,22 @@ if (productsContainer) {
   }
 }
 
+// Initialize white papers with structured data and filter functionality
+const whitePapersGrid = document.getElementById('white-papers-grid');
+
+if (whitePapersGrid) {
+  try {
+    const { WhitePaperManager } = window;
+    if (WhitePaperManager) {
+      WhitePaperManager.renderWhitePapers(whitePapersGrid);
+    } else {
+      console.warn('WhitePaperManager not available');
+    }
+  } catch (error) {
+    console.error('Failed to render white papers:', error);
+  }
+}
+
 // Initialize navigation management
 try {
   const { NavigationManager, NavigationConfig } = window;
@@ -161,10 +177,9 @@ try {
 }
 
 // Initialize white papers filter functionality (Phase 2 feature)
-const whitePapersGrid = document.getElementById('white-papers-grid');
 const filterBtns = document.querySelectorAll('.filter-btn');
 
-if (whitePapersGrid && filterBtns.length > 0) {
+if (filterBtns.length > 0) {
   filterBtns.forEach(btn => {
     btn.addEventListener('click', function() {
       // Update active state

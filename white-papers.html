@@ -43,7 +43,7 @@
     <section id="white-papers" class="white-papers-section">
       <div class="container">
         <header class="white-papers-header">
-          <h1>White Papers & Documentation</h1>
+          <h1>White Papers & Technical Documentation</h1>
           <p class="lead">Technical documentation, operational insights, and product specifications for government software solutions</p>
         </header>
 
@@ -55,83 +55,133 @@
           <button class="filter-btn" data-filter="security">Security</button>
         </div>
 
-        <div class="white-papers-grid" id="white-papers-grid">
-          <article class="white-paper-card" data-category="product">
-            <div class="white-paper-content">
-              <span class="paper-category-badge">Product</span>
-              <h2>PMRIS: Program Monitoring Reporting System</h2>
-              <p>Comprehensive documentation on the Emerging Suite of Program Monitoring Information Reporting System architecture, features, and operational deployment guidelines for government programs.</p>
-              <div class="paper-meta">
-                <span class="paper-phase">Phase 1</span>
-                <span class="paper-status">Draft</span>
+        <div class="white-papers-grid" id="white-papers-grid" aria-label="White papers collection">
+          <!-- White paper stubs rendered dynamically via WhitePaperManager -->
+          <!-- See white-papers-data.js for structured data -->
+          <article class="white-paper-card white-paper-card--featured" data-category="product" data-phase="Phase 1">
+            <a href="#" class="white-paper-link" aria-label="Read PMRIS white paper">
+              <div class="white-paper-content">
+                <span class="paper-category-badge">Product</span>
+                <h2 class="white-paper-title">PMRIS: Program Monitoring Reporting System</h2>
+                <p class="white-paper-description">Comprehensive documentation on the Emerging Suite of Program Monitoring Information Reporting System architecture, features, and operational deployment guidelines for government programs.</p>
+                <div class="paper-meta">
+                  <span class="paper-phase">Phase 1</span>
+                  <span class="paper-status">draft</span>
+                  <span class="paper-author">ADROIT Engineering Team</span>
+                </div>
+                <div class="paper-tags">
+                  <span class="paper-tag">monitoring</span>
+                  <span class="paper-tag">reporting</span>
+                  <span class="paper-tag">governance</span>
+                </div>
+                <span class="paper-read-time">15 min read</span>
               </div>
-              <a href="#" class="paper-link" aria-label="Read PMRIS white paper">Read Paper &rarr;</a>
-            </div>
+            </a>
           </article>
 
-          <article class="white-paper-card" data-category="methodology">
-            <div class="white-paper-content">
-              <span class="paper-category-badge">Methodology</span>
-              <h2>Operational Proof Framework</h2>
-              <p>Documentation of ADROIT's operational proof methodology—how consulting execution translates into validated software products with measurable outcomes for government programs.</p>
-              <div class="paper-meta">
-                <span class="paper-phase">Phase 2</span>
-                <span class="paper-status">In Progress</span>
+          <article class="white-paper-card" data-category="methodology" data-phase="Phase 2">
+            <a href="#" class="white-paper-link" aria-label="Read Operational Proof Framework white paper">
+              <div class="white-paper-content">
+                <span class="paper-category-badge">Methodology</span>
+                <h2 class="white-paper-title">Operational Proof Framework</h2>
+                <p class="white-paper-description">Documentation of ADROIT's operational proof methodology—how consulting execution translates into validated software products with measurable outcomes for government programs.</p>
+                <div class="paper-meta">
+                  <span class="paper-phase">Phase 2</span>
+                  <span class="paper-status">in-progress</span>
+                  <span class="paper-author">ADROIT Operations Team</span>
+                </div>
+                <div class="paper-tags">
+                  <span class="paper-tag">methodology</span>
+                  <span class="paper-tag">validation</span>
+                  <span class="paper-tag">outcomes</span>
+                </div>
+                <span class="paper-read-time">12 min read</span>
               </div>
-              <a href="#" class="paper-link" aria-label="Read Operational Proof Framework">Read Paper &rarr;</a>
-            </div>
+            </a>
           </article>
 
-          <article class="white-paper-card" data-category="product">
-            <div class="white-paper-content">
-              <span class="paper-category-badge">Product</span>
-              <h2>RMFM: Risk Management Framework</h2>
-              <p>Flagship product documentation covering risk assessment capabilities, audit trail mechanisms, compliance reporting features, and integration with operational insights systems.</p>
-              <div class="paper-meta">
-                <span class="paper-phase">Phase 1</span>
-                <span class="paper-status">Draft</span>
+          <article class="white-paper-card white-paper-card--featured" data-category="product" data-phase="Phase 1">
+            <a href="#" class="white-paper-link" aria-label="Read RMFM white paper">
+              <div class="white-paper-content">
+                <span class="paper-category-badge">Product</span>
+                <h2 class="white-paper-title">RMFM: Risk Management Framework</h2>
+                <p class="white-paper-description">Flagship product documentation covering risk assessment capabilities, audit trail mechanisms, compliance reporting features, and integration with operational insights systems.</p>
+                <div class="paper-meta">
+                  <span class="paper-phase">Phase 1</span>
+                  <span class="paper-status">draft</span>
+                  <span class="paper-author">ADROIT Risk Management Team</span>
+                </div>
+                <div class="paper-tags">
+                  <span class="paper-tag">risk</span>
+                  <span class="paper-tag">compliance</span>
+                  <span class="paper-tag">audit</span>
+                </div>
+                <span class="paper-read-time">20 min read</span>
               </div>
-              <a href="#" class="paper-link" aria-label="Read RMFM white paper">Read Paper &rarr;</a>
-            </div>
+            </a>
           </article>
 
-          <article class="white-paper-card" data-category="security">
-            <div class="white-paper-content">
-              <span class="paper-category-badge">Security</span>
-              <h2>Security-by-Design Implementation</h2>
-              <p>Technical white paper on embedding security, auditability, and compliance from inception. Covers validation frameworks, threat modeling, and secure development practices.</p>
-              <div class="paper-meta">
-                <span class="paper-phase">Phase 2</span>
-                <span class="paper-status">In Progress</span>
+          <article class="white-paper-card white-paper-card--featured" data-category="security" data-phase="Phase 2">
+            <a href="#" class="white-paper-link" aria-label="Read Security-by-Design white paper">
+              <div class="white-paper-content">
+                <span class="paper-category-badge">Security</span>
+                <h2 class="white-paper-title">Security-by-Design Implementation</h2>
+                <p class="white-paper-description">Technical white paper on embedding security, auditability, and compliance from inception. Covers validation frameworks, threat modeling, and secure development practices.</p>
+                <div class="paper-meta">
+                  <span class="paper-phase">Phase 2</span>
+                  <span class="paper-status">in-progress</span>
+                  <span class="paper-author">ADROIT Security Team</span>
+                </div>
+                <div class="paper-tags">
+                  <span class="paper-tag">security</span>
+                  <span class="paper-tag">compliance</span>
+                  <span class="paper-tag">threat-modeling</span>
+                </div>
+                <span class="paper-read-time">18 min read</span>
               </div>
-              <a href="#" class="paper-link" aria-label="Read Security-by-Design paper">Read Paper &rarr;</a>
-            </div>
+            </a>
           </article>
 
-          <article class="white-paper-card" data-category="operational">
-            <div class="white-paper-content">
-              <span class="paper-category-badge">Operational</span>
-              <h2>Government Program Integration Patterns</h2>
-              <p>Documented patterns and best practices for integrating software solutions into live government program operations. Includes deployment strategies and operational support frameworks.</p>
-              <div class="paper-meta">
-                <span class="paper-phase">Phase 2</span>
-                <span class="paper-status">In Progress</span>
+          <article class="white-paper-card" data-category="operational" data-phase="Phase 2">
+            <a href="#" class="white-paper-link" aria-label="Read Integration Patterns white paper">
+              <div class="white-paper-content">
+                <span class="paper-category-badge">Operational</span>
+                <h2 class="white-paper-title">Government Program Integration Patterns</h2>
+                <p class="white-paper-description">Documented patterns and best practices for integrating software solutions into live government program operations. Includes deployment strategies and operational support frameworks.</p>
+                <div class="paper-meta">
+                  <span class="paper-phase">Phase 2</span>
+                  <span class="paper-status">in-progress</span>
+                  <span class="paper-author">ADROIT Integration Team</span>
+                </div>
+                <div class="paper-tags">
+                  <span class="paper-tag">integration</span>
+                  <span class="paper-tag">deployment</span>
+                  <span class="paper-tag">operations</span>
+                </div>
+                <span class="paper-read-time">14 min read</span>
               </div>
-              <a href="#" class="paper-link" aria-label="Read Integration Patterns paper">Read Paper &rarr;</a>
-            </div>
+            </a>
           </article>
 
-          <article class="white-paper-card" data-category="methodology">
-            <div class="white-paper-content">
-              <span class="paper-category-badge">Methodology</span>
-              <h2>Consulting-to-Products Lifecycle</h2>
-              <p>Framework documenting how ADEPT and ADROIT translate real-world consulting execution into production-ready software products. Covers discovery, validation, and productization phases.</p>
-              <div class="paper-meta">
-                <span class="paper-phase">Phase 2</span>
-                <span class="paper-status">In Progress</span>
+          <article class="white-paper-card white-paper-card--featured" data-category="methodology" data-phase="Phase 2">
+            <a href="#" class="white-paper-link" aria-label="Read Lifecycle paper">
+              <div class="white-paper-content">
+                <span class="paper-category-badge">Methodology</span>
+                <h2 class="white-paper-title">Consulting-to-Products Lifecycle</h2>
+                <p class="white-paper-description">Framework documenting how ADEPT and ADROIT translate real-world consulting execution into production-ready software products. Covers discovery, validation, and productization phases.</p>
+                <div class="paper-meta">
+                  <span class="paper-phase">Phase 2</span>
+                  <span class="paper-status">in-progress</span>
+                  <span class="paper-author">ADROIT Methodology Team</span>
+                </div>
+                <div class="paper-tags">
+                  <span class="paper-tag">lifecycle</span>
+                  <span class="paper-tag">productization</span>
+                  <span class="paper-tag">consulting</span>
+                </div>
+                <span class="paper-read-time">16 min read</span>
               </div>
-              <a href="#" class="paper-link" aria-label="Read Lifecycle paper">Read Paper &rarr;</a>
-            </div>
+            </a>
           </article>
         </div>
 
@@ -148,29 +198,26 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <img src="assets/images/0_ADROIT_Small.png" alt="ADROIT" width="80" height="30">
-          <p>Operational Proof, Not Promises</p>
+          <img src="assets/images/0_ADROIT_Small.png" alt="ADROIT brand">
         </div>
         <div class="footer-links">
-          <h4>Products</h4>
-          <a href="#portfolio">PMRIS</a>
-          <a href="#portfolio">RMFM</a>
-          <a href="#white-papers">White Papers</a>
+          <nav aria-label="Footer navigation">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#proof">Proof</a>
+            <a href="#portfolio">Products</a>
+            <a href="#contact">Contact</a>
+          </nav>
         </div>
-        <div class="footer-links">
-          <h4>Company</h4>
-          <a href="#about">About</a>
-          <a href="#proof">Proof</a>
-          <a href="#contact">Contact</a>
+        <div class="footer-copyright">
+          <p>&copy; 2026 ADROIT. All rights reserved.</p>
         </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 ADROIT. All rights reserved. | Phase 1 Scaffold | Phase 2 Core Content</p>
       </div>
     </div>
   </footer>
 
-  <script src="navigation_config.js"></script>
+  <script src="white-papers-data.js"></script>
+  <script src="white-papers-filter.js"></script>
   <script src="scripts.js"></script>
 </body>
 </html>
