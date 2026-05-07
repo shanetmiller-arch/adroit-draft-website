@@ -87,10 +87,11 @@
   <script src="performance.js" defer></script>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- Accessibility: Skip link to main content for keyboard users -->
+  <a href="#main-content" class="skip-link" id="skip-link">Skip to main content</a>
   
-  <header class="header">
-    <nav class="container">
+  <header class="header" role="banner">
+    <nav class="container" aria-label="Primary navigation">
       <div class="nav">
         <div class="logo">
           <a href="./" aria-label="ADROIT Home">
@@ -98,28 +99,30 @@
           </a>
           <span class="logo-text">ADROIT</span>
         </div>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="#home" aria-label="Home">Home</a></li>
-          <li><a href="#about" aria-label="About">About</a></li>
-          <li><a href="#proof" aria-label="Proof">Proof</a></li>
-          <li><a href="#workflow" aria-label="Product Workflow">Product Workflow</a></li>
-          <li><a href="#portfolio" aria-label="Products">Products</a></li>
-          <li><a href="#white-papers" aria-label="White Papers">White Papers</a></li>
-          <li><a href="#contact" aria-label="Contact">Contact</a></li>
+        <ul class="nav-links" id="nav-links" role="menubar">
+          <li><a href="#home" aria-label="Home" role="menuitem">Home</a></li>
+          <li><a href="#about" aria-label="About" role="menuitem">About</a></li>
+          <li><a href="#proof" aria-label="Proof" role="menuitem">Proof</a></li>
+          <li><a href="#workflow" aria-label="Product Workflow" role="menuitem">Product Workflow</a></li>
+          <li><a href="#portfolio" aria-label="Products" role="menuitem">Products</a></li>
+          <li><a href="#white-papers" aria-label="White Papers" role="menuitem">White Papers</a></li>
+          <li><a href="#contact" aria-label="Contact" role="menuitem">Contact</a></li>
         </ul>
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" id="nav-toggle">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 12h18M3 6h18M3 18h18"/>
           </svg>
+          <span class="visually-hidden">Menu</span>
         </button>
       </div>
     </nav>
   </header>
 
-  <main id="main-content">
-    <section id="home" class="hero">
+  <main id="main-content" role="main">
+    <!-- Accessibility: Focus trap enabled via JavaScript for mobile menu -->
+    <section id="home" class="hero" aria-labelledby="hero-heading">
       <div class="container hero-content">
-        <h1>ADROIT Innovation House</h1>
+        <h1 id="hero-heading">ADROIT Innovation House</h1>
         <p class="hero__subtitle">Proof Over Pitch — Operational Evidence, Not Promises</p>
         <!-- Operational Outcomes Emphasis Banner - Phase 1: scaffold -->
         <div class="hero__outcomes-banner">
@@ -133,171 +136,241 @@
       </div>
     </section>
 
+    <!-- Engagement Pathways Section - Phase 1: Scaffold -->
+    <section id="engagement-pathways" class="engagement-pathways-section" aria-labelledby="pathways-heading">
+      <div class="container">
+        <header class="engagement-pathways-header">
+          <h2 id="pathways-heading">Engagement Pathways</h2>
+          <p class="lead">Discover how ADROIT partners with government stakeholders to deliver operational outcomes</p>
+          <p class="phase-badge">Phase 1: Scaffold Foundation</p>
+        </header>
+
+        <div class="pathways-grid" role="list">
+          <article class="pathway-card" role="listitem" data-pathway="product-explorer">
+            <div class="pathway-icon">📊</div>
+            <h3>Product Explorer</h3>
+            <p class="pathway-description">Explore our flagship government software products and their operational capabilities</p>
+            <ul class="pathway-steps">
+              <li>Identify operational gaps</li>
+              <li>Select relevant products</li>
+              <li>Review deployment requirements</li>
+            </ul>
+            <span class="pathway-status">Active</span>
+          </article>
+
+          <article class="pathway-card" role="listitem" data-pathway="technical-deep-dive">
+            <div class="pathway-icon">🔬</div>
+            <h3>Technical Deep Dive</h3>
+            <p class="pathway-description">Access technical documentation and architectural specifications</p>
+            <ul class="pathway-steps">
+              <li>Review system architecture</li>
+              <li>Examine security protocols</li>
+              <li>Understand integration patterns</li>
+            </ul>
+            <span class="pathway-status">Active</span>
+          </article>
+
+          <article class="pathway-card" role="listitem" data-pathway="operational-validation">
+            <div class="pathway-icon">✅</div>
+            <h3>Operational Validation</h3>
+            <p class="pathway-description">Validate solutions through live government program operations</p>
+            <ul class="pathway-steps">
+              <li>Field testing protocols</li>
+              <li>Performance benchmarks</li>
+              <li>Compliance verification</li>
+            </ul>
+            <span class="pathway-status">Active</span>
+          </article>
+        </div>
+
+        <div class="pathways-cta">
+          <a href="#products" class="btn-primary">Explore Products</a>
+          <a href="#white-papers" class="btn-secondary">View Documentation</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section - Phase 1: Scaffold -->
+    <section id="portfolio" class="products-section" aria-labelledby="products-heading">
+      <div class="container">
+        <header class="products-header">
+          <h2 id="products-heading">Product Portfolio</h2>
+          <p class="lead">Government-grade software solutions for operational challenges</p>
+          <p class="phase-badge">Phase 1: Active Development</p>
+        </header>
+
+        <div id="products-container" class="portfolio-grid" role="list">
+          <!-- Products rendered dynamically via ProductManager -->
+          <p>Loading products...</p>
+        </div>
+      </div>
+    </section>
+
     <!-- White Papers Section - Phase 2: Core Content -->
-    <section id="white-papers" class="white-papers-section">
+    <section id="white-papers" class="white-papers-section" aria-labelledby="white-papers-heading">
       <div class="container">
         <header class="white-papers-header">
-          <h1>White Papers & Technical Documentation</h1>
+          <h1 id="white-papers-heading">White Papers & Technical Documentation</h1>
           <p class="lead">Technical documentation, operational insights, and product specifications for government software solutions</p>
           <p class="phase-badge">Phase 2: Core Content</p>
         </header>
 
         <!-- Filter buttons for white papers - Phase 2: audience alignment -->
-        <div class="white-papers-filters" role="toolbar" aria-label="Filter white papers">
-          <button class="filter-btn active" data-filter="all" aria-pressed="true">All Papers</button>
-          <button class="filter-btn" data-filter="product" aria-pressed="false">Product Papers</button>
-          <button class="filter-btn" data-filter="methodology" aria-pressed="false">Methodology</button>
-          <button class="filter-btn" data-filter="operational" aria-pressed="false">Operational</button>
-          <button class="filter-btn" data-filter="security" aria-pressed="false">Security</button>
+        <div class="white-papers-filters" role="toolbar" aria-label="Filter white papers by category">
+          <button class="filter-btn active" data-filter="all" aria-pressed="true" role="tab">All Papers</button>
+          <button class="filter-btn" data-filter="product" aria-pressed="false" role="tab">Product Papers</button>
+          <button class="filter-btn" data-filter="methodology" aria-pressed="false" role="tab">Methodology</button>
+          <button class="filter-btn" data-filter="operational" aria-pressed="false" role="tab">Operational</button>
+          <button class="filter-btn" data-filter="security" aria-pressed="false" role="tab">Security</button>
         </div>
 
         <!-- White papers grid - populated dynamically by WhitePaperManager -->
-        <div class="white-papers-grid" id="white-papers-grid" aria-label="White papers collection">
-          <!-- Content rendered via WhitePaperManager from white-papers-data.js -->
-        </div>
-
-        <div class="white-papers-phase-info">
-          <h4>Phase 2 Content</h4>
-          <p>Technical documentation and operational insights for government program operators. Additional papers will be added as core content expands.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Products Section - Phase 1: scaffold -->
-    <section id="portfolio" class="portfolio-section">
-      <div class="container">
-        <header class="portfolio-header">
-          <h1>Product Portfolio</h1>
-          <p class="lead">Flagship products and emerging solutions for government program monitoring and risk management</p>
-        </header>
-
-        <!-- Products grid - populated dynamically by ProductManager -->
-        <div id="products-container" class="portfolio-grid" aria-label="Product portfolio">
-          <!-- Content rendered via ProductManager from products.js -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Engagement Pathways Section - Phase 1: scaffold -->
-    <section id="engagement-pathways" class="engagement-pathways-section">
-      <div class="container">
-        <header class="engagement-pathways-header">
-          <h2>Engagement Pathways</h2>
-          <p class="lead">Guided journeys for government stakeholders to understand ADROIT's approach</p>
-          <p class="phase-badge">Phase 1: Scaffold Foundation</p>
-        </header>
-
-        <div class="pathways-grid">
-          <article class="pathway-card" data-pathway="product-explorer" aria-labelledby="pathway-1">
-            <div class="pathway-icon">🚀</div>
-            <h3 id="pathway-1">Product Explorer</h3>
-            <p class="pathway-description">Explore ADROIT's product portfolio and understand how each solution addresses specific government challenges.</p>
-            <ul class="pathway-steps">
-              <li>Understand product categories</li>
-              <li>Review flagship products</li>
-              <li>Access technical documentation</li>
-            </ul>
-            <span class="pathway-status pathway-status--active">Active</span>
+        <div id="white-papers-grid" class="white-papers-grid" role="list" aria-label="White papers collection">
+          <!-- White paper stubs rendered dynamically via WhitePaperManager -->
+          <article class="white-paper-card white-paper-card--featured" role="listitem" data-category="product" data-phase="Phase 1">
+            <a href="#" class="white-paper-link" aria-label="Read PMRIS white paper">
+              <div class="white-paper-content">
+                <span class="paper-category-badge">Product</span>
+                <h3 class="white-paper-title">PMRIS: Program Monitoring Reporting System</h3>
+                <p class="white-paper-description">Comprehensive documentation on the Emerging Suite of Program Monitoring Information Reporting System architecture, features, and operational deployment guidelines for government programs.</p>
+                <div class="paper-meta">
+                  <span class="paper-phase">Phase 1</span>
+                  <span class="paper-status">draft</span>
+                  <span class="paper-author">ADROIT Engineering Team</span>
+                </div>
+                <div class="paper-tags">
+                  <span class="paper-tag">monitoring</span>
+                  <span class="paper-tag">reporting</span>
+                  <span class="paper-tag">governance</span>
+                </div>
+                <span class="paper-read-time">15 min read</span>
+              </div>
+            </a>
           </article>
 
-          <article class="pathway-card" data-pathway="technical-deep-dive" aria-labelledby="pathway-2">
-            <div class="pathway-icon">🔬</div>
-            <h3 id="pathway-2">Technical Deep Dive</h3>
-            <p class="pathway-description">Deep technical insights into ADROIT's architecture, security practices, and compliance frameworks.</p>
-            <ul class="pathway-steps">
-              <li>Review technical specifications</li>
-              <li>Understand security architecture</li>
-              <li>Access white papers</li>
-            </ul>
-            <span class="pathway-status pathway-status--active">Active</span>
-          </article>
-
-          <article class="pathway-card" data-pathway="operational-validation" aria-labelledby="pathway-3">
-            <div class="pathway-icon">✅</div>
-            <h3 id="pathway-3">Operational Validation</h3>
-            <p class="pathway-description">Learn how ADROIT products are validated through real-world government operations.</p>
-            <ul class="pathway-steps">
-              <li>Review case studies</li>
-              <li>Understand validation process</li>
-              <li>Access operational proof</li>
-            </ul>
-            <span class="pathway-status pathway-status--active">Active</span>
+          <article class="white-paper-card" role="listitem" data-category="methodology" data-phase="Phase 2">
+            <a href="#" class="white-paper-link" aria-label="Read Operational Proof Framework white paper">
+              <div class="white-paper-content">
+                <span class="paper-category-badge">Methodology</span>
+                <h3 class="white-paper-title">Operational Proof Framework</h3>
+                <p class="white-paper-description">Documentation of ADROIT's operational proof methodology—how consulting execution translates into validated software products with measurable outcomes for government programs.</p>
+                <div class="paper-meta">
+                  <span class="paper-phase">Phase 2</span>
+                  <span class="paper-status">in-progress</span>
+                  <span class="paper-author">ADROIT Operations Team</span>
+                </div>
+                <div class="paper-tags">
+                  <span class="paper-tag">methodology</span>
+                  <span class="paper-tag">validation</span>
+                  <span class="paper-tag">outcomes</span>
+                </div>
+                <span class="paper-read-time">12 min read</span>
+              </div>
+            </a>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Proof Section -->
-    <section id="proof" class="proof-section">
+    <!-- Proof Section - Phase 1: Scaffold -->
+    <section id="proof" class="proof-section" aria-labelledby="proof-heading">
       <div class="container">
         <header class="proof-header">
-          <h1>Operational Proof</h1>
-          <p class="lead">Evidence of success through government program operations</p>
+          <h2 id="proof-heading">Operational Proof</h2>
+          <p class="lead">Real-world validation through government program deployments</p>
+          <p class="phase-badge">Phase 1: Active Validation</p>
         </header>
 
-        <div class="proof-grid">
-          <article class="proof-card" aria-labelledby="proof-1">
-            <h3 id="proof-1">Operational Proof</h3>
-            <p>Validated through live government operations</p>
+        <div class="proof-grid" role="list">
+          <article class="proof-card" role="listitem">
+            <h3>Security Validation</h3>
+            <p>Embedding security, auditability, and compliance from inception through threat modeling and secure development practices.</p>
           </article>
 
-          <article class="proof-card" aria-labelledby="proof-2">
-            <h3 id="proof-2">Security Validation</h3>
-            <p>Security, auditability, and compliance from inception</p>
+          <article class="proof-card" role="listitem">
+            <h3>Outcome Measurement</h3>
+            <p>Quantifiable metrics demonstrating operational improvements across government program deployments.</p>
           </article>
 
-          <article class="proof-card" aria-labelledby="proof-3">
-            <h3 id="proof-3">Outcome Measurement</h3>
-            <p>Measurable results and operational metrics</p>
+          <article class="proof-card" role="listitem">
+            <h3>Operational Proof</h3>
+            <p>Live validation through government program operations with measurable performance benchmarks.</p>
           </article>
         </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about-section">
+    <section id="about" class="about-section" aria-labelledby="about-heading">
       <div class="container">
         <header class="about-header">
-          <h1>About ADROIT</h1>
-          <p class="lead">Translating consulting execution into government-grade software</p>
+          <h2 id="about-heading">About ADROIT</h2>
+          <p class="lead">Translating consulting execution into government-grade software products</p>
         </header>
 
         <div class="about-content">
-          <p>ADROIT and ADEPT translate real-world consulting execution into government-grade software products. Products such as the Emerging Suite of Program Monitoring Information Reporting System (PMRIS) Application or Risk Management Framework (RMFM) Flagship product are direct responses to recurring operational pain points observed across live government programs.</p>
-          <p>Innovation is outcome-driven and production-focused, enabling rapid development with built-in security, auditability, and sustainability from inception. ADROIT supports a growing product portfolio, structured to allow future additions without architectural redesign.</p>
+          <p>ADEPT and ADROIT translate real-world consulting execution into government-grade software products. Products such as Emerging Suite of Program Monitoring Information Reporting System (PMRIS) Application or Risk Management Framework (RMFM) Flagship product are direct responses to recurring operational pain points observed across live government programs.</p>
+          <p>Together, both companies naturally harmonizing in a lifecycle where consulting execution informs insight into recurring gaps, driving disciplined innovation that becomes productized capability supported by operational proof.</p>
+          <p>Innovation is outcome-driven and production-focused, enabling rapid development with built-in security, auditability, and sustainability from inception.</p>
         </div>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
+    <section id="contact" class="contact-section" aria-labelledby="contact-heading">
       <div class="container">
         <header class="contact-header">
-          <h1>Contact</h1>
-          <p class="lead">Get in touch with ADROIT Innovation House</p>
+          <h2 id="contact-heading">Contact Us</h2>
+          <p class="lead">Get in touch for partnerships and inquiries</p>
         </header>
 
         <div class="contact-content">
-          <p>For inquiries about ADROIT products, partnerships, or operational proof documentation, please contact us.</p>
+          <p>For partnership inquiries or product information, please contact our team.</p>
+          <p>Email: <a href="mailto:info@adroit.example.com">info@adroit.example.com</a></p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
+  <!-- Accessibility: Footer with necessary information -->
+  <footer class="footer" role="contentinfo">
     <div class="container">
-      <p>&copy; 2026 ADROIT Innovation House. All rights reserved.</p>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="assets/images/0_ADROIT__Icon.png" alt="ADROIT logo" width="32" height="32">
+          <span class="footer-brand-text">ADROIT Innovation House</span>
+        </div>
+        <div class="footer-links">
+          <a href="#about" aria-label="About">About</a>
+          <a href="#products" aria-label="Products">Products</a>
+          <a href="#white-papers" aria-label="White Papers">Documentation</a>
+        </div>
+        <div class="footer-legal">
+          <p>&copy; 2026 ADROIT Innovation House. All rights reserved.</p>
+        </div>
+      </div>
     </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="analytics_config.js" defer></script>
-  <script src="analytics.js" defer></script>
-  <script src="analytics_data.js" defer></script>
-  <script src="navigation_config.js" defer></script>
-  <script src="products.js" defer></script>
-  <script src="white-papers-data.js" defer></script>
-  <script src="white-papers-filter.js" defer></script>
   <script src="scripts.js" defer></script>
+  
+  <!-- Accessibility: Screen reader announcement for mobile menu state -->
+  <script>
+    // Accessibility: Ensure skip link scrolls to main content
+    document.addEventListener('DOMContentLoaded', function() {
+      const skipLink = document.getElementById('skip-link');
+      if (skipLink) {
+        skipLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          const mainContent = document.getElementById('main-content');
+          if (mainContent) {
+            mainContent.setAttribute('tabindex', '-1');
+            mainContent.focus();
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
