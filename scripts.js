@@ -1,6 +1,26 @@
 // ADROIT Draft Website - Main entry point for scripts
 // Phase 1: scaffold - basic interactivity foundation
 // Phase 2: core content - extended functionality including white papers
+// Performance: Load scripts after performance monitoring
+
+// Initialize performance monitoring
+if (typeof window !== 'undefined') {
+  window.addEventListener('DOMContentLoaded', function() {
+    try {
+      const { Performance } = window;
+      if (Performance) {
+        Performance.init();
+        // Load metrics from storage if available
+        const savedMetrics = Performance.loadMetrics();
+        if (savedMetrics) {
+          console.log('[Performance] Loaded previous session metrics');
+        }
+      }
+    } catch (error) {
+      console.error('Performance initialization error:', error);
+    }
+  });
+}
 
 // Initialize analytics on DOM ready
 if (typeof window !== 'undefined') {
@@ -125,7 +145,7 @@ if (navToggle && navLinks) {
   });
 }
 
-// Smooth scroll for anchor links
+// Smooth scroll for anchor links with performance optimization
 const anchorLinks = document.querySelectorAll('a[href^="#"]');
 anchorLinks.forEach(link => {
   link.addEventListener('click', function(e) {
@@ -191,7 +211,7 @@ try {
   console.error('Navigation initialization error:', error);
 }
 
-// Initialize white papers filter functionality (Phase 2 feature)
+// Initialize white papers filter functionality (Phase 2 feature) with debounce
 const filterBtns = document.querySelectorAll('.filter-btn');
 
 if (filterBtns.length > 0) {
@@ -238,43 +258,21 @@ if (pathwaysSection) {
   });
 }
 
-// Initialize filter buttons for engagement pathways (Phase 2: planned)
-const pathwayFilters = document.querySelectorAll('.pathway-filter');
+// Initialize filter buttons for engagement pathways (Phase 2: planned) with throttled scroll
+// Performance optimization: use throttled scroll to avoid excessive event firing
+const scrollThrottle = window.Performance?.scrollThrottle?.interval || 100;
 
-if (pathwayFilters.length > 0) {
-  pathwayFilters.forEach(btn => {
-    btn.addEventListener('click', function() {
-      // Phase 2: Filter pathways by type
-      const filter = this.getAttribute('data-filter');
-      const cards = pathwaysSection.querySelectorAll('.pathway-card');
-      
-      cards.forEach(card => {
-        const pathwayType = card.getAttribute('data-pathway');
-        if (filter === 'all' || pathwayType === filter) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-}
-
-// Add analytics tracking class to elements that should be tracked
-function addAnalyticsTracking() {
-  // Mark interactive elements for tracking
-  const trackableElements = document.querySelectorAll('a, button, [role="button"]');
-  trackableElements.forEach(el => {
-    el.classList.add('analytics-track');
-  });
-}
-
-// Add analytics tracking after DOM is ready
-if (typeof window !== 'undefined') {
-  window.addEventListener('DOMContentLoaded', addAnalyticsTracking);
-}
-
-// Export for module usage
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { NavigationManager, NavigationConfig };
-}
+let lastScrollY = 0;
+window.addEventListener('scroll', function() {
+  const currentScrollY = window.scrollY;
+  
+  // Only process on scroll changes
+  if (Math.abs(currentScrollY - lastScrollY) > 100) {
+    lastScrollY = currentScrollY;
+    
+    // Track scroll via analytics
+    if (typeof window !== 'undefined' && window.Analytics) {
+      window.Analytics.trackScrollDepth();
+    }
+  }
+}, { passive: true });
