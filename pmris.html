@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PMRIS — Program Monitoring Reporting System | ADROIT Innovation House</title>
+
+  <meta name="description" content="PMRIS (Emerging Suite of Program Monitoring Information Reporting System) delivers real-time reporting, multi-program dashboards, and compliance tracking for government program oversight.">
+  <meta name="keywords" content="PMRIS, Program Monitoring, government reporting, multi-program dashboard, compliance tracking, ADROIT">
+  <meta name="author" content="ADROIT">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://adroit.example.com/pmris.html">
+
+  <meta property="og:type" content="product">
+  <meta property="og:url" content="https://adroit.example.com/pmris.html">
+  <meta property="og:title" content="PMRIS — Program Monitoring Reporting System | ADROIT">
+  <meta property="og:description" content="Real-time program monitoring and reporting for government oversight. Multi-program dashboards, compliance tracking, and operational signal.">
+  <meta property="og:site_name" content="ADROIT">
+  <meta property="og:image" content="https://adroit.example.com/assets/images/0_ADROIT__Landscape.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PMRIS Program Monitoring Reporting System — ADROIT">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://adroit.example.com/pmris.html">
+  <meta name="twitter:title" content="PMRIS — Program Monitoring Reporting System | ADROIT">
+  <meta name="twitter:description" content="Government-grade program monitoring and reporting. Real-time dashboards, compliance tracking, and operational evidence.">
+  <meta name="twitter:image" content="https://adroit.example.com/assets/images/0_ADROIT__Landscape.png">
+  <meta name="twitter:image:alt" content="PMRIS Program Monitoring Reporting System branding">
+
+  <link rel="icon" type="image/png" href="assets/images/0_ADROIT__Icon.png">
+  <link rel="icon" type="image/jpeg" href="assets/images/0_ADROIT__Icon.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    html, body { min-height: 100%; }
+    body {
+      background:
+        linear-gradient(180deg,
+          var(--brand-bg-alt) 0%,
+          var(--brand-bg-light) 18%,
+          var(--brand-bg-light) 82%,
+          var(--brand-bg-alt) 100%) no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background:
+          linear-gradient(180deg,
+            var(--brand-bg-dark) 0%,
+            #0b1220 50%,
+            var(--brand-bg-dark) 100%) no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+    }
+    main { display: block; }
+    main > section { padding: var(--spacing-xxl) 0; }
+    .product-hero { text-align: center; }
+    .product-hero h1 { color: var(--brand-primary-dark); font-size: 2.75rem; margin: 0 0 var(--spacing-md); }
+    .product-hero .tagline { color: var(--brand-text-muted); font-size: 1.25rem; max-width: 60ch; margin: 0 auto var(--spacing-lg); }
+    .product-hero .product-badges { display: inline-flex; gap: var(--spacing-sm); flex-wrap: wrap; justify-content: center; margin-bottom: var(--spacing-lg); }
+    .badge {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-md);
+      border-radius: 999px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge--phase { background: var(--maturity-developing-bg); color: var(--maturity-developing); }
+    .badge--status { background: var(--maturity-early-bg); color: var(--maturity-early-dark, var(--brand-gold-dark)); }
+    .badge--category { background: var(--brand-flagship-bg-light); color: var(--brand-flagship); }
+    .capabilities-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-xl);
+    }
+    .capability-card {
+      background: var(--brand-bg-alt);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-sm);
+    }
+    @media (prefers-color-scheme: dark) {
+      .capability-card { background: var(--brand-bg-alt); border-color: rgba(255,255,255,0.08); }
+    }
+    .capability-card h3 { margin-top: 0; color: var(--brand-primary); font-size: 1.125rem; }
+    .capability-card p { color: var(--brand-text-muted); margin: var(--spacing-sm) 0 0; }
+    .section-heading { text-align: center; margin-bottom: var(--spacing-xl); }
+    .section-heading h2 { color: var(--brand-primary-dark); font-size: 2rem; margin: 0 0 var(--spacing-sm); }
+    .section-heading .lead { color: var(--brand-text-muted); font-size: 1.125rem; margin: 0 auto; max-width: 56ch; }
+    .container--narrow { max-width: 880px; margin: 0 auto; padding: 0 var(--spacing-md); }
+    .cano-region {
+      background: var(--brand-bg-alt);
+      border: 1px dashed rgba(0,0,0,0.12);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      margin-top: var(--spacing-xl);
+    }
+    @media (prefers-color-scheme: dark) {
+      .cano-region { border-color: rgba(255,255,255,0.18); }
+    }
+    .cano-region h2 { margin-top: 0; color: var(--brand-primary); }
+    .cano-region .cano-placeholder { color: var(--brand-text-muted); font-style: italic; }
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+    .breadcrumbs { font-size: 0.875rem; color: var(--brand-text-muted); padding: var(--spacing-md) 0 0; }
+    .breadcrumbs a { color: var(--brand-secondary); }
+    .features-list { list-style: none; padding: 0; margin: var(--spacing-md) 0 0; }
+    .features-list li {
+      padding: var(--spacing-sm) 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      color: var(--brand-text-light);
+    }
+    .features-list li:last-child { border-bottom: none; }
+    .features-list li::before { content: "\2713"; color: var(--brand-success); font-weight: 700; margin-right: var(--spacing-sm); }
+    .cta-row { display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap; margin-top: var(--spacing-lg); }
+    .cta-row a {
+      display: inline-block;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .cta-primary { background: var(--brand-primary); color: #fff; }
+    .cta-primary:hover { background: var(--brand-primary-dark); color: #fff; }
+    .cta-secondary { background: var(--brand-bg-alt); color: var(--brand-primary); border: 1px solid var(--brand-primary); }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PMRIS — Program Monitoring Reporting System",
+    "applicationCategory": "GovernmentApplication",
+    "operatingSystem": "Web",
+    "description": "Emerging Suite of Program Monitoring Information Reporting System. Real-time program oversight, multi-program dashboards, and compliance tracking.",
+    "url": "https://adroit.example.com/pmris.html",
+    "publisher": {
+      "@type": "Organization",
+      "name": "ADROIT Innovation House",
+      "url": "https://adroit.example.com"
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/PreOrder"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="header" role="banner">
+    <nav class="container" aria-label="Primary">
+      <div class="nav">
+        <div class="logo">
+          <a href="./" aria-label="ADROIT Home">
+            <img src="assets/images/0_ADROIT__Icon.png" alt="ADROIT logo" width="40" height="40" loading="lazy">
+          </a>
+          <span class="logo-text">ADROIT</span>
+        </div>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="./" class="nav-link" data-phase="all">Home</a></li>
+          <li><a href="./#portfolio" class="nav-link" data-phase="1">Products</a></li>
+          <li><a href="pmris.html" class="nav-link active" data-phase="1" aria-current="page">PMRIS</a></li>
+          <li><a href="rmfm.html" class="nav-link" data-phase="1">RMFM</a></li>
+          <li><a href="white-papers.html" class="nav-link" data-phase="2">White Papers</a></li>
+          <li><a href="./#contact" class="nav-link" data-phase="all">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" type="button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="./">Home</a> &rsaquo; <a href="./#portfolio">Products</a> &rsaquo; <span aria-current="page">PMRIS</span>
+      </nav>
+    </div>
+
+    <section id="hero" class="product-hero">
+      <div class="container container--narrow">
+        <div class="product-badges">
+          <span class="badge badge--category">Monitoring</span>
+          <span class="badge badge--phase">Phase 1</span>
+          <span class="badge badge--status">Planned</span>
+        </div>
+        <h1>PMRIS &mdash; Program Monitoring Reporting System</h1>
+        <p class="tagline">The Emerging Suite of Program Monitoring Information Reporting System &mdash; real-time program oversight built for government operators.</p>
+        <div class="cta-row">
+          <a href="./#contact" class="cta-primary">Request a Briefing</a>
+          <a href="white-papers.html" class="cta-secondary">Read the PMRIS White Paper</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="capabilities" aria-labelledby="capabilities-heading">
+      <div class="container">
+        <div class="section-heading">
+          <h2 id="capabilities-heading">Capabilities Matrix</h2>
+          <p class="lead">Core capabilities for program managers monitoring large government portfolios.</p>
+        </div>
+        <div class="capabilities-matrix">
+          <article class="capability-card">
+            <h3>Real-time Reporting</h3>
+            <p>Live program status streams &mdash; no nightly ETL gap between an event and its report.</p>
+          </article>
+          <article class="capability-card">
+            <h3>Multi-program Dashboard</h3>
+            <p>One pane of glass across program portfolios with role-aware drill-down.</p>
+          </article>
+          <article class="capability-card">
+            <h3>Compliance Tracking</h3>
+            <p>Continuous monitoring of program-level compliance posture against authorization baselines.</p>
+          </article>
+          <article class="capability-card">
+            <h3>Operational Evidence</h3>
+            <p>Captures the evidence stream &mdash; not just the indicator &mdash; so reviewers can trace claims to source.</p>
+          </article>
+          <article class="capability-card">
+            <h3>Configurable Cadence</h3>
+            <p>Weekly, monthly, and quarterly deliverable templates with per-program override.</p>
+          </article>
+          <article class="capability-card">
+            <h3>RMFM Integration</h3>
+            <p>Bidirectional signal exchange with RMFM &mdash; monitoring signal flows into risk posture and vice versa.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" aria-labelledby="features-heading">
+      <div class="container container--narrow">
+        <div class="section-heading">
+          <h2 id="features-heading">Feature Set</h2>
+        </div>
+        <ul class="features-list">
+          <li>Real-time program status reporting</li>
+          <li>Multi-program dashboard with role-aware drill-down</li>
+          <li>Continuous compliance tracking against authorization baselines</li>
+          <li>Evidence-stream capture for traceability</li>
+          <li>Configurable cadence templates (weekly, monthly, quarterly)</li>
+          <li>Bidirectional integration with RMFM risk posture</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="content" aria-labelledby="cano-heading">
+      <div class="container">
+        <div class="cano-region" data-cano-component="pmris-content" data-cano-product="pmris" data-cano-phase="1" aria-live="polite">
+          <h2 id="cano-heading">Detailed Documentation</h2>
+          <p class="cano-placeholder">Extended documentation, deployment guides, and capability deep-dives are managed through the <code>cano</code> content mechanism and rendered here on initialization.</p>
+          <div id="cano-content-pmris" data-cano-target="pmris" data-cano-endpoint="/api/cano/pmris"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <p>&copy; 2026 ADROIT Innovation House &mdash; Proof Over Pitch.</p>
+    </div>
+  </footer>
+
+  <script src="navigation_config.js" defer></script>
+  <script src="products.js" defer></script>
+  <script>
+    // Lightweight 'cano' content-consumption bootstrap.
+    // Authenticated reads only: the fetch carries the bearer token (if present)
+    // and rendered text is entity-encoded to neutralise XSS per the threat sketch.
+    (function () {
+      'use strict';
+      const Cano = {
+        init() {
+          document.querySelectorAll('[data-cano-component]').forEach((el) => this.hydrate(el));
+        },
+        hydrate(region) {
+          const target = region.querySelector('[data-cano-target]');
+          if (!target) return;
+          const endpoint = target.getAttribute('data-cano-endpoint');
+          if (!endpoint) return;
+          const token = this._getToken();
+          const headers = { 'Accept': 'application/json' };
+          if (token) headers['Authorization'] = 'Bearer ' + token;
+          fetch(endpoint, { headers, credentials: 'same-origin' })
+            .then((res) => {
+              if (!res.ok) throw new Error('cano:status:' + res.status);
+              return res.json();
+            })
+            .then((payload) => this._render(target, payload))
+            .catch(() => { /* fail-silent: keep placeholder, avoid leaking endpoint details */ });
+        },
+        _getToken() {
+          try { return sessionStorage.getItem('adroit_bearer') || null; } catch (e) { return null; }
+        },
+        _render(target, payload) {
+          if (!payload || typeof payload !== 'object') return;
+          const title = this._escape(payload.title || '');
+          const body = this._escape(payload.body || '');
+          const html = (title ? '<h3>' + title + '</h3>' : '') + (body ? '<p>' + body + '</p>' : '');
+          target.innerHTML = html;
+        },
+        _escape(s) {
+          return String(s).replace(/[&<>"']/g, (c) => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+          })[c]);
+        }
+      };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => Cano.init());
+      } else {
+        Cano.init();
+      }
+      window.Cano = Cano;
+    })();
+  </script>
+</body>
+</html>
