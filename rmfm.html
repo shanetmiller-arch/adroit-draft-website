@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>RMFM — Risk Management Framework | ADROIT</title>
+  <meta name="description" content="RMFM (Risk Management Framework) is ADROIT's flagship product — a government-grade risk assessment, audit trail, and compliance reporting platform. Phase 1 scaffold, developing maturity.">
+  <meta name="keywords" content="RMFM, Risk Management Framework, government risk, compliance, audit trail, ADROIT flagship">
+  <meta name="author" content="ADROIT">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://adroit.example.com/rmfm.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://adroit.example.com/rmfm.html">
+  <meta property="og:title" content="RMFM — Risk Management Framework Flagship | ADROIT">
+  <meta property="og:description" content="ADROIT's flagship risk management solution for government programs. Risk assessment, audit trails, compliance reporting, real-time monitoring.">
+  <meta property="og:site_name" content="ADROIT">
+  <meta property="og:image" content="https://adroit.example.com/assets/images/0_ADROIT__Landscape.png">
+
+  <link rel="icon" type="image/png" href="assets/images/0_ADROIT__Icon.png">
+  <link rel="icon" type="image/jpeg" href="assets/images/0_ADROIT__Icon.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Detail-page layout — sits on the same brand backdrop as the home page so
+       the user feels they have descended into the site, not jumped to a different one. */
+    html, body { min-height: 100%; }
+    body {
+      background:
+        linear-gradient(180deg,
+          var(--brand-bg-alt) 0%,
+          var(--brand-bg-light) 18%,
+          var(--brand-bg-light) 82%,
+          var(--brand-bg-alt) 100%) no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background:
+          linear-gradient(180deg,
+            var(--brand-bg-dark) 0%,
+            #0b1220 50%,
+            var(--brand-bg-dark) 100%) no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+    }
+    main.product-detail { display: block; padding-bottom: var(--spacing-xxl); }
+    main.product-detail > section { padding: var(--spacing-xl) 0; }
+    .breadcrumbs { font-size: 0.875rem; color: var(--brand-text-muted); margin: var(--spacing-md) 0; }
+    .breadcrumbs a { color: var(--brand-secondary); }
+    .breadcrumbs span[aria-current="page"] { color: var(--brand-text-light); font-weight: 600; }
+    .product-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      gap: var(--spacing-xl);
+      align-items: center;
+      background: var(--brand-bg-alt);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow-sm);
+    }
+    @media (prefers-color-scheme: dark) {
+      .product-hero { border-color: rgba(255,255,255,0.08); }
+    }
+    @media (max-width: 720px) {
+      .product-hero { grid-template-columns: 1fr; }
+    }
+    .product-hero__title { color: var(--brand-primary-dark); font-size: 2.25rem; margin: var(--spacing-sm) 0; }
+    .product-hero__tagline { color: var(--brand-text-muted); font-size: 1.125rem; margin: 0 0 var(--spacing-md); }
+    .product-hero__meta { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); margin-top: var(--spacing-md); }
+    .product-hero img { width: 100%; height: auto; border-radius: var(--radius-md); }
+    .flagship-pill {
+      display: inline-block;
+      background: var(--brand-flagship-bg);
+      color: var(--brand-flagship);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-pill, 999px);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .phase-badge {
+      display: inline-block;
+      background: var(--brand-flagship-bg);
+      color: var(--brand-flagship);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-pill, 999px);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--spacing-lg);
+    }
+    .detail-card {
+      background: var(--brand-bg-alt);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-sm);
+    }
+    @media (prefers-color-scheme: dark) {
+      .detail-card { border-color: rgba(255,255,255,0.08); }
+    }
+    .detail-card h3 { margin-top: 0; color: var(--brand-primary); }
+    .feature-list { padding-left: 1.25rem; margin: 0; color: var(--brand-text-light); }
+    .feature-list li { margin-bottom: var(--spacing-xs); }
+    .next-step-link {
+      display: inline-block;
+      margin-top: var(--spacing-lg);
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--brand-primary);
+      color: var(--brand-bg-alt);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .next-step-link:hover { background: var(--brand-primary-dark); color: var(--brand-bg-alt); }
+    .section-heading h2 { color: var(--brand-primary-dark); font-size: 1.75rem; margin: 0 0 var(--spacing-sm); }
+    .section-heading .lead { color: var(--brand-text-muted); margin: 0 0 var(--spacing-lg); max-width: 56ch; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "RMFM — Risk Management Framework Flagship",
+    "description": "ADROIT's flagship risk management solution for government programs.",
+    "brand": { "@type": "Organization", "name": "ADROIT Innovation House" },
+    "url": "https://adroit.example.com/rmfm.html",
+    "image": "https://adroit.example.com/assets/images/0_ADROIT__Landscape_Medium.png"
+  }
+  </script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="header" role="banner">
+    <nav class="container" aria-label="Primary">
+      <div class="nav">
+        <div class="logo">
+          <a href="./" aria-label="ADROIT Home">
+            <img src="assets/images/0_ADROIT__Icon.png" alt="ADROIT logo" width="40" height="40" loading="lazy">
+          </a>
+          <span class="logo-text">ADROIT</span>
+        </div>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="./" class="nav-link">Home</a></li>
+          <li><a href="./#portfolio" class="nav-link">Products</a></li>
+          <li><a href="./#proof" class="nav-link">Proof</a></li>
+          <li><a href="./#workflow" class="nav-link">Workflow</a></li>
+          <li><a href="white-papers.html" class="nav-link">White Papers</a></li>
+          <li><a href="./#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content" class="product-detail">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="./">Home</a> &rsaquo;
+        <a href="./#portfolio">Products</a> &rsaquo;
+        <span aria-current="page">RMFM</span>
+      </nav>
+
+      <section class="product-hero" aria-labelledby="product-title">
+        <div>
+          <span class="flagship-pill">Flagship Product ★</span>
+          <h1 id="product-title" class="product-hero__title">Risk Management Framework</h1>
+          <p class="product-hero__tagline">A government-grade risk assessment, audit trail, and compliance reporting platform — built to make oversight evidence-based rather than opinion-based.</p>
+          <p>RMFM is ADROIT's flagship response to recurring risk-management gaps observed across live government programs. Every capability shipped is anchored to operational proof from a real engagement, not a hypothetical use case.</p>
+          <div class="product-hero__meta">
+            <span class="phase-badge">Phase 1 · Scaffold</span>
+            <span class="phase-badge">Status: Active</span>
+            <span class="phase-badge">Maturity: Developing</span>
+            <span class="phase-badge">Category: Risk Management</span>
+          </div>
+        </div>
+        <div>
+          <img src="assets/images/0_ADROIT__Landscape_Medium.png" alt="ADROIT RMFM product visual" loading="lazy" width="480" height="270">
+        </div>
+      </section>
+
+      <section aria-labelledby="capabilities-heading">
+        <div class="section-heading">
+          <h2 id="capabilities-heading">Core Capabilities</h2>
+          <p class="lead">RMFM ships these capabilities in the current draft. Each one maps to a real program need captured during ADEPT consulting engagements.</p>
+        </div>
+        <div class="detail-grid">
+          <article class="detail-card">
+            <h3>Risk Assessment</h3>
+            <p>Structured risk identification, scoring, and treatment workflows — aligned to NIST RMF and program-specific control catalogues.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Audit Trails</h3>
+            <p>Tamper-evident change history for every risk decision, with role attribution and full chain-of-custody for downstream audit.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Compliance Reporting</h3>
+            <p>Pre-built report templates for the artefacts oversight bodies actually ask for, with scheduled delivery and export.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Real-Time Monitoring</h3>
+            <p>Live dashboards that surface emerging risk before it becomes a finding — feeding directly into the program's daily standup.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Automated Reporting</h3>
+            <p>Recurring deliverables generated from the same source-of-truth data — no parallel spreadsheets, no copy-paste drift.</p>
+          </article>
+          <article class="detail-card">
+            <h3>Operational Insights Integration</h3>
+            <p>Closes the loop with ADEPT consulting telemetry so that recurring gaps observed in the field become productized controls.</p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="lifecycle-heading">
+        <div class="section-heading">
+          <h2 id="lifecycle-heading">Where RMFM Sits in the ADROIT Lifecycle</h2>
+          <p class="lead">RMFM is the productized output of repeated ADEPT consulting findings. The lifecycle is intentional, not accidental.</p>
+        </div>
+        <div class="detail-grid">
+          <article class="detail-card">
+            <h3>1. Field Observation</h3>
+            <p>ADEPT consultants identify a recurring risk-management gap across multiple government programs.</p>
+          </article>
+          <article class="detail-card">
+            <h3>2. Disciplined Innovation</h3>
+            <p>The gap is translated into a candidate capability — vetted against compliance, auditability, and sustainability from inception.</p>
+          </article>
+          <article class="detail-card">
+            <h3>3. Productization</h3>
+            <p>The capability becomes part of RMFM, supported by operational proof rather than marketing claims.</p>
+          </article>
+        </div>
+      </section>
+
+      <section aria-labelledby="next-heading">
+        <div class="section-heading">
+          <h2 id="next-heading">Where to Go Next</h2>
+          <p class="lead">RMFM is a Phase 1 scaffold today. Phase 2 expands the white-paper set and core operational content.</p>
+        </div>
+        <div class="detail-grid">
+          <article class="detail-card">
+            <h3>Read the White Paper</h3>
+            <p>Architecture, audit-trail guarantees, and compliance-reporting design covered in depth.</p>
+            <a class="next-step-link" href="white-papers.html#rmfm-paper" aria-label="Read the RMFM white paper">Open white paper</a>
+          </article>
+          <article class="detail-card">
+            <h3>Compare with PMRIS</h3>
+            <p>RMFM focuses on risk; PMRIS focuses on program monitoring. They share the same operational-proof methodology.</p>
+            <a class="next-step-link" href="pmris.html" aria-label="Open the PMRIS detail page">View PMRIS</a>
+          </article>
+          <article class="detail-card">
+            <h3>Back to the Portfolio</h3>
+            <p>Return to the product portfolio overview on the home page.</p>
+            <a class="next-step-link" href="./#portfolio" aria-label="Back to product portfolio">Back to portfolio</a>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="navigation_config.js" defer></script>
+  <script src="scripts.js" defer></script>
+</body>
+</html>

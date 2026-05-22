@@ -41,39 +41,34 @@ const PRODUCT_SCHEMA = {
 
 // Validate product data against schema - prevents injection of malformed data
 function validateProduct(product) {
-  // Check required fields exist
   if (!PRODUCT_SCHEMA.required.every(field => product[field] !== undefined)) {
     return false;
   }
-  
-  // Validate status is one of allowed values (prevents status injection attacks)
   if (!PRODUCT_SCHEMA.allowedStatuses.includes(product.status)) {
     return false;
   }
-  
-  // Validate maturity level is one of allowed values (prevents maturity injection attacks)
   if (!PRODUCT_SCHEMA.allowedMaturityLevels.includes(product.maturityLevel)) {
     return false;
   }
-  
-  // Validate features array is within bounds
-  if (!Array.isArray(product.features) || 
+  if (!Array.isArray(product.features) ||
       product.features.length < PRODUCT_SCHEMA.minFeatures ||
       product.features.length > PRODUCT_SCHEMA.maxFeatures) {
     return false;
   }
-  
-  // Ensure features are strings (prevents XSS via feature injection)
   if (!product.features.every(f => typeof f === 'string')) {
     return false;
   }
-  
-  // Validate ID format (basic alphanumeric check)
   if (!/^[-a-zA-Z0-9]+$/.test(product.id)) {
     return false;
   }
-  
   return true;
+}
+
+// HTML escape map shared across sanitisers
+const HTML_ESCAPE_MAP = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' };
+function escapeHtml(value) {
+  if (typeof value !== 'string') return value;
+  return value.replace(/[&<>"']/g, ch => HTML_ESCAPE_MAP[ch] || ch);
 }
 
 // Sanitize product data before rendering - removes potentially dangerous characters
@@ -81,16 +76,23 @@ function sanitizeProductData(product) {
   if (!validateProduct(product)) {
     return null;
   }
-  
-  // Clone product to avoid mutating original data (immutability)
   return {
     ...product,
-    // Escape HTML in text fields to prevent XSS
-    description: product.description?.replace(/[&<>&quot;'\'/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
-    name: product.name?.replace(/[&<>&quot;'\'/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
-    fullName: product.fullName?.replace(/[&<>&quot;'\'/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char),
-    features: product.features.map(f => f.replace(/[&<>&quot;'\'/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'}[char]) || char))
+    description: escapeHtml(product.description),
+    name: escapeHtml(product.name),
+    fullName: escapeHtml(product.fullName),
+    features: product.features.map(f => escapeHtml(f))
   };
+}
+
+// Product detail page URL — depth layer beneath the home portfolio.
+// Each known product has a dedicated page that expands on description, features,
+// phase status, and where it fits in the ADROIT lifecycle. Falls back to the
+// in-page anchor if the id has no dedicated detail page yet, so unknown products
+// degrade gracefully without exposing a broken link.
+const PRODUCT_DETAIL_PAGES = new Set(['rmfm', 'pmris']);
+function productDetailHref(id) {
+  return PRODUCT_DETAIL_PAGES.has(id) ? `${id}.html` : `#${id}`;
 }
 
 // Product stub manager for dynamic rendering with security validation
@@ -104,32 +106,31 @@ const ProductManager = {
   },
 
   getFlagship() {
-    // Security: Validate before returning flagship to prevent manipulation
     const flagship = productStubs.find(p => p.isFlagship);
     return flagship && validateProduct(flagship) ? flagship : null;
   },
 
-  // Secure rendering with validation and sanitization
   renderProducts(containerSelector) {
-    const container = document.querySelector(containerSelector);
+    const container = typeof containerSelector === 'string'
+      ? document.querySelector(containerSelector)
+      : containerSelector;
     if (!container) return;
 
     const products = this.getProducts();
     let html = '<div class="portfolio-grid">';
 
-    // Security: Validate products array is not empty or tampered
     if (!Array.isArray(products) || products.length === 0) {
       console.warn('ProductManager: No valid products to render');
       html += '<p class="no-products">No products available</p>';
     }
 
-    // Highlight flagship product first (single flagship enforced by schema)
     const flagship = this.getFlagship();
     if (flagship) {
       const imageSrc = flagship.imageUrl || 'assets/images/0_ADROIT_Small.png';
+      const detailHref = productDetailHref(flagship.id);
       html += `
         <article class="portfolio-card portfolio-card--flagship">
-          <a href="#${flagship.id}" class="portfolio-card-link">
+          <a href="${detailHref}" class="portfolio-card-link" aria-label="Open ${flagship.name} detail page">
             <img src="${imageSrc}" alt="${flagship.name}" class="portfolio-image" loading="lazy">
             <div class="portfolio-content">
               <span class="portfolio-badge portfolio-badge--flagship">Flagship Product</span>
@@ -144,22 +145,20 @@ const ProductManager = {
                 <span class="maturity-indicator ${flagship.maturityLevel}">${flagship.maturityLevel}</span>
                 <span class="flagship-indicator">★</span>
               </div>
-              <a href="#${flagship.id}" class="portfolio-link" aria-label={`Learn more about ${flagship.name}`}>
-                Learn more &rarr;
-              </a>
+              <span class="portfolio-link" aria-hidden="true">Learn more &rarr;</span>
             </div>
           </a>
         </article>
       `;
     }
 
-    // Render remaining products
     const regularProducts = products.filter(p => !p.isFlagship);
     regularProducts.forEach(product => {
       const imageSrc = product.imageUrl || 'assets/images/0_ADROIT_Small.png';
+      const detailHref = productDetailHref(product.id);
       html += `
         <article class="portfolio-card">
-          <a href="#${product.id}" class="portfolio-card-link">
+          <a href="${detailHref}" class="portfolio-card-link" aria-label="Open ${product.name} detail page">
             <img src="${imageSrc}" alt="${product.name}" class="portfolio-image" loading="lazy">
             <div class="portfolio-content">
               <span class="portfolio-badge">${product.category}</span>
@@ -172,9 +171,7 @@ const ProductManager = {
                 <span class="status-badge ${product.statusBadge}">${product.status}</span>
                 <span class="maturity-indicator ${product.maturityLevel}">${product.maturityLevel}</span>
               </div>
-              <a href="#${product.id}" class="portfolio-link" aria-label={`Learn more about ${product.name}`}>
-                Learn more &rarr;
-              </a>
+              <span class="portfolio-link" aria-hidden="true">Learn more &rarr;</span>
             </div>
           </a>
         </article>
@@ -186,7 +183,6 @@ const ProductManager = {
   }
 };
 
-// Export for module usage
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { productStubs, ProductManager, validateProduct, sanitizeProductData };
+  module.exports = { productStubs, ProductManager, validateProduct, sanitizeProductData, productDetailHref };
 }
